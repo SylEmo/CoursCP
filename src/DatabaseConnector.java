@@ -26,8 +26,7 @@ public class DatabaseConnector {
 	private void initializeDatasource() throws NamingException{
 		InitialContext ic = new InitialContext();
 		Context xmlContext = (Context) ic.lookup("java:comp/env");
-		//TODO: Think about making a parameter rather than directly "jdbc/Medlinkz-dbConnector"
-		_connectorDatasource = (DataSource) xmlContext.lookup("jdbc/Medlinkz-dbConnector");
+		_connectorDatasource = (DataSource) xmlContext.lookup("jdbc/coursCP-dbConnector");
 	}
 		
 	public Connection getConnection() throws SQLException, NamingException{
