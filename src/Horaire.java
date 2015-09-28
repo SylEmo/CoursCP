@@ -16,6 +16,24 @@ public class Horaire implements Serializable {
 	boolean Vendredi_ap;
 	Atelier IdAtelier;
 	
+	public Horaire(int id, boolean lundi_m, boolean lundi_ap, boolean mardi_m, boolean mardi_ap, boolean mercredi_m,
+			boolean mercredi_ap, boolean jeudi_m, boolean jeudi_ap, boolean vendredi_m, boolean vendredi_ap,
+			Atelier idAtelier) {
+		super();
+		Id = id;
+		Lundi_m = lundi_m;
+		Lundi_ap = lundi_ap;
+		Mardi_m = mardi_m;
+		Mardi_ap = mardi_ap;
+		Mercredi_m = mercredi_m;
+		Mercredi_ap = mercredi_ap;
+		Jeudi_m = jeudi_m;
+		Jeudi_ap = jeudi_ap;
+		Vendredi_m = vendredi_m;
+		Vendredi_ap = vendredi_ap;
+		IdAtelier = idAtelier;
+	}
+
 	public void setId( int id ){
 		this.Id = id;
 	}

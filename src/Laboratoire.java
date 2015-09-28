@@ -7,6 +7,13 @@ public class Laboratoire implements Serializable{
 	String Nom;
 	String Lieu;
 	
+	public Laboratoire(int id, String nom, String lieu) {
+		super();
+		Id = id;
+		Nom = nom;
+		Lieu = lieu;
+	}
+	
 	public void setId( int id ){
 		this.Id = id;
 	}
@@ -14,7 +21,7 @@ public class Laboratoire implements Serializable{
 	public void setNom( String nom ){
 		this.Nom = nom;
 	}
-	
+
 	public void setLieu( String lieu ){
 		this.Lieu = lieu;
 	}

@@ -10,6 +10,16 @@ public class Atelier implements Serializable {
 	int Duree;
 	int Capacite;
 	
+	public Atelier(int id, String titre, String theme, Laboratoire labo, int duree, int capacite) {
+		super();
+		Id = id;
+		Titre = titre;
+		Theme = theme;
+		Labo = labo;
+		Duree = duree;
+		Capacite = capacite;
+	}
+
 	public void setId( int id ){
 		this.Id = id;
 	}
