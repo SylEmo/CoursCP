@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Sylvain
  *
  */
-@WebServlet("/liste-atelier")
+@WebServlet("/")
 public class ListeAtelierServlet extends HttpServlet {
 
 	/* (non-Javadoc)
@@ -33,7 +33,6 @@ public class ListeAtelierServlet extends HttpServlet {
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_LIST_ATELIER);
-			//preparedStatement.setInt(1, 1);
 			
 			resultSet = preparedStatement.executeQuery();
 			resultSet.next();
@@ -54,7 +53,7 @@ public class ListeAtelierServlet extends HttpServlet {
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}
-    	rd = req.getRequestDispatcher(".jsp");
+    	rd = req.getRequestDispatcher("Accueil.jsp");
     	rd.forward(req, resp);
 	}
 

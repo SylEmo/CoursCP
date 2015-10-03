@@ -37,22 +37,16 @@ public class SupprAtelier extends HttpServlet {
 		RequestDispatcher rd = null;
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_DELETE_ATELIER);
-			//preparedStatement.setInt(1, 1);
-			
-			resultSet = preparedStatement.executeQuery();
-			resultSet.next();
+			preparedStatement.setInt(1, (int)req.getAttribute("id"));
+			preparedStatement.executeUpdate();
 		}catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
 		}finally{
 			try{
-				if(resultSet != null){
-					resultSet.close();
-				}
 				if(preparedStatement != null){
 					preparedStatement.close();
 				}

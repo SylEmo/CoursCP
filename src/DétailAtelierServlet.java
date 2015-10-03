@@ -29,14 +29,19 @@ public class DétailAtelierServlet extends HttpServlet {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		int id = (int) req.getAttribute("id");
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_GET_DETAILS_ATELIER);
-			//preparedStatement.setInt(1, 1);
+			preparedStatement.setInt(1, id);
 			
 			resultSet = preparedStatement.executeQuery();
-			//Atelier atelier = new Atelier(resultSet.getString("name"),...);
+			Laboratoire laboratoire = new Laboratoire(req.getSession().getAttribute("labId"), 
+					, lieu)
+			Atelier atelier = new Atelier(id, resultSet.getString("theme"), 
+					resultSet.getString("titre"), resultSet.getInt("duree"),
+					resultSet.getInt("capacite")); 
 		}catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
 		}finally{
@@ -54,7 +59,7 @@ public class DétailAtelierServlet extends HttpServlet {
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}
-    	rd = req.getRequestDispatcher(".jsp");
+    	rd = req.getRequestDispatcher("/DetailsAtelier.jsp");
     	rd.forward(req, resp);
 	}
 

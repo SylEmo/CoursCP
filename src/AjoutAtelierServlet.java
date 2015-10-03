@@ -27,7 +27,7 @@ public class AjoutAtelierServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
-    	rd = req.getRequestDispatcher(".jsp");
+    	rd = req.getRequestDispatcher("Ajouter.jsp");
     	rd.forward(req, resp);
 	}
 
@@ -45,7 +45,11 @@ public class AjoutAtelierServlet extends HttpServlet {
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_ADD_ATELIER);
-			//preparedStatement.setInt(1, 1);
+			preparedStatement.setString(1, (String)req.getAttribute("titre"));
+			preparedStatement.setString(2, (String)req.getAttribute("theme"));
+			preparedStatement.setString(3, (String)req.getAttribute("laboratoire"));
+			preparedStatement.setInt(4, (int)req.getAttribute("duree"));
+			preparedStatement.setInt(5, (int)req.getAttribute("capacite"));
 			
 			preparedStatement.executeUpdate();
 		}catch(NamingException | SQLException e){

@@ -26,6 +26,39 @@ public class ModifAtelierServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try{
+			dbConnection = new DatabaseConnector().getConnection();
+			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_GET_DETAILS_ATELIER);
+			preparedStatement.setInt(1, (int)req.getAttribute("id"));
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			/*Laboratoire laboratoire = new Laboratoire(resultSet.getInt("id"), resultSet.getString("nom"),
+										resultSet.getString("Lieu"));
+			Atelier atelier = new Atelier(resultSet.getInt("id"), resultSet.getString("titre"), 
+										resultSet.getString("theme"), resultSet.getInt("duree"),
+										resultSet.getInt("capacite"));*/
+		}catch(NamingException | SQLException e){
+			System.out.println(e.getClass().getName() + " : " + e.getMessage());
+		}finally{
+			try{
+				if(resultSet != null){
+					resultSet.close();
+				}
+				if(preparedStatement != null){
+					preparedStatement.close();
+				}
+				if(dbConnection != null){
+					dbConnection.close();
+				}
+			}catch(SQLException e){
+				System.out.println(e.getClass().getName() + " : " + e.getMessage());
+			}
+		}
     	rd = req.getRequestDispatcher(".jsp");
     	rd.forward(req, resp);
 	}
@@ -44,7 +77,7 @@ public class ModifAtelierServlet extends HttpServlet {
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_MODIFY_ATELIER);
-			//preparedStatement.setInt(1, 1);
+			preparedStatement.setInt(1, 1);
 			
 			preparedStatement.executeUpdate();
 		}catch(NamingException | SQLException e){
