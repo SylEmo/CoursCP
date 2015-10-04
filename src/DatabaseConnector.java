@@ -37,11 +37,6 @@ public class DatabaseConnector {
 		//Gets the connection
 		Connection dbCon = _connectorDatasource.getConnection();
 		
-		//Ensure the data will be throw UTF-8 on client side
-		String DBEncoding = "UTF-8";
-		PreparedStatement statement = dbCon.prepareStatement("SET CLIENT_ENCODING TO '" + DBEncoding + "'");
-		statement.execute();
-		
 		return dbCon;
 	}
 }

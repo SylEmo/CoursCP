@@ -37,11 +37,11 @@ public class DétailAtelierServlet extends HttpServlet {
 			preparedStatement.setInt(1, id);
 			
 			resultSet = preparedStatement.executeQuery();
-			Laboratoire laboratoire = new Laboratoire(req.getSession().getAttribute("labId"), 
+			/*Laboratoire laboratoire = new Laboratoire(req.getSession().getAttribute("labId"), 
 					, lieu)
 			Atelier atelier = new Atelier(id, resultSet.getString("theme"), 
 					resultSet.getString("titre"), resultSet.getInt("duree"),
-					resultSet.getInt("capacite")); 
+					resultSet.getInt("capacite"));*/ 
 		}catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
 		}finally{
