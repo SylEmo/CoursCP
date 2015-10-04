@@ -39,34 +39,60 @@ public class AjoutAtelierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		Connection dbConnection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+		PreparedStatement preparedStatementAtelier = null, preparedStatementHoraire = null;
+		ResultSet resultSetAtelier = null, resultSetHoraire = null;
+		int idAtelier = (int) req.getAttribute("idAtelier"), idHoraire = (int) req.getAttribute("idHoraire");
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
-			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_ADD_ATELIER);
-			preparedStatement.setString(1, (String) req.getAttribute("titre"));
-			preparedStatement.setString(2, (String) req.getAttribute("theme"));
-			preparedStatement.setInt(3, (int) req.getSession().getAttribute("idLabo"));
-			preparedStatement.setInt(4, (int) req.getAttribute("duree"));
-			preparedStatement.setInt(5, (int) req.getAttribute("capacite"));
-			preparedStatement.setInt(6, (int) req.getAttribute("id"));
 			
-			preparedStatement.executeUpdate();
-		}catch(NamingException | SQLException e){
+			preparedStatementAtelier = dbConnection.prepareStatement(ListOfQueries.QUERY_MODIFY_ATELIER);
+			preparedStatementAtelier.setString(1, req.getAttribute("titre").toString());
+			preparedStatementAtelier.setString(2, req.getAttribute("theme").toString());
+			preparedStatementAtelier.setInt(3, (int) req.getSession().getAttribute("idLabo"));
+			preparedStatementAtelier.setInt(4, (int) req.getAttribute("duree"));
+			preparedStatementAtelier.setInt(5, (int) req.getAttribute("capacite"));
+			preparedStatementAtelier.setInt(6, idAtelier);
+			
+			preparedStatementAtelier.executeUpdate();
+			
+			preparedStatementHoraire = dbConnection.prepareStatement(ListOfQueries.QUERY_MODIFY_HORAIRE);
+			preparedStatementHoraire.setBoolean(1, (boolean) req.getAttribute("lundi_m"));
+			preparedStatementHoraire.setBoolean(2, (boolean) req.getAttribute("lundi_ap"));
+			preparedStatementHoraire.setBoolean(3, (boolean) req.getAttribute("mardi_m"));
+			preparedStatementHoraire.setBoolean(4, (boolean) req.getAttribute("mardi_ap"));
+			preparedStatementHoraire.setBoolean(5, (boolean) req.getAttribute("mercredi_m"));
+			preparedStatementHoraire.setBoolean(6, (boolean) req.getAttribute("mercredi_ap"));
+			preparedStatementHoraire.setBoolean(7, (boolean) req.getAttribute("jeudi_m"));
+			preparedStatementHoraire.setBoolean(8, (boolean) req.getAttribute("jeudi_ap"));
+			preparedStatementHoraire.setBoolean(9, (boolean) req.getAttribute("vendredi_m"));
+			preparedStatementHoraire.setBoolean(10, (boolean) req.getAttribute("vendredi_ap"));
+			preparedStatementHoraire.setInt(11, idAtelier);
+			
+			preparedStatementHoraire.executeUpdate();
+		}
+		catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
-		}finally{
+		}
+		finally{
 			try{
-				if(resultSet != null){
-					resultSet.close();
+				if(resultSetAtelier != null){
+					resultSetAtelier.close();
 				}
-				if(preparedStatement != null){
-					preparedStatement.close();
+				if(preparedStatementAtelier != null){
+					preparedStatementAtelier.close();
+				}
+				if(resultSetHoraire != null){
+					resultSetHoraire.close();
+				}
+				if(preparedStatementHoraire != null){
+					preparedStatementHoraire.close();
 				}
 				if(dbConnection != null){
 					dbConnection.close();
 				}
-			}catch(SQLException e){
+			}
+			catch(SQLException e){
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}

@@ -84,7 +84,7 @@ pageEncoding="ISO-8859-1"%>
             <td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
         </tr>
         
-        <c:forEach var="atelier" items="${listeAtelier}">
+        <c:forEach var="atelier" items="${listeAteliers}">
          <tr>
            <td><b><a href="/detail-atelier">Atelier</a></b></td>
            <td><a  class="right" align="right" href="ModifierAtelier.jsp"><img  src="img/mod.png" alt="modify" style="width:25px;height:25px;border:0"></a></td> 
@@ -97,7 +97,7 @@ pageEncoding="ISO-8859-1"%>
  
 <script type="text/javascript">
    function ajouter(){
-         $.post("/ajout-atelier", function(){});
+         $.get("/ajout-atelier", function(){});
           }
 
   function supprimer(){

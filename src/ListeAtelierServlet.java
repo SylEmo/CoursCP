@@ -41,6 +41,7 @@ public class ListeAtelierServlet extends HttpServlet {
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_LIST_ATELIER);
 			preparedStatement.setInt(1, (int) req.getSession().getAttribute("idLabo"));
 			resultSet = preparedStatement.executeQuery();
+			
 			req.setAttribute("listeAteliers", resultSet);
 		}
 		catch(NamingException | SQLException e){
