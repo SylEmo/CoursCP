@@ -25,7 +25,7 @@ public class SupprAtelier extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		doPost(req, resp);
+		throw new ServletException("Appel GET non autorisé sur la servlet.");
 	}
 
 	/* (non-Javadoc)
@@ -40,12 +40,16 @@ public class SupprAtelier extends HttpServlet {
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
+			
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_DELETE_ATELIER);
-			preparedStatement.setInt(1, (int)req.getAttribute("id"));
+			preparedStatement.setInt(1, (int) req.getAttribute("id"));
+			
 			preparedStatement.executeUpdate();
-		}catch(NamingException | SQLException e){
+		}
+		catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
-		}finally{
+		}
+		finally{
 			try{
 				if(preparedStatement != null){
 					preparedStatement.close();
@@ -53,11 +57,12 @@ public class SupprAtelier extends HttpServlet {
 				if(dbConnection != null){
 					dbConnection.close();
 				}
-			}catch(SQLException e){
+			}
+			catch(SQLException e){
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}
-    	rd = req.getRequestDispatcher(".jsp");
+    	rd = req.getRequestDispatcher("/");
     	rd.forward(req, resp);
 	}
 }

@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/")
 public class ListeAtelierServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
@@ -32,13 +34,19 @@ public class ListeAtelierServlet extends HttpServlet {
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
-			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_LIST_ATELIER);
 			
+			if(req.getSession().getAttribute("idLabo") == null)
+				req.getSession().setAttribute("idLabo", 7);
+			
+			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_LIST_ATELIER);
+			preparedStatement.setInt(1, (int) req.getSession().getAttribute("idLabo"));
 			resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-		}catch(NamingException | SQLException e){
+			req.setAttribute("listeAteliers", resultSet);
+		}
+		catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
-		}finally{
+		}
+		finally{
 			try{
 				if(resultSet != null){
 					resultSet.close();
@@ -49,7 +57,8 @@ public class ListeAtelierServlet extends HttpServlet {
 				if(dbConnection != null){
 					dbConnection.close();
 				}
-			}catch(SQLException e){
+			}
+			catch(SQLException e){
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}
@@ -63,9 +72,7 @@ public class ListeAtelierServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		RequestDispatcher rd = null;
-    	rd = req.getRequestDispatcher(".jsp");
-    	rd.forward(req, resp);
+		throw new ServletException("Appel POST non autorisé sur la servlet.");
 	}
 
 }

@@ -37,14 +37,21 @@ public class DétailAtelierServlet extends HttpServlet {
 			preparedStatement.setInt(1, id);
 			
 			resultSet = preparedStatement.executeQuery();
-			/*Laboratoire laboratoire = new Laboratoire(req.getSession().getAttribute("labId"), 
-					, lieu)
-			Atelier atelier = new Atelier(id, resultSet.getString("theme"), 
-					resultSet.getString("titre"), resultSet.getInt("duree"),
-					resultSet.getInt("capacite"));*/ 
-		}catch(NamingException | SQLException e){
+			resultSet.next();
+			
+			Laboratoire laboratoire = new Laboratoire((int) req.getSession().getAttribute("idLabo"), 
+					resultSet.getString("nom"), resultSet.getString("lieu"));
+			Atelier atelier = new Atelier(id, resultSet.getString("titre"),
+					resultSet.getString("theme"), laboratoire, resultSet.getInt("duree"),
+					resultSet.getInt("capacite"));
+			
+			req.setAttribute("atelier", atelier);
+			req.setAttribute("laboratoire", laboratoire);
+		}
+		catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
-		}finally{
+		}
+		finally{
 			try{
 				if(resultSet != null){
 					resultSet.close();
@@ -55,11 +62,12 @@ public class DétailAtelierServlet extends HttpServlet {
 				if(dbConnection != null){
 					dbConnection.close();
 				}
-			}catch(SQLException e){
+			}
+			catch(SQLException e){
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}
-    	rd = req.getRequestDispatcher("/DetailsAtelier.jsp");
+    	rd = req.getRequestDispatcher("/WEB-INF/details-atelier.jsp");
     	rd.forward(req, resp);
 	}
 
@@ -69,9 +77,7 @@ public class DétailAtelierServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		RequestDispatcher rd = null;
-    	rd = req.getRequestDispatcher(".jsp");
-    	rd.forward(req, resp);
+		throw new ServletException("Appel POST non autorisé sur la servlet.");
 	}
 
 }
