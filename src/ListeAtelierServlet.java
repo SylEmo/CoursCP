@@ -53,7 +53,7 @@ public class ListeAtelierServlet extends HttpServlet {
 				System.out.println(e.getClass().getName() + " : " + e.getMessage());
 			}
 		}
-    	rd = req.getRequestDispatcher("Accueil.jsp");
+    	rd = req.getRequestDispatcher("/WEB-INF/accueil.jsp");
     	rd.forward(req, resp);
 	}
 
