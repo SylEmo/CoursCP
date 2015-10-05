@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `atelier` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Titre` varchar(250) NOT NULL,
   `Theme` varchar(250) NOT NULL,
-  `Type` varchar(250) NOT NULL,
   `Laboratoire` int(11) NOT NULL,
   `Duree` int(11) NOT NULL,
   `Capacite` int(11) NOT NULL,
@@ -42,19 +41,19 @@ CREATE TABLE IF NOT EXISTS `atelier` (
 --
 
 INSERT INTO `atelier` (`Id`, `Titre`, `Theme`, `Laboratoire`, `Duree`, `Capacite`) VALUES
-(3, 'Test d''atelier 1', 'Test de theme 1','Test de type 1', 6, 30, 12),
-(4, 'Test d''atelier 2', 'Test de theme 2','Test de type 2',  7, 10, 5),
-(5, 'Test d''atelier 2b', 'Test de theme 2b','Test de type 2b',  7, 30, 10),
-(6, 'Test d''atelier 2c', 'Test de theme 2c','Test de type 2c',  7, 15, 115),
-(7, 'Test d''atelier 2d', 'Test de theme 2d','Test de type 2d',  7, 45, 20),
-(8, 'Test d''atelier 3', 'Test de theme 3','Test de type 3',  8, 45, 20),
-(9, 'Test d''atelier 4', 'Test de theme 4','Test de type 4',  9, 1, 18),
-(10, 'Test d''atelier 5', 'Test de theme 5','Test de type 5',  10, 1, 17),
-(11, 'Test d''atelier 6', 'Test de theme 6','Test de type 6',  11, 30, 16),
-(12, 'Test d''atelier 7', 'Test de theme 7','Test de type 7',  12, 20, 15),
-(13, 'Test d''atelier 8', 'Test de theme 8','Test de type 8',  13, 1, 19),
-(14, 'Test d''atelier 9', 'Test de theme 9','Test de type 9',  14, 30, 25),
-(15, 'Test d''atelier 10', 'Test de theme 10','Test de type 10',  15, 1, 22);
+(3, 'Test d''atelier 1', 'Test de theme 1', 6, 30, 12),
+(4, 'Test d''atelier 2', 'Test de theme 2', 7, 10, 5),
+(5, 'Test d''atelier 2b', 'Test de theme 2b', 7, 30, 10),
+(6, 'Test d''atelier 2c', 'Test de theme 2c', 7, 15, 115),
+(7, 'Test d''atelier 2d', 'Test de theme 2d', 7, 45, 20),
+(8, 'Test d''atelier 3', 'Test de theme 3', 8, 45, 20),
+(9, 'Test d''atelier 4', 'Test de theme 4', 9, 1, 18),
+(10, 'Test d''atelier 5', 'Test de theme 5', 10, 1, 17),
+(11, 'Test d''atelier 6', 'Test de theme 6', 11, 30, 16),
+(12, 'Test d''atelier 7', 'Test de theme 7', 12, 20, 15),
+(13, 'Test d''atelier 8', 'Test de theme 8', 13, 1, 19),
+(14, 'Test d''atelier 9', 'Test de theme 9', 14, 30, 25),
+(15, 'Test d''atelier 10', 'Test de theme 10', 15, 1, 22);
 
 -- --------------------------------------------------------
 
