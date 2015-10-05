@@ -1,50 +1,52 @@
 <%@page import="java.sql.ResultSet"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<html>
-<<<<<<< HEAD
+<!doctype html>
+<html lang="fr">
 <head>
 <title>Atelier</title>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
-<style type="text/css">
-#i {
-	position: absolute;
-	top: 20px;
-	left: 0;
-	width: 130px;
-	height: 140px;
-}
-
-#j {
-	position: absolute;
-	top: 20px;
-	right: 0;
-	width: 130px;
-	height: 140px;
-}
-
-#t1 {
-	width: 60%;
-	height: 40%;
-	margin-left: 300px;
-	background-color: #D0D9DE;
-}
-
-#t2 {
-	width: 50%;
-	height: 20%;
-	margin-left: 340px;
-}
-
-body {
-	background-color: #b0c4de;
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	
+	<style type="text/css">
+	#i {
+		position: absolute;
+		top: 20px;
+		left: 0;
+		width: 130px;
+		height: 140px;
+	}
+	
+	#j {
+		position: absolute;
+		top: 20px;
+		right: 0;
+		width: 130px;
+		height: 140px;
+	}
+	
+	#t1 {
+		width: 60%;
+		height: 40%;
+		margin-left: 300px;
+		background-color: #D0D9DE;
+	}
+	
+	#t2 {
+		width: 50%;
+		height: 20%;
+		margin-left: 340px;
+	}
+	
+	body {
+		background-color: #b0c4de;
+	}
+	</style>
 
 </head>
 <body>
@@ -150,20 +152,20 @@ body {
 					<td><input type="checkbox" name="va" value="ch10"></td>
 				</tr>
 			</table>
-		</form>
-		<table align="center" id="t2">
+			<table align="center" id="t2">
 			<tr>
 				<td align="left">
-					<button id="back" class="btn btn-primary" type="">
-						<a href="/"><b>Retour</b></a>
-					</button></td>
+					<a class="btn btn-primary" href="/"><b>Retour</b></a>
+				</td>
 				<td></td>
 				<td align="right">
-					<button id="save" class="btn btn-primary" type="" onClick="sendForm()">
+					<button id="save" class="btn btn-primary" type="submit">
 						<b>Enregistrer</b>
 					</button></td>
 			</tr>
 		</table>
+		</form>
+		
 	</div>
 	<script>
 		function sendForm(){
