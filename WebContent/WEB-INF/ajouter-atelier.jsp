@@ -91,7 +91,7 @@ pageEncoding="ISO-8859-1"%>
         </tr>
 
         <tr>
-          <td><b>Mardi Matin</b></td> <td><b>Mardi Midi</b></td>
+          <td><b>Mardi Matin</b></td> <td><b>Mardi Apres Midi</b></td>
         </tr>
         <tr>
             <td><input type="checkbox" name="mm" value="ch3"></td><td><input type="checkbox" name="ma" value="ch4"></td>
@@ -114,7 +114,7 @@ pageEncoding="ISO-8859-1"%>
         </tr>
 
          <tr>
-          <td><b>Vendredi  Matin</b></td> <td><b>Vendredi Apres Midi</b></td>
+          <td><b>Vendredi Matin</b></td> <td><b>Vendredi Apres Midi</b></td>
         </tr>
 
 
