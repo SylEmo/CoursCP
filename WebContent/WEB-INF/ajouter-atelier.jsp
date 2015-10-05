@@ -108,8 +108,8 @@
 					<td><b>Lundi après-midi</b></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" id="lundi_m" name="lundi_m"></td>
-					<td><input type="checkbox" id="lundi_ap" name="lundi_ap" value="ch2"></td>
+					<td><input type="checkbox" id="lundi_m" name="creneaux" value="ch1"></td>
+					<td><input type="checkbox" id="lundi_ap" name="creneaux" value="ch2"></td>
 				</tr>
 
 				<tr>
@@ -117,7 +117,7 @@
 					<td><b>Mardi après-midi</b></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" id="mardi_m" name="mardi_m"></td>
+					<td><input type="checkbox" id="mardi_m" name="creneaux"></td>
 					<td><input type="checkbox" id="mardi_ap" name="mardi_ap"></td>
 				</tr>
 

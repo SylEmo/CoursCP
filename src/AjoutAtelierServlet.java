@@ -47,11 +47,11 @@ public class AjoutAtelierServlet extends HttpServlet {
 			dbConnection = new DatabaseConnector().getConnection();
 			
 			preparedStatementAtelier = dbConnection.prepareStatement(ListOfQueries.QUERY_ADD_ATELIER);
-			preparedStatementAtelier.setString(1, req.getAttribute("titre").toString());
-			preparedStatementAtelier.setString(2, req.getAttribute("theme").toString());
+			preparedStatementAtelier.setString(1, req.getParameter("titre"));
+			preparedStatementAtelier.setString(2, req.getParameter("theme"));
 			preparedStatementAtelier.setInt(3, (int) req.getSession().getAttribute("idLabo"));
-			preparedStatementAtelier.setInt(4, (int) req.getAttribute("duree"));
-			preparedStatementAtelier.setInt(5, (int) req.getAttribute("capacite"));
+			preparedStatementAtelier.setInt(4, Integer.parseInt(req.getParameter("duree")));
+			preparedStatementAtelier.setInt(5, Integer.parseInt(req.getParameter("capacite")));
 			
 			preparedStatementAtelier.executeUpdate();
 			
@@ -63,16 +63,18 @@ public class AjoutAtelierServlet extends HttpServlet {
 			idCreatedAtelier = resultSetCreatedAtelier.getInt("Id");
 			
 			preparedStatementHoraire = dbConnection.prepareStatement(ListOfQueries.QUERY_MODIFY_HORAIRE);
-			preparedStatementHoraire.setBoolean(1, (boolean) req.getAttribute("lundi_m"));
-			preparedStatementHoraire.setBoolean(2, (boolean) req.getAttribute("lundi_ap"));
-			preparedStatementHoraire.setBoolean(3, (boolean) req.getAttribute("mardi_m"));
-			preparedStatementHoraire.setBoolean(4, (boolean) req.getAttribute("mardi_ap"));
-			preparedStatementHoraire.setBoolean(5, (boolean) req.getAttribute("mercredi_m"));
-			preparedStatementHoraire.setBoolean(6, (boolean) req.getAttribute("mercredi_ap"));
-			preparedStatementHoraire.setBoolean(7, (boolean) req.getAttribute("jeudi_m"));
-			preparedStatementHoraire.setBoolean(8, (boolean) req.getAttribute("jeudi_ap"));
-			preparedStatementHoraire.setBoolean(9, (boolean) req.getAttribute("vendredi_m"));
-			preparedStatementHoraire.setBoolean(10, (boolean) req.getAttribute("vendredi_ap"));
+			String[] listeCreneaux = req.getParameterValues("creneaux");
+			
+			preparedStatementHoraire.setString(1, req.getParameter("lundi_m"));
+			preparedStatementHoraire.setString(2, req.getParameter("lundi_ap"));
+			preparedStatementHoraire.setString(3, req.getParameter("mardi_m"));
+			preparedStatementHoraire.setString(4, req.getParameter("mardi_ap"));
+			preparedStatementHoraire.setString(5, req.getParameter("mercredi_m"));
+			preparedStatementHoraire.setString(6, req.getParameter("mercredi_ap"));
+			preparedStatementHoraire.setString(7, req.getParameter("jeudi_m"));
+			preparedStatementHoraire.setString(8, req.getParameter("jeudi_ap"));
+			preparedStatementHoraire.setString(9, req.getParameter("vendredi_m"));
+			preparedStatementHoraire.setString(10, req.getParameter("vendredi_ap"));
 			preparedStatementHoraire.setInt(11, idCreatedAtelier);
 			
 			preparedStatementHoraire.executeUpdate();
@@ -82,14 +84,14 @@ public class AjoutAtelierServlet extends HttpServlet {
 		}
 		finally{
 			try{
-				if(resultSetAtelier != null){
-					resultSetAtelier.close();
+				if(resultSetCreatedAtelier != null){
+					resultSetCreatedAtelier.close();
 				}
 				if(preparedStatementAtelier != null){
 					preparedStatementAtelier.close();
 				}
-				if(resultSetHoraire != null){
-					resultSetHoraire.close();
+				if(preparedStatementCreatedAtelier != null){
+					preparedStatementCreatedAtelier.close();
 				}
 				if(preparedStatementHoraire != null){
 					preparedStatementHoraire.close();

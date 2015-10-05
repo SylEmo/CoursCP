@@ -77,33 +77,18 @@ body {
 		<br>
 
 		<table align="center" id="t01">
-			<tr>
-				<td><b><a href="/detail-atelier">Atelier 1</a></b></td>
-				<td><a class="right" align="right" href="/modifier-atelier"><img
-						src="img/mod.png" alt="modify"
-						style="width: 25px; height: 25px; border: 0"></a></td>
-				<td align="right"><input type="checkbox" name="choix1"
-					value="ch1"></td>
-			</tr>
-
-			<tr class="blank_row">
-				<td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
-			</tr>
-
 			<c:forEach var="atelier" items="${listeAteliers}">
 				<tr>
 					<td><b><a href="/detail-atelier">Atelier</a></b></td>
-					<td><a class="right" align="right" href="ModifierAtelier.jsp"><img
+					<td><a class="right" align="right" href="/modifier-atelier"><img
 							src="/img/mod.png" alt="modify"
 							style="width: 25px; height: 25px; border: 0"></a></td>
 					<td align="right"><input type="checkbox" name="choix"
 						value="choix"></td>
 				</tr>
-
 			</c:forEach>
 		</table>
 	</div>
-
 
 	<script type="text/javascript">
 	    function ajouter(){

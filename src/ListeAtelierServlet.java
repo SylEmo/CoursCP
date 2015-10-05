@@ -82,7 +82,7 @@ public class ListeAtelierServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		throw new ServletException("Appel POST non autorisé sur la servlet.");
+		doGet(req, resp);
 	}
 
 }
