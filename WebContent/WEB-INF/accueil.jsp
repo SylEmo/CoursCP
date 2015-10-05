@@ -79,8 +79,8 @@ body {
 		<table align="center" id="t01">
 			<c:forEach var="atelier" items="${listeAteliers}">
 				<tr>
-					<td><b><a href="/detail-atelier">Atelier</a></b></td>
-					<td><a class="right" align="right" href="/modifier-atelier"><img
+					<td><b><a href="/detail-atelier">${atelier.titre}</a></b></td>
+					<td><img class="right" onClick="details(${atelier.id})"
 							src="/img/mod.png" alt="modify"
 							style="width: 25px; height: 25px; border: 0"></a></td>
 					<td align="right"><input type="checkbox" name="choix"
@@ -94,9 +94,11 @@ body {
 	    function ajouter(){
 	    	document.location.href = "/ajout-atelier";
 	    }
-	
+		function details(idAtelier){
+			$.post("/detail-atelier", {idAtelier : idAtelier}, function(){});
+		}
 	  	function supprimer(){
-	    	$.post("/supprimer-atelier", function(){});
+	    	$.post("/supprimer-atelier", {idAtelier : idAtelier}, function(){});
 	    }
 	</script>
 </body>

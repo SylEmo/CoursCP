@@ -29,24 +29,30 @@ public class DétailAtelierServlet extends HttpServlet {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		int id = (int) req.getAttribute("id");
+		int idAtelier = Integer.parseInt(req.getParameter("idAtelier"));
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			preparedStatement = dbConnection.prepareStatement(ListOfQueries.QUERY_GET_DETAILS_ATELIER);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, idAtelier);
 			
 			resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
 			Laboratoire laboratoire = new Laboratoire((int) req.getSession().getAttribute("idLabo"), 
 					resultSet.getString("nom"), resultSet.getString("lieu"));
-			Atelier atelier = new Atelier(id, resultSet.getString("titre"),
+			Atelier atelier = new Atelier(idAtelier, resultSet.getString("titre"),
 					resultSet.getString("theme"), laboratoire, resultSet.getInt("duree"),
 					resultSet.getInt("capacite"));
+			Horaire horaire = new Horaire(resultSet.getInt("id"), resultSet.getBoolean("lundi_m"), resultSet.getBoolean("lundi_ap"), 
+					resultSet.getBoolean("mardi_m"), resultSet.getBoolean("mardi_ap"), 
+					resultSet.getBoolean("mercrendi_m"), resultSet.getBoolean("mercredi_ap"),
+					resultSet.getBoolean("jeudi_m"), resultSet.getBoolean("jeudi_ap"),
+					resultSet.getBoolean("vendredi_m"), resultSet.getBoolean("vendredi_ap"), atelier);
 			
 			req.setAttribute("atelier", atelier);
 			req.setAttribute("laboratoire", laboratoire);
+			req.setAttribute("horaire", horaire);
 		}
 		catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
@@ -77,7 +83,7 @@ public class DétailAtelierServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		throw new ServletException("Appel POST non autorisé sur la servlet.");
+		doGet(req, resp);
 	}
 
 }
