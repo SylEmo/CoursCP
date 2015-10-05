@@ -1,7 +1,6 @@
-<%@page import="java.sql.ResultSet"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%>
-<html>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -87,7 +86,7 @@ pageEncoding="ISO-8859-1"%>
         <c:forEach var="atelier" items="${listeAteliers}">
          <tr>
            <td><b><a href="/detail-atelier">Atelier</a></b></td>
-           <td><a  class="right" align="right" href="ModifierAtelier.jsp"><img  src="img/mod.png" alt="modify" style="width:25px;height:25px;border:0"></a></td> 
+           <td><a  class="right" align="right" href="ModifierAtelier.jsp"><img  src="/img/mod.png" alt="modify" style="width:25px;height:25px;border:0"></a></td> 
            <td align="right"><input  type="checkbox" name="choix" value="choix"></td>
         </tr>   
          
