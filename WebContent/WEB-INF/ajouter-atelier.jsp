@@ -3,6 +3,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <html>
+<<<<<<< HEAD
 <head>
 <title>Atelier</title>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -111,7 +112,7 @@ body {
 
 				<tr>
 					<td><b>Mardi Matin</b></td>
-					<td><b>Mardi Midi</b></td>
+					<td><b>Mardi Apres Midi</b></td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" name="mm" value="ch3"></td>

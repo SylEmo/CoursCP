@@ -41,6 +41,13 @@ pageEncoding="ISO-8859-1"%>
           height: 10%;
           margin-left:340px;
       }
+      #t3{
+          width: 60%;
+          height: 40%;
+          margin-left:300px;
+          background-color: #D0D9DE;
+      }
+      
      body {
            background-color: #b0c4de;
           }
@@ -71,10 +78,39 @@ pageEncoding="ISO-8859-1"%>
             <tr>
               <td><b> Capacite :</b></td><td><input type="text" name="capacite" value="capacite ..." /><td>
             </tr>
+            </table>
+           <table align="center" id="t3">
             <tr>
-              <td><b> Disponibilité :</b></td><td><input type="text" name="disponibilité" value="disponibite ..." /><td>
+              <th rowspan="10" align="left"><b>  Date et Horaires </b></th>
+		<td>Lundi Matin :</td><td>Non</td>
             </tr>
-            
+	    <tr>
+                 <td>Lundi Apres-Midi :</td><td>Non</td>
+            </tr>
+            <tr>
+                 <td>Mardi Matin :</td><td>oui</td>
+            </tr>
+             <tr>
+                 <td>Mardi Apres-Midi :</td><td>oui</td>
+            </tr>
+	          <tr>
+                 <td>Mercredi Matin :</td><td>Non</td>
+            </tr>
+            <tr>
+                 <td>Merceredi Apres-Midi :</td><td>Non</td>
+            </tr>
+           <tr>
+                 <td>Jeudi Matin :</td><td>oui</td>
+            </tr>
+            <tr>
+                 <td>Jeudi Apres-Midi :</td><td>oui</td>
+            </tr>
+            <tr>
+                 <td>Vendredi Matin :</td><td>Non</td>
+            </tr>
+            <tr>
+                 <td>Vendredi Apres-Midi :</td><td>Non</td>
+            </tr>
            
             </table>
             <table align="center" id="t2">
