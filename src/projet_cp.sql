@@ -33,8 +33,7 @@ CREATE TABLE IF NOT EXISTS `atelier` (
   `Laboratoire` int(11) NOT NULL,
   `Duree` int(11) NOT NULL,
   `Capacite` int(11) NOT NULL,
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `Laboratoire` (`Laboratoire`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
