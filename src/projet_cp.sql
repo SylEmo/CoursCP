@@ -42,15 +42,18 @@ CREATE TABLE IF NOT EXISTS `atelier` (
 
 INSERT INTO `atelier` (`Id`, `Titre`, `Theme`, `Laboratoire`, `Duree`, `Capacite`) VALUES
 (3, 'Test d''atelier 1', 'Test de theme 1', 6, 30, 12),
-(4, 'Test d''atelier 2', 'Test de theme 2', 7, 1, 10),
-(5, 'Test d''atelier 3', 'Test de theme 3', 8, 45, 20),
-(6, 'Test d''atelier 4', 'Test de theme 4', 9, 1, 18),
-(7, 'Test d''atelier 5', 'Test de theme 5', 10, 1, 17),
-(8, 'Test d''atelier 6', 'Test de theme 6', 11, 30, 16),
-(9, 'Test d''atelier 7', 'Test de theme 7', 12, 20, 15),
-(10, 'Test d''atelier 8', 'Test de theme 8', 13, 1, 19),
-(11, 'Test d''atelier 9', 'Test de theme 9', 14, 30, 25),
-(12, 'Test d''atelier 10', 'Test de theme 10', 15, 1, 22);
+(4, 'Test d''atelier 2', 'Test de theme 2', 7, 10, 5),
+(5, 'Test d''atelier 2b', 'Test de theme 2b', 7, 30, 10),
+(6, 'Test d''atelier 2c', 'Test de theme 2c', 7, 15, 115),
+(7, 'Test d''atelier 2d', 'Test de theme 2d', 7, 45, 20),
+(8, 'Test d''atelier 3', 'Test de theme 3', 8, 45, 20),
+(9, 'Test d''atelier 4', 'Test de theme 4', 9, 1, 18),
+(10, 'Test d''atelier 5', 'Test de theme 5', 10, 1, 17),
+(11, 'Test d''atelier 6', 'Test de theme 6', 11, 30, 16),
+(12, 'Test d''atelier 7', 'Test de theme 7', 12, 20, 15),
+(13, 'Test d''atelier 8', 'Test de theme 8', 13, 1, 19),
+(14, 'Test d''atelier 9', 'Test de theme 9', 14, 30, 25),
+(15, 'Test d''atelier 10', 'Test de theme 10', 15, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -85,11 +88,14 @@ INSERT INTO `horaire` (`Id`, `Lundi_m`, `Lundi_ap`, `Mardi_m`, `Mardi_ap`, `Merc
 (3, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 5),
 (4, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 6),
 (5, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 7),
-(6, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 8),
-(7, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 9),
-(8, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 10),
-(9, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 11),
-(10, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 12);
+(6, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 8),
+(7, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 9),
+(8, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 10),
+(9, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 11),
+(10, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 12),
+(11, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 13),
+(12, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 14),
+(13, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 15);
 
 -- --------------------------------------------------------
 

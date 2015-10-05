@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
@@ -31,6 +33,7 @@ public class ListeAtelierServlet extends HttpServlet {
     	Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		List<Atelier> listeAteliers = new ArrayList<Atelier>();
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
@@ -42,7 +45,13 @@ public class ListeAtelierServlet extends HttpServlet {
 			preparedStatement.setInt(1, (int) req.getSession().getAttribute("idLabo"));
 			resultSet = preparedStatement.executeQuery();
 			
-			req.setAttribute("listeAteliers", resultSet);
+			while(resultSet.next()){
+				Atelier atelier = new Atelier(resultSet.getInt("Id"), resultSet.getString("Titre"),
+						resultSet.getString("Theme"), null, resultSet.getInt("Duree"), resultSet.getInt("Capacite"));
+				listeAteliers.add(atelier);
+			}
+			
+			req.setAttribute("listeAteliers", listeAteliers);
 		}
 		catch(NamingException | SQLException e){
 			System.out.println(e.getClass().getName() + " : " + e.getMessage());
