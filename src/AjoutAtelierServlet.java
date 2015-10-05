@@ -39,22 +39,28 @@ public class AjoutAtelierServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		Connection dbConnection = null;
-		PreparedStatement preparedStatementAtelier = null, preparedStatementHoraire = null;
-		ResultSet resultSetAtelier = null, resultSetHoraire = null;
-		int idAtelier = (int) req.getAttribute("idAtelier"), idHoraire = (int) req.getAttribute("idHoraire");
+		PreparedStatement preparedStatementAtelier = null, preparedStatementCreatedAtelier = null, preparedStatementHoraire = null;
+		ResultSet resultSetCreatedAtelier = null;
+		int idCreatedAtelier = -1;
 		
 		try{
 			dbConnection = new DatabaseConnector().getConnection();
 			
-			preparedStatementAtelier = dbConnection.prepareStatement(ListOfQueries.QUERY_MODIFY_ATELIER);
+			preparedStatementAtelier = dbConnection.prepareStatement(ListOfQueries.QUERY_ADD_ATELIER);
 			preparedStatementAtelier.setString(1, req.getAttribute("titre").toString());
 			preparedStatementAtelier.setString(2, req.getAttribute("theme").toString());
 			preparedStatementAtelier.setInt(3, (int) req.getSession().getAttribute("idLabo"));
 			preparedStatementAtelier.setInt(4, (int) req.getAttribute("duree"));
 			preparedStatementAtelier.setInt(5, (int) req.getAttribute("capacite"));
-			preparedStatementAtelier.setInt(6, idAtelier);
 			
 			preparedStatementAtelier.executeUpdate();
+			
+			preparedStatementCreatedAtelier = dbConnection.prepareStatement(ListOfQueries.QUERY_GET_LAST_ATELIER);
+			preparedStatementCreatedAtelier.setInt(1, (int) req.getSession().getAttribute("idLabo"));
+			
+			resultSetCreatedAtelier = preparedStatementCreatedAtelier.executeQuery();
+			resultSetCreatedAtelier.next();
+			idCreatedAtelier = resultSetCreatedAtelier.getInt("Id");
 			
 			preparedStatementHoraire = dbConnection.prepareStatement(ListOfQueries.QUERY_MODIFY_HORAIRE);
 			preparedStatementHoraire.setBoolean(1, (boolean) req.getAttribute("lundi_m"));
@@ -67,7 +73,7 @@ public class AjoutAtelierServlet extends HttpServlet {
 			preparedStatementHoraire.setBoolean(8, (boolean) req.getAttribute("jeudi_ap"));
 			preparedStatementHoraire.setBoolean(9, (boolean) req.getAttribute("vendredi_m"));
 			preparedStatementHoraire.setBoolean(10, (boolean) req.getAttribute("vendredi_ap"));
-			preparedStatementHoraire.setInt(11, idAtelier);
+			preparedStatementHoraire.setInt(11, idCreatedAtelier);
 			
 			preparedStatementHoraire.executeUpdate();
 		}

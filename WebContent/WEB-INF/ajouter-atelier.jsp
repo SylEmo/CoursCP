@@ -71,28 +71,28 @@
 
 			<table id="t1" align="center">
 				<tr>
-					<td><b>Titre definitif : </b></td>
-					<td><input type="text" name="titre" value="" required/>
+					<td><b>Titre :</b></td>
+					<td><input type="text" id="titre" name="titre" value="" required/>
 					<td>
 				</tr>
 				<tr>
-					<td><b>Theme : </b></td>
-					<td><input type="text" name="theme" value="" required/>
+					<td><b>Theme :</b></td>
+					<td><input type="text" id="theme" name="theme" value="" required/>
 					<td>
 				</tr>
 				<tr>
-					<td><b> Type : </b></td>
-					<td><input type="text" name="type" value="" required/>
+					<td><b>Type :</b></td>
+					<td><input type="text" id="type" name="type" value="" required/>
 					<td>
 				</tr>
 				<tr>
-					<td><b>Duree de l'atelier :</b></td>
-					<td><input type="text" name="duree" value="" required/>
+					<td><b>Durée de l'atelier :</b></td>
+					<td><input type="text" id="duree" name="duree" value="" required/>
 					<td>
 				</tr>
 
 				<tr>
-					<td><b> Capacite :</b></td>
+					<td><b>Capacité :</b></td>
 					<td><input type="text" name="capacite" value="" required/>
 					<td>
 				</tr>
@@ -104,52 +104,52 @@
 				</tr>
 
 				<tr>
-					<td><b>Lundi Matin</b></td>
-					<td><b>Lundi Apres Midi</b></td>
+					<td><b>Lundi matin</b></td>
+					<td><b>Lundi après-midi</b></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="lm" value="ch1"></td>
-					<td><input type="checkbox" name="la" value="ch2"></td>
-				</tr>
-
-				<tr>
-					<td><b>Mardi Matin</b></td>
-					<td><b>Mardi Apres Midi</b></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="mm" value="ch3"></td>
-					<td><input type="checkbox" name="ma" value="ch4"></td>
+					<td><input type="checkbox" id="lundi_m" name="lundi_m"></td>
+					<td><input type="checkbox" id="lundi_ap" name="lundi_ap" value="ch2"></td>
 				</tr>
 
 				<tr>
-					<td><b>Mercredi Matin</b></td>
-					<td><b>Mercredi Apres Midi</b></td>
+					<td><b>Mardi matin</b></td>
+					<td><b>Mardi après-midi</b></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" id="mardi_m" name="mardi_m"></td>
+					<td><input type="checkbox" id="mardi_ap" name="mardi_ap"></td>
 				</tr>
 
 				<tr>
-					<td><input type="checkbox" name="mercm" value="ch5"></td>
-					<td><input type="checkbox" name="merca" value="ch6"></td>
+					<td><b>Mercredi matin</b></td>
+					<td><b>Mercredi après-midi</b></td>
 				</tr>
 
 				<tr>
-					<td><b>Jeudi Matin</b></td>
-					<td><b>Jeudi Apres Midi</b></td>
+					<td><input type="checkbox" id="mercredi_m" name="mercredi_m"></td>
+					<td><input type="checkbox" id="mercredi_ap" name="mercredi_ap"></td>
 				</tr>
 
 				<tr>
-					<td><input type="checkbox" name="jm" value="ch7"></td>
-					<td><input type="checkbox" name="merca" value="ch8"></td>
+					<td><b>Jeudi matin</b></td>
+					<td><b>Jeudi après-midi</b></td>
 				</tr>
 
 				<tr>
-					<td><b>Vendredi Matin</b></td>
-					<td><b>Vendredi Apres Midi</b></td>
+					<td><input type="checkbox" id="jeudi_m" name="jeudi_m"></td>
+					<td><input type="checkbox" id="jeudi_ap" name="jeudi_ap"></td>
+				</tr>
+
+				<tr>
+					<td><b>Vendredi matin</b></td>
+					<td><b>Vendredi après-midi</b></td>
 				</tr>
 
 
 				<tr>
-					<td><input type="checkbox" name="vm" value="ch9"></td>
-					<td><input type="checkbox" name="va" value="ch10"></td>
+					<td><input type="checkbox" id="vendredi_m" name="vendredi_m"></td>
+					<td><input type="checkbox" id="vendredi_ap" name="vendredi_ap"></td>
 				</tr>
 			</table>
 			<table align="center" id="t2">
@@ -167,11 +167,5 @@
 		</form>
 		
 	</div>
-	<script>
-		function sendForm(){
-			var form = document.getElementsByName("form").submit();
-			form.submit();
-		}
-	</script>
 </body>
 </html>
