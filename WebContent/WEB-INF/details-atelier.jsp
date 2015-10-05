@@ -71,6 +71,9 @@ pageEncoding="ISO-8859-1"%>
             <tr>
               <td><b> Capacite :</b></td><td><input type="text" name="capacite" value="capacite ..." /><td>
             </tr>
+            <tr>
+              <td><b> Disponibilité :</b></td><td><input type="text" name="disponibilité" value="disponibite ..." /><td>
+            </tr>
             
            
             </table>
