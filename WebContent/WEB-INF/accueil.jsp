@@ -63,12 +63,12 @@ body {
 
 		<table align="center" id="t02">
 			<tr>
-				<td align="left"><button class="btn btn-primary"
+				<td align="left"><button id="ajout" class="btn btn-primary"
 						onclick="ajouter()">
 						<b>Ajouter Atelier</b>
 					</button></td>
 				<td></td>
-				<td align="right"><button class="btn btn-primary"
+				<td align="right"><button id="suppression" class="btn btn-primary"
 						onclick="supprimer()">
 						<b>Supprimer Atelier</b>
 					</button></td>

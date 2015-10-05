@@ -155,7 +155,7 @@
 			<table align="center" id="t2">
 			<tr>
 				<td align="left">
-					<a class="btn btn-primary" href="/"><b>Retour</b></a>
+					<a id="retour" class="btn btn-primary" href="/"><b>Retour</b></a>
 				</td>
 				<td></td>
 				<td align="right">
