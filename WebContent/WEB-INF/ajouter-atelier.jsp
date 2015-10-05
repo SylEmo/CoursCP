@@ -76,6 +76,51 @@ pageEncoding="ISO-8859-1"%>
         <tr>
           <td><b> Capacite :</b></td><td><input type="text" name="capacite" value="" /><td>
         </tr>
+      <tr>
+            <td><b>Crenaux que vous souhaitez ouvrir a l'inscription :</b></td>
+        </tr>
+        <tr class="blank_row">
+            <td bgcolor="#D0D9DE" colspan="3">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td><b>Lundi Matin</b></td> <td><b>Lundi Apres Midi</b></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="lm" value="ch1"></td><td><input type="checkbox" name="la" value="ch2"></td>
+        </tr>
+
+        <tr>
+          <td><b>Mardi Matin</b></td> <td><b>Mardi Midi</b></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="mm" value="ch3"></td><td><input type="checkbox" name="ma" value="ch4"></td>
+        </tr>
+
+         <tr>
+          <td><b>Mercredi Matin</b></td> <td><b>Mercredi Apres Midi</b></td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" name="mercm" value="ch5"></td><td><input type="checkbox" name="merca" value="ch6"></td>
+        </tr>
+           
+        <tr>
+          <td><b>Jeudi Matin</b></td> <td><b>Jeudi Apres Midi</b></td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" name="jm" value="ch7"></td><td><input type="checkbox" name="merca" value="ch8"></td>
+        </tr>
+
+         <tr>
+          <td><b>Vendredi  Matin</b></td> <td><b>Vendredi Apres Midi</b></td>
+        </tr>
+
+
+        <tr>
+            <td><input type="checkbox" name="vm" value="ch9"></td><td><input type="checkbox" name="va" value="ch10"></td>
+        </tr>
         </table>
 
         <table align="center" id="t2">
