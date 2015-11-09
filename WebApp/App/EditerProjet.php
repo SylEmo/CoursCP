@@ -52,7 +52,7 @@ $pr=mysql_fetch_assoc($rs);
             </tr>
             <tr>
                 <td> Lien du GITHUB </td>
-                <td><input type="text" name="GIT" value="<?php echo ($pr['LIEN_GIT']) ?>">  </td>
+                <td><input type="text" name="LIENGIT" value="<?php echo ($pr['LIEN_GIT']) ?>">  </td>
             </tr>
 
 

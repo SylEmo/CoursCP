@@ -8,7 +8,7 @@ $id=$_POST['ID'];
 $nom=$_POST['NOM'];
 $dc=$_POST['DATECREATION'];
 $dl=$_POST['DEADLINE'];
-$git=$_POST['GIT'];
+$git=$_POST['LIENGIT'];
 
 
     $req="update PROJET set NOM='$nom',DATE_CREATION='$dc',DEADLINE='$dl',LIEN_GIT='$git' where ID=$id";

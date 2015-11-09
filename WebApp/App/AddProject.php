@@ -2,11 +2,13 @@
 
 require_once("connexion.php");
 
-$np=$_POST['np'];
-$dc=$_POST['dc'];
-$df=$_POST['df'];
+$id=$_SESSION['Niv'];
+$nom=$_POST['NOM'];
+$dc=$_POST['DATECREATION'];
+$dl=$_POST['DEADLINE'];
+$git=$_POST['LIENGIT'];
 
-$req="insert into projets (nom,dated,datef) VALUE ('$np','$dc','$df')";
+$req="insert into PROJET (IDUTIL, NOM, DATE_CREATION, DEADLINE, LIEN_GIT) VALUE ('$id','$nom','$dc','$df','$git')";
 mysql_query($req) or die(mysql_error());
 
 ?>
@@ -25,7 +27,7 @@ mysql_query($req) or die(mysql_error());
 
     <tr>
         <td> Nom du projet: </td>
-        <td><?php echo ($np) ?></td>
+        <td><?php echo ($nom) ?></td>
     </tr>
     <tr>
         <td> date de debut: </td>
@@ -33,7 +35,11 @@ mysql_query($req) or die(mysql_error());
     </tr>
     <tr>
         <td> date de fin: </td>
-        <td><?php echo ($df) ?>" </td>
+        <td><?php echo ($dl) ?>" </td>
+    </tr>
+	<tr>
+        <td> lien du git: </td>
+        <td><?php echo ($git) ?>" </td>
     </tr>
 </table>
 <a href="ListProjects.php">Aller Vers la Page D'affichage </a>
