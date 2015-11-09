@@ -3,7 +3,7 @@
 require_once("verifier1.php");
 require_once("connexion.php");
 $id=$_GET['id'];
-$req="select * from projets WHERE id=$id";
+$req="select * from PROJET WHERE ID=$id";
 $rs=mysql_query($req) or die (mysql_error());
 
 $pr=mysql_fetch_assoc($rs);
@@ -36,21 +36,23 @@ $pr=mysql_fetch_assoc($rs);
         <center>
         <table border="1" width="50%">
 
-            <tr>
-                <td> Id : </td>
-                <td><input type="text"  name="id" value="<?php echo ($pr['id']) ?>" readonly="true" </td>
-            </tr>
+		<input type="hidden" name="ID" value="<?php echo ($pr['ID']) ?>">
+
             <tr>
                 <td> Nom du projet : </td>
-                <td><input type="text"  name="nom" value="<?php echo ($pr['nom']) ?>"</td>
+                <td><input type="text"  name="NOM" value="<?php echo ($pr['NOM']) ?>"> </td>
             </tr>
             <tr>
                 <td> Date de creation : </td>
-                <td><input type="text" name="dated" value="<?php echo ($pr['dated']) ?>" readonly="true"</td>
+                <td><input type="text" name="DATECREATION" value="<?php echo ($pr['DATE_CREATION']) ?>" readonly="true"> </td>
             </tr>
             <tr>
                 <td> Date de fin </td>
-                <td><input type="text" name="datef" value="<?php echo ($pr['datef']) ?>"  </td>
+                <td><input type="text" name="DEADLINE" value="<?php echo ($pr['DEADLINE']) ?>">  </td>
+            </tr>
+            <tr>
+                <td> Lien du GITHUB </td>
+                <td><input type="text" name="GIT" value="<?php echo ($pr['LIEN_GIT']) ?>">  </td>
             </tr>
 
 

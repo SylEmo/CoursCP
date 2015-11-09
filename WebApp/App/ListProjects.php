@@ -1,8 +1,9 @@
 <?php
 //require_once("verifier1.php");
-//echo $_SESSION['Niv'];
+session_start();
+echo "Variable de session : " . $_SESSION['Niv'];
 require_once("connexion.php");
-$req= "select * from projets";
+$req= "select * from PROJET WHERE IDUTIL=".$_SESSION['Niv'];
 $rs=mysql_query($req) or die(mysql_error());
 ?>
 
@@ -36,7 +37,7 @@ $rs=mysql_query($req) or die(mysql_error());
 <center>
 <table border="1" width="50%" height="50%">
     <tr>
-        <th>Id</th><th>Nom du projet </th><th>date de creation</th><th>date de fin</th>
+        <th>Nom du projet </th><th>date de creation</th><th>date de fin</th><th>lien du depot git</th>
     </tr>
 
     <?php  while($pr=mysql_fetch_assoc($rs)) { ?>
@@ -46,8 +47,8 @@ $rs=mysql_query($req) or die(mysql_error());
             <td><?php  echo ($pr['DATE_CREATION']) ?></td>
             <td><?php  echo ($pr['DEADLINE']) ?></td>
             <td><?php  echo ($pr['LIEN_GIT']) ?></td>
-            <!--<td><a href="SupprimerProjet.php?id=<?php  echo ($pr['id']) ?>">Supprimer</a></td>
-            <td><a href="EditerProjet.php?id=<?php  echo ($pr['id']) ?>">Editer</a></td> -->
+            <td><a href="SupprimerProjet.php?id=<?php  echo ($pr['ID']) ?>">Supprimer</a></td>
+            <td><a href="EditerProjet.php?id=<?php  echo ($pr['ID']) ?>">Editer</a></td>
 
         </tr>
    <?php } ?>

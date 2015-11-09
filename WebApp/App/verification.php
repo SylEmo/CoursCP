@@ -8,13 +8,13 @@ $pwd=$_POST['pwd'];
 $pc=md5($pwd);
 
 
-$req="select * from UTILISATEUR where IDENTIFIANT='$login' and MOT_DE_PASSE='$pc'";
-$rs=mysql_query($req) or die (mysql_error());
+$request="select * from UTILISATEUR where IDENTIFIANT='$login' and MOT_DE_PASSE='$pc'";
+$result=mysql_query($request) or die (mysql_error());
 
-if($u=mysql_fetch_assoc($rs))
+if($u=mysql_fetch_assoc($result))
 {
     session_start();
-    $_SESSION['Niv'] = $u['level'];
+    $_SESSION['Niv'] = $u['ID'];
     header("location:ListProjects.php");
 
 }

@@ -4,13 +4,14 @@
 require_once("verifier1.php");
 require_once("connexion.php");
 
-$id=$_POST['id'];
-$nom=$_POST['nom'];
-$dc=$_POST['dated'];
-$df=$_POST['datef'];
+$id=$_POST['ID'];
+$nom=$_POST['NOM'];
+$dc=$_POST['DATECREATION'];
+$dl=$_POST['DEADLINE'];
+$git=$_POST['GIT'];
 
 
-    $req="update projets set nom='$nom',dated='$dc',datef='$df' where id=$id";
+    $req="update PROJET set NOM='$nom',DATE_CREATION='$dc',DEADLINE='$dl',LIEN_GIT='$git' where ID=$id";
     mysql_query($req) or die(mysql_error());
 
      header("location:ListProjects.php");
