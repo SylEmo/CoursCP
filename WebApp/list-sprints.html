@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<title>Liste des sprints - Adopi</title>
+	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
+	<link rel="stylesheet" href="css/list-sprints.css">
+</head>
+<body>
+	<h1>Liste des sprints du projet :</h1>
+	<div id="users">
+	  <input class="search" placeholder="Rechercher">
+	  <button class="sort desc" data-sort="name">
+	    Trier par numéro
+	  </button>
+	
+	  <ul class="list"><li>
+	      <h3 class="name"><a onclick="ouvrirSprint(1);">Sprint 1</a></h3>
+	    </li><li>
+	      <h3 class="name"><a onclick="ouvrirSprint(2);">Sprint 2</a></h3>
+	    </li><li>
+	      <h3 class="name"><a onclick="ouvrirSprint(3);">Sprint 3</a></h3>
+	    </li><li>
+	      <h3 class="name"><a onclick="ouvrirSprint(4);">Sprint 4</a></h3>
+	    </li></ul>
+	
+	</div>
+	<script src="http://listjs.com/no-cdn/list.js"></script>
+	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+	<script>
+		var options = {
+		    valueNames: [
+		        'name',
+		        'born'
+		    ]
+		};
+		var userList = new List('users', options);
+		var ouvrirSprint = function(id){
+			alert("A faire !");
+		}
+	</script>
+	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
+</body>
+</html>
