@@ -1,5 +1,5 @@
 <?php
-require_once("verifier1.php");
+//require_once("verifier1.php");
 //echo $_SESSION['Niv'];
 require_once("connexion.php");
 $req= "select * from projets";
@@ -42,12 +42,12 @@ $rs=mysql_query($req) or die(mysql_error());
     <?php  while($pr=mysql_fetch_assoc($rs)) { ?>
 
         <tr>
-            <td><?php  echo ($pr['id']) ?></td>
-            <td><?php  echo ($pr['nom']) ?></td>
-            <td><?php  echo ($pr['dated']) ?></td>
-            <td><?php  echo ($pr['datef']) ?></td>
-            <td><a href="SupprimerProjet.php?id=<?php  echo ($pr['id']) ?>">Supprimer</a></td>
-            <td><a href="EditerProjet.php?id=<?php  echo ($pr['id']) ?>">Editer</a></td>
+            <td><?php  echo ($pr['NOM']) ?></td>
+            <td><?php  echo ($pr['DATE_CREATION']) ?></td>
+            <td><?php  echo ($pr['DEADLINE']) ?></td>
+            <td><?php  echo ($pr['LIEN_GIT']) ?></td>
+            <!--<td><a href="SupprimerProjet.php?id=<?php  echo ($pr['id']) ?>">Supprimer</a></td>
+            <td><a href="EditerProjet.php?id=<?php  echo ($pr['id']) ?>">Editer</a></td> -->
 
         </tr>
    <?php } ?>
