@@ -3,26 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex">
-	<title>Liste des sprints - Adopi</title>
+	<title>Liste des projet - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
-	<link rel="stylesheet" href="css/liste-sprints.css">
+	<link rel="stylesheet" href="css/liste-projets.css">
 </head>
 <body>
 	<h1>Liste des sprints du projet :</h1>
 	<div id="users">
 	  <input class="search" placeholder="Rechercher">
 	  <button class="sort desc" data-sort="name">
-	    Trier par numéro
+	    Trier par nom
 	  </button>
 	
 	  <ul class="list"><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(1);">Sprint 1</a></h3>
+	      <h3 class="name"><a onclick="ouvrirProjet(1);">Projet 1</a></h3>
 	    </li><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(2);">Sprint 2</a></h3>
+	      <h3 class="name"><a onclick="ouvrirProjet(2);">Projet 2</a></h3>
 	    </li><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(3);">Sprint 3</a></h3>
+	      <h3 class="name"><a onclick="ouvrirProjet(3);">Projet 3</a></h3>
 	    </li><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(4);">Sprint 4</a></h3>
+	      <h3 class="name"><a onclick="ouvrirProjet(4);">Projet 4</a></h3>
 	    </li></ul>
 	
 	</div>
@@ -32,11 +32,10 @@
 		var options = {
 		    valueNames: [
 		        'name',
-		        'born'
 		    ]
 		};
 		var userList = new List('users', options);
-		var ouvrirSprint = function(id){
+		var ouvrirProjet = function(id){
 			alert("A faire !");
 		}
 	</script>
