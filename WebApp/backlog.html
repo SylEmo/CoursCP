@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Backlog - Adopi</title>
+  <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
+  <link rel="stylesheet" href="css/backlog.css">
+  <script type="text/javascript">
+	window.onload=function(){
+		editableGrid = new EditableGrid("DemoGridAttach",
+			{
+				enableSort:true,
+			}
+		); 
+	
+		editableGrid.load({ metadata: [
+			{ name: "numero", datatype: "integer", editable: false },
+			{ name: "identifiant", datatype: "string", editable: true },
+			{ name: "userstory", datatype: "string", editable: true },
+			{ name: "priorite", datatype: "string", editable: true },
+			{ name: "difficulte", datatype: "integer", editable: true }
+		]});
+	
+		editableGrid.attachToHTMLTable('htmlgrid');
+		editableGrid.renderGrid();
+		
+		editableGrid.ajouterLigne = function()
+		{
+			this.append(this.getRowCount()+1,{},false,false);
+			var ligneAjoutee = this.getRow(this.getRowCount() - 1);
+			ligneAjoutee.firstChild.innerText = this.getRowCount();
+			ligneAjoutee.insertCell(5);
+			ligneAjoutee.children[5].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
+		};
+		var validerBacklog = function(){
+			alert("A faire !");
+		}
+    }
+  </script>
+
+</head>
+<body>
+	<h1>Backlog</h1>
+	<a onclick="editableGrid.ajouterLigne();">Ajouter une ligne</a>
+	<table id="htmlgrid" class="testgrid">
+		<thead><tr>
+			<th class="number">Numéro</th>
+			<th>Identifiant</th>
+			<th>UserStory</th>			
+			<th class="number">Priorité</th>
+			<th class="number">Difficulté</th>	
+		</tr></thead><tbody>
+		<tr id="1" style="min-height: 28px;">
+			<td class="number">1</td>
+			<td></td>
+			<td></td>
+			<td class="number">1</td>
+			<td class="number">1</td>
+			<td class="editablegrid-action"><a onclick="editableGrid.removeRow(1);">Supprimer</a></td>
+		</tr>
+		<tr id="2" style="min-height: 28px;">
+			<td class="number">1</td>
+			<td></td>
+			<td></td>
+			<td class="number">1</td>
+			<td class="number">1</td>
+			<td><a onclick="editableGrid.removeRow(2);">Supprimer</a></td>
+		</tr>
+		<tr id="3" style="min-height: 28px;">
+			<td class="number">1</td>
+			<td></td>
+			<td></td>
+			<td class="number">1</td>
+			<td class="number">1</td>
+			<td><a onclick="editableGrid.removeRow(3);">Supprimer</a></td>
+		</tr>
+	</tbody></table>
+	<button onclick="validerBacklog">Valider le backlog</button>
+</body>
+</html>
