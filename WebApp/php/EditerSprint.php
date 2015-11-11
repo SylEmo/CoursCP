@@ -1,7 +1,7 @@
 <?php
 
-require_once("verifier1.php");
-require_once("connexion.php");
+require_once("Verifier1.php");
+require_once("Connexion.php");
 $id=$_GET['id'];
 $req="select * from sprint WHERE id=$id";
 $rs=mysql_query($req) or die (mysql_error());
@@ -32,7 +32,7 @@ $pr=mysql_fetch_assoc($rs);
 </head>
 
 <body>
-<form method="POST" action="Modifysprint.php">
+<form method="POST" action="ModifierSprint.php">
     <center>
         <table border="1" width="50%">
 

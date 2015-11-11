@@ -1,6 +1,6 @@
 <?php
 
-require_once("connexion.php");
+require_once("Connexion.php");
 
 $desc=$_POST['desc'];
 

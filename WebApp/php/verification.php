@@ -1,6 +1,6 @@
 <?php
 
-require_once("connexion.php");
+require_once("Connexion.php");
 
 $login=$_POST['login'];
 $pwd=$_POST['pwd'];
@@ -15,12 +15,12 @@ if($u=mysql_fetch_assoc($result))
 {
     session_start();
     $_SESSION['Niv'] = $u['ID'];
-    header("location:ListProjects.php");
+    header("location:ListeProjets.php");
 
 }
 else{
 
-    header("location: index.html");
+    header("location:../index.html");
 }
 
 

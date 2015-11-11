@@ -1,8 +1,8 @@
 <?php
-//require_once("verifier1.php");
+//require_once("Verifier1.php");
 session_start();
 echo "Variable de session : " . $_SESSION['Niv'];
-require_once("connexion.php");
+require_once("Connexion.php");
 $req= "select * from PROJET WHERE IDUTIL=".$_SESSION['Niv'];
 $rs=mysql_query($req) or die(mysql_error());
 ?>
@@ -56,7 +56,7 @@ $rs=mysql_query($req) or die(mysql_error());
 </center>
 <br>
 <p id="b1">
-<button  type="button"  class="btn btn-primary" onclick="window.location.href='index.html';">Retour</button>
+<button  type="button"  class="btn btn-primary" onclick="window.location.href='../index.html';">Retour</button>
 </p>
 </body>
 </html>

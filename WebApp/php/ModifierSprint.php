@@ -1,8 +1,8 @@
 <?php
 
 
-require_once("verifier1.php");
-require_once("connexion.php");
+require_once("Verifier1.php");
+require_once("Connexion.php");
 
 $id=$_POST['id'];
 $nb=$_POST['nb'];
@@ -12,6 +12,6 @@ $nb=$_POST['nb'];
 $req="update sprint set NUMERO='$nB' where id=$id";
 mysql_query($req) or die(mysql_error());
 
-header("location:.php");//redirection vers la page des sprints
+header("location:../liste-sprints.html");//redirection vers la page des sprints
 
 ?>
