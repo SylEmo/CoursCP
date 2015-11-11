@@ -1,6 +1,6 @@
 <?php
 
-require_once("connexion.php");
+require_once("Connexion.php");
 
 $id=$_SESSION['Niv'];
 $nom=$_POST['NOM'];
@@ -22,7 +22,7 @@ mysql_query($req) or die(mysql_error());
 
 <body>
 <form>
-<b> Votre projet a ete bien ajoute </b>
+<b> Votre projet a bien ete ajoute </b>
 <table border="1">
 
     <tr>
@@ -42,7 +42,7 @@ mysql_query($req) or die(mysql_error());
         <td><?php echo ($git) ?>" </td>
     </tr>
 </table>
-<a href="ListProjects.php">Aller Vers la Page D'affichage </a>
+<a href="ListeProjets.php">Aller Vers la Page D'affichage </a>
 </form>
 </body>
 </html>

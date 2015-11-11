@@ -1,6 +1,6 @@
 <?php
 
-require_once("connexion.php");
+require_once("Connexion.php");
 
 $us=$_POST['us'];
 $prio=$_POST['prio'];

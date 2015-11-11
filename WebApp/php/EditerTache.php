@@ -1,7 +1,7 @@
 <?php
 
-require_once("verifier1.php");
-require_once("connexion.php");
+require_once("Verifier1.php");
+require_once("Connexion.php");
 $idt=$_GET['idt'];
 $ids=$_GET['ids'];
 
@@ -34,7 +34,7 @@ $pr=mysql_fetch_assoc($rs);
 </head>
 
 <body>
-<form method="POST" action="modifierTache.php">
+<form method="POST" action="ModifierTache.php">
     <center>
         <table border="1" width="50%">
             <tr>

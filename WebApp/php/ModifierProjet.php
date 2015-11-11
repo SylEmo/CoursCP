@@ -1,8 +1,8 @@
 <?php
 
 
-require_once("verifier1.php");
-require_once("connexion.php");
+require_once("Verifier1.php");
+require_once("Connexion.php");
 
 $id=$_POST['ID'];
 $nom=$_POST['NOM'];
