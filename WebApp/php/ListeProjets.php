@@ -1,5 +1,5 @@
 <?php
-//require_once("Verifier1.php");
+require_once("Verifier1.php");
 session_start();
 echo "Variable de session : " . $_SESSION['Niv'];
 require_once("Connexion.php");

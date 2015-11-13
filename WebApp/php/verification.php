@@ -15,7 +15,7 @@ if($u=mysql_fetch_assoc($result))
 {
     session_start();
     $_SESSION['Niv'] = $u['ID'];
-    header("location:ListeProjets.php");
+    header("location:../liste-projets.html");
 
 }
 else{

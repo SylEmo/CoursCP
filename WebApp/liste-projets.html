@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -6,6 +7,8 @@
 	<title>Liste des projet - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
 	<link rel="stylesheet" href="css/liste-projets.css">
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  </body>
 </head>
 <body>
 	<h1>Liste des sprints du projet :</h1>
@@ -15,20 +18,26 @@
 	    Trier par nom
 	  </button>
 	
-	  <ul class="list"><li>
+	  <ul class="list" id="liste-projets">
+		<li>
 	      <h3 class="name"><a onclick="ouvrirProjet(1);">Projet 1</a></h3>
-	    </li><li>
+	    </li>
+		<li>
 	      <h3 class="name"><a onclick="ouvrirProjet(2);">Projet 2</a></h3>
-	    </li><li>
+	    </li>
+		<li>
 	      <h3 class="name"><a onclick="ouvrirProjet(3);">Projet 3</a></h3>
-	    </li><li>
+	    </li>
+		<li>
 	      <h3 class="name"><a onclick="ouvrirProjet(4);">Projet 4</a></h3>
-	    </li></ul>
+	    </li>
+	  </ul>
 	
 	</div>
 	<script src="http://listjs.com/no-cdn/list.js"></script>
 	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
 	<script>
+		var projets;
 		var options = {
 		    valueNames: [
 		        'name',
@@ -36,8 +45,25 @@
 		};
 		var userList = new List('users', options);
 		var ouvrirProjet = function(id){
-			alert("A faire !");
+			alert("A faire ! : "+id);
 		}
+		$(window).load(function(){
+			$.ajax({
+				url: './php/ListerProjets.php', //toujours la même page qui est appelée
+				type: 'POST',
+				data: {bla: "blablabla"}, // paramètre fonction qui détermine la fonction qui sera exécutée
+				success: function(data) {
+					alert(data);
+					projets = data.split('-');
+					while(projets.length>0){
+						document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'><a onclick='ouvrirProjet("+projets[0]+");'>"+projets[1]+"</a></h3></li>";
+						projets.shift();
+						projets.shift();
+					}
+				}
+			});
+		});
+		
 	</script>
 	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
 </body>
