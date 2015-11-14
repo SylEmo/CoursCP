@@ -45,7 +45,8 @@
 		};
 		var userList = new List('users', options);
 		var ouvrirProjet = function(id){
-			alert("A faire ! : "+id);
+			//alert("A faire ! : "+id);
+			document.location.href="backlog.html?id="+id;
 		}
 		$(window).load(function(){
 			$.ajax({
