@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<title>Modification du projet - Adopi</title>
+	<link rel="stylesheet" href="lib/foundation/css/foundation.min.css">
+	<link rel="stylesheet" href="css/modifier-projet.css">
+</head>
+<body>
+	<form method="post" action="" name="form-projet" id="form-projet">
+		<h1 id="titre-modifier">Modification du projet :</h1>
+		<h2>Nom du projet :</h2>
+		<input type="text" name="nom-projet" id="nom-projet" placeholder="Nom de votre projet" required autofocus>
+		<h2>Deadline du projet :</h2>
+		<input type="date" max="2015-11-11" min="1900-01-01" name="deadline-projet" id="deadline-projet" required>
+		<h2>URL du repository Git du projet :</h2>
+		<input type="text" name="git-projet" id="git-projet" placeholder="URL de votre repository Git" required>
+		<p><button type="submit" name="bouton-projet" id="bouton-projet">Créer le projet</button></p>
+	</form>
+</body>
+</html>
