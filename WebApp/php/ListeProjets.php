@@ -1,6 +1,6 @@
 <?php
 require_once("Verifier1.php");
-//session_start();
+session_start();
 echo "Variable de session : " . $_SESSION['Niv'];
 require_once("Connexion.php");
 $req= "select * from PROJET WHERE IDUTIL=".$_SESSION['Niv'];
