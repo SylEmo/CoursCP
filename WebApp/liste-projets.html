@@ -7,7 +7,11 @@
 	<title>Liste des projet - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
 	<link rel="stylesheet" href="css/liste-projets.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<script src="./js/verif_session.js"></script>
+
   </body>
 </head>
 <body>
@@ -26,6 +30,7 @@
 	  </ul>
 	
 	</div>
+	<a href="./php/Deconnexion.php">Deconnexion</a>
 	<script src="http://listjs.com/no-cdn/list.js"></script>
 	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
 	<script>
@@ -41,12 +46,15 @@
 			document.location.href="details-projet.html?id="+id;
 		}
 		$(window).load(function(){
+
+			verifSession();
+
 			$.ajax({
 				url: './php/ListerProjets.php', //toujours la même page qui est appelée
 				type: 'POST',
 				data: {bla: "blablabla"}, // paramètre fonction qui détermine la fonction qui sera exécutée
 				success: function(data) {
-					alert(data);
+					//alert(data);
 					projets = data.split('-');
 					while(projets.length>0){
 						document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'><a onclick='ouvrirProjet("+projets[0]+");'>"+projets[1]+"</a></h3></li>";
@@ -55,6 +63,7 @@
 					}
 				}
 			});
+			
 		});
 		
 	</script>

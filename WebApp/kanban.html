@@ -7,6 +7,8 @@
 	<link rel="stylesheet prefetch" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet prefetch" href="http://www.dauton.net/_js/codepen.css">
 	<link rel="stylesheet" href="css/kanban.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="./js/verif_session.js"></script>
 </head>
 <body style="cursor: auto;">
 	<div id="backlogs">
@@ -107,5 +109,10 @@
 	<script src="http://www.dauton.net/_js/codepen.js"></script>
 	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
 	<script src="js/kanban.js"></script>
+<script>
+	$(window).load(function(){
+		verifSession();
+	}
+</script>
 </body>
 </html>

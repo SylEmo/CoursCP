@@ -5,8 +5,12 @@
   <title>Sprint - Adopi</title>
   <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
   <link rel="stylesheet" href="css/backlog.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="./js/verif_session.js"></script>
   <script type="text/javascript">
 	window.onload=function(){
+		verifSession();
+
 		editableGrid = new EditableGrid("DemoGridAttach",
 			{
 				enableSort:true,

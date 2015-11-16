@@ -6,6 +6,8 @@
 	<title>Liste des sprints - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
 	<link rel="stylesheet" href="css/liste-sprints.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="./js/verif_session.js"></script>
 </head>
 <body>
 	<h1>Liste des sprints du projet :</h1>
@@ -29,6 +31,9 @@
 	<script src="http://listjs.com/no-cdn/list.js"></script>
 	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
 	<script>
+		$(window).load(function(){
+			verifSession();
+		}
 		var options = {
 		    valueNames: [
 		        'name',

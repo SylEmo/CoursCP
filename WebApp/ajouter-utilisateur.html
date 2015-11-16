@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="./js/verif_session.js"></script>
 </head>
 <body>
 
@@ -38,5 +37,10 @@
 	</table>
 
 </form>
+<script>
+	$(window).load(function(){
+		verifSession();
+	}
+</script>
 </body>
 </html>
