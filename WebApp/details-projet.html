@@ -13,7 +13,7 @@
 
 		$(window).load(function(){
 			verifSession();
-		}
+		});
 
 		function ouvrirBacklog(){
 			var params = window.location.search;
@@ -21,7 +21,6 @@
 			var i;
 			params = params.substring(1);
 			params = params.split("&");
-			alert(params);
 			for(i=0;i<params.length;i++){
 				param = params[i].split("=");
 				if(param[0] == "id"){
