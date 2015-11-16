@@ -7,7 +7,7 @@
 	<title>Liste des projet - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
 	<link rel="stylesheet" href="css/liste-projets.css">
-	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   </body>
 </head>
 <body>
@@ -17,20 +17,12 @@
 	  <button class="sort desc" data-sort="name">
 	    Trier par nom
 	  </button>
+	  <button class="sort" onclick="document.location.href='ajouter-projet.html'">
+	    Ajouter projet
+	  </button>
 	
 	  <ul class="list" id="liste-projets">
-		<li>
-	      <h3 class="name"><a onclick="ouvrirProjet(1);">Projet 1</a></h3>
-	    </li>
-		<li>
-	      <h3 class="name"><a onclick="ouvrirProjet(2);">Projet 2</a></h3>
-	    </li>
-		<li>
-	      <h3 class="name"><a onclick="ouvrirProjet(3);">Projet 3</a></h3>
-	    </li>
-		<li>
-	      <h3 class="name"><a onclick="ouvrirProjet(4);">Projet 4</a></h3>
-	    </li>
+
 	  </ul>
 	
 	</div>
@@ -46,7 +38,7 @@
 		var userList = new List('users', options);
 		var ouvrirProjet = function(id){
 			//alert("A faire ! : "+id);
-			document.location.href="backlog.html?id="+id;
+			document.location.href="details-projet.html?id="+id;
 		}
 		$(window).load(function(){
 			$.ajax({
