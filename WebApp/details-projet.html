@@ -6,13 +6,31 @@
 	<title>Détails du projet - Adopi</title>
 	<link rel="stylesheet" href="lib/foundation/css/foundation.min.css">
 	<link rel="stylesheet" href="css/details-projet.css">
+
+	<script>
+		function ouvrirBacklog(){
+			var params = window.location.search;
+			var param;
+			var i;
+			params = params.substring(1);
+			params = params.split("&");
+			alert(params);
+			for(i=0;i<params.length;i++){
+				param = params[i].split("=");
+				if(param[0] == "id"){
+					document.location.href="backlog.html?id="+param[1];
+				}
+			}
+		}
+	</script>
+
 </head>
 <body>
 	<h1>Détails du projet "nomDuProjet" </h1>
 	<hr>
 	<h2>Date de création du projet : dateDeCreation</h2>
 	<h2>Deadline fixée : dateDeDeadline</h2>
-	<h2><a href="#">Accéder au backlog</a></h2>
+	<h2><a onclick="ouvrirBacklog()">Accéder au backlog</a></h2>
 	<h2>Fichier Git lié au projet : OUI/NON</h2>
 	<h2>Nombre de commits sur le projet : nombreDeCommits</h2>
 	<h3><a href="#">Accéder à la liste des commits</a></h3>
