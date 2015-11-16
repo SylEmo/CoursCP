@@ -4,6 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Backlog - Adopi</title>
   <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/backlog.css">
   
   <script type="text/javascript">
@@ -33,8 +34,43 @@
 			ligneAjoutee.insertCell(5);
 			ligneAjoutee.children[5].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
 		};
+
 		var validerBacklog = function(){
 			alert("A faire !");
+		}
+
+		var params = window.location.search;
+		var param,uss,us,i;
+		params = params.substring(1);
+		params = params.split("&");
+		alert(params);
+		for(i=0; i<params.length;i++){
+			param = params[i].split("=");
+			if(param[0]=="id"){
+				//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
+				$.ajax({
+					url: './php/ListerUserStory.php', //toujours la mÃªme page qui est appelÃ©e
+					type: 'POST',
+					data: {id: param[1]}, // paramÃ¨tre fonction qui dÃ©termine la fonction qui sera exÃ©cutÃ©e
+					success: function(data) {
+						alert("data :"+data);
+						//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
+						uss=data.split("&");
+						alert("userstories :"+uss+" taille du tableau :  "+uss.length);
+						//ERREUR!!!
+						//NE RENTRE PAS DANS LE WHILE
+						while(uss.length>0){
+							//on veut maintenant récupérer chaque info de l'us, séparées par un -
+							us=uss[0].split("-");
+							alert("projet :"+us);
+							document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'><td class='number'>"+us[0]+"</td><td>"+us[4]+"</td><td>"+us[1]+"</td><td class='number'>"+us[2]+"</td><td class='number'>"+us[3]+"</td><td><a onclick='editableGrid.removeRow(3);'>Supprimer</a></td></tr>";
+							uss.shift();
+						}
+					}
+				});
+				//si on trouve le param id, modif pour couper la boucle for, on ne doit avoir qu'un param id
+				i = params.lenth;
+			}
 		}
     }
   </script>
@@ -50,32 +86,9 @@
 			<th>UserStory</th>			
 			<th class="number">PrioritÃ©</th>
 			<th class="number">DifficultÃ©</th>	
-		</tr></thead><tbody>
-		<tr id="1" style="min-height: 28px;">
-			<td class="number">1</td>
-			<td></td>
-			<td></td>
-			<td class="number">1</td>
-			<td class="number">1</td>
-			<td class="editablegrid-action"><a onclick="editableGrid.removeRow(1);">Supprimer</a></td>
-		</tr>
-		<tr id="2" style="min-height: 28px;">
-			<td class="number">1</td>
-			<td></td>
-			<td></td>
-			<td class="number">1</td>
-			<td class="number">1</td>
-			<td><a onclick="editableGrid.removeRow(2);">Supprimer</a></td>
-		</tr>
-		<tr id="3" style="min-height: 28px;">
-			<td class="number">1</td>
-			<td></td>
-			<td></td>
-			<td class="number">1</td>
-			<td class="number">1</td>
-			<td><a onclick="editableGrid.removeRow(3);">Supprimer</a></td>
-		</tr>
-	</tbody></table>
+		</tr></thead>
+
+	</table>
 	<button onclick="validerBacklog">Valider le backlog</button>
 </body>
 </html>
