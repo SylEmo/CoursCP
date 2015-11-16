@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once("Connexion.php");
 
 $id=$_SESSION['Niv'];
@@ -42,7 +43,7 @@ mysql_query($req) or die(mysql_error());
         <td><?php echo ($git) ?>" </td>
     </tr>
 </table>
-<a href="ListeProjets.php">Aller Vers la Page D'affichage </a>
+<a href="../liste-projets.html">Aller Vers la Page D'affichage </a>
 </form>
 </body>
 </html>
