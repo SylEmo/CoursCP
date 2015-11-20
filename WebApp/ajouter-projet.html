@@ -9,6 +9,9 @@
     <script src="./js/verif_session.js"></script>
 </head>
 <body>
+<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+Retour accueil
+</button>
 
 <form method="POST" action="./php/AjouterProjet.php">
     <table>
@@ -44,6 +47,7 @@
 	$(window).load(function(){
 		verifSession();
 	});
+
 </script>
 </body>
 </html>
