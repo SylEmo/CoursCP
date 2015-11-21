@@ -61,11 +61,15 @@
 					success: function(data) {
 						//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
 						uss=data.split("&");
-						while(uss.length>0){
-							//on veut maintenant récupérer chaque info de l'us, séparées par un -
-							us=uss[0].split("-");
-							document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'><td class='number'>"+us[0]+"</td><td>"+us[4]+"</td><td>"+us[1]+"</td><td class='number'>"+us[2]+"</td><td class='number'>"+us[3]+"</td><td><a onclick='editableGrid.removeRow("+us[0]+");'>Supprimer</a></td></tr>";
-							uss.shift();
+						if(!uss[0]){
+							document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'>Ce projet ne possede aucune userstory</tr>";
+						}else{
+							while(uss.length>0){
+								//on veut maintenant récupérer chaque info de l'us, séparées par un -
+								us=uss[0].split("-");
+								document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'><td class='number'>"+us[0]+"</td><td>"+us[4]+"</td><td>"+us[1]+"</td><td class='number'>"+us[2]+"</td><td class='number'>"+us[3]+"</td><td><a onclick='editableGrid.removeRow("+us[0]+");'>Supprimer</a></td></tr>";
+								uss.shift();
+							}
 						}
 					}
 				});

@@ -56,10 +56,14 @@
 				success: function(data) {
 					//alert(data);
 					projets = data.split('-');
-					while(projets.length>0){
-						document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'><a onclick='ouvrirProjet("+projets[0]+");'>"+projets[1]+"</a></h3></li>";
-						projets.shift();
-						projets.shift();
+					if(!projets[0]){
+						document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'><a onclick=>Pas de projet pour cet utilisateur</a></h3></li>";
+					}else{
+						while(projets.length>0){
+							document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'><a onclick='ouvrirProjet("+projets[0]+");'>"+projets[1]+"</a></h3></li>";
+							projets.shift();
+							projets.shift();
+						}
 					}
 				}
 			});

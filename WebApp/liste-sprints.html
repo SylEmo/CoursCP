@@ -21,14 +21,7 @@
 	  </button>
 	
 	  <ul class="list" id="listesprints"><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(1);">Sprint 1</a></h3>
-	    </li><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(2);">Sprint 2</a></h3>
-	    </li><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(3);">Sprint 3</a></h3>
-	    </li><li>
-	      <h3 class="name"><a onclick="ouvrirSprint(4);">Sprint 4</a></h3>
-	    </li></ul>
+	  </ul>
 	
 	</div>
 	<script src="http://listjs.com/no-cdn/list.js"></script>
@@ -54,11 +47,15 @@
 						success: function(data) {
 							//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
 							sprints=data.split("&");
-							while(sprints.length>0){
-								//on veut maintenant récupérer chaque info de l'us, séparées par un -
-								sprint=sprints[0].split("-");
-								document.getElementById('listesprints').innerHTML += "<li><h3 class='name'><a onclick='ouvrirSprint("+sprint[0]+");'>Sprint "+sprint[1]+"</a></h3></li>";
-								sprints.shift();
+							if(!sprints[0]){
+								document.getElementById('listesprints').innerHTML += "<li><h3 class='name'><a onclick=''>Ce projet ne possede aucun sprint</a></h3></li>";
+							}else{
+								while(sprints.length>0){
+									//on veut maintenant récupérer chaque info de l'us, séparées par un -
+									sprint=sprints[0].split("-");
+									document.getElementById('listesprints').innerHTML += "<li><h3 class='name'><a onclick='ouvrirSprint("+sprint[0]+");'>Sprint "+sprint[1]+"</a></h3></li>";
+									sprints.shift();
+								}
 							}
 						}
 					});
