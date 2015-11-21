@@ -1,7 +1,7 @@
 <?php 
 require_once ('../lib/jpgraph/src/jpgraph.php');
 require_once ('../lib/jpgraph/src/jpgraph_line.php');
-require_once('connexion.php');
+require_once('Connexion.php');
 
 
 
