@@ -8,6 +8,7 @@ function add_developer() {
 			.attr('id',devid);
 		    new_dev.find('a').remove();
 		    new_dev.find('h1').text(dev);
+		    new_dev.show();
 		    $('#board').append(new_dev);
 		}
     }
