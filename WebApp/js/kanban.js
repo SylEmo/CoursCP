@@ -31,7 +31,14 @@ function add_developer() {
 			.clone()
 			.attr('id', taskid);
 		    new_task.find('.cardTitle').text(task);
-		    $('#board > div > div').first().append(new_task);
+		    new_task.show();
+		    var childrenBoard = $('#board').children();
+		    var divDeveloper = childrenBoard[1];
+		    var childrenDivDeveloper = divDeveloper.children;
+		    var divToDo = childrenDivDeveloper[1];
+		    divToDo.id = taskid;
+		    $("#"+taskid).append(new_task);
+		    divToDo.id = "";
 		}
     }
     function remove_task() {

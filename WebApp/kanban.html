@@ -9,10 +9,10 @@
     <script type="text/javascript" src="js/kanban.js"></script>
 </head>
 <body>
-	<h1>Kanban du sprint n°XX - NopDuProjet</h1>
+	<h1>Kanban du sprint n°XX - NomDuProjet</h1>
     <menu>
 		<button onclick="add_developer();">Ajouter un développeur</button>
-		<button onclick="remove_developer();">Supprimer un dévellopeur</button>
+		<button onclick="remove_developer();">Supprimer un dévelopeur</button>
 		<button onclick="add_task();">Ajouter une tâche</button>
 		<button onclick="remove_task();">Supprimer une tâche</button>
 		<button onclick="add_status();">Ajouter un état</button>
@@ -24,6 +24,9 @@
     		<h1 class ="title"> Rob</h1>
             <div class ="todo droptarget">
                 <h2 class = "title"> To Do</h1>
+                <a id="item1" draggable="true" href="#">
+				    <div class="cardTitle">hidden</div>
+				</a>
             </div>
             <div class ="inprogress droptarget">
                 <h2 class = "title"> In Progress</h1>
