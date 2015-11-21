@@ -3,86 +3,37 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex">
-	<title>Kanban - Adopi</title>
+	<title>Kanban sprint n°XX - Adopi</title>
 	<link rel="stylesheet" href="css/kanban.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/kanban.js"></script>
 </head>
 <body>
+	<h1>Kanban du sprint n°XX - NopDuProjet</h1>
     <menu>
-		<button onclick="add_developer();">Add developer</button>
-		<button onclick="remove_developer();">Remove developer</button>
-		<button onclick="add_task();">Add task</button>
-		<button onclick="remove_task();">Remove task</button>
-		<button onclick="add_status();">Add status</button>
-		<button onclick="remove_status();">Remove status</button>
+		<button onclick="add_developer();">Ajouter un développeur</button>
+		<button onclick="remove_developer();">Supprimer un dévellopeur</button>
+		<button onclick="add_task();">Ajouter une tâche</button>
+		<button onclick="remove_task();">Supprimer une tâche</button>
+		<button onclick="add_status();">Ajouter un état</button>
+		<button onclick="remove_status();">Supprimer un état</button>
     </menu>
+    
     <div id="board">
-	<div id="rob">
-	    <h1 class="title">Rob</h1>
-	    <div class="todo droptarget">
-		<h2 class="title">To Do</h1>
-		<a id="item1" draggable="true" href="#">
-		    <div class="cardTitle">
-			Learn HTML5
-		    </div>
-		</a>
-		<a id="item2" draggable="true" href="#">
-		    <div class="cardTitle">
-		        Learn CSS3
-		    </div>
-		</a>
-		<a id="item3" draggable="true" href="#">
-		    <div class="cardTitle">
-			Make an amazing site
-		    </div>
-		</a>
-		<a id="item4" draggable="true" href="#">
-		    <div class="cardTitle">
-			Impress my friends
-		    </div>
-		</a>
-	    </div>
-	    <div class="inprogress droptarget">
-		<h2 class="title">In Progress</h1>
-	    </div>
-	    <div class="done droptarget">
-		<h2 class="title">Done</h1>
-	    </div>
-	</div>
-	<div id="john">
-	    <h1 class="title">John</h1>
-	    <div class="todo droptarget">
-		<h2 class="title">To Do</h1>
-		<a id="item5" draggable="true" href="#">
-		    <div class="cardTitle">
-			Learn JavaScript
-		    </div>
-		</a>
-		<a id="item6" draggable="true" href="#">
-		    <div class="cardTitle">
-		        Learn AJAX
-		    </div>
-		</a>
-		<a id="item7" draggable="true" href="#">
-		    <div class="cardTitle">
-			Jump the shark
-		    </div>
-		</a>
-		<a id="item8" draggable="true" href="#">
-		    <div class="cardTitle">
-			Profit
-		    </div>
-		</a>
-	    </div>
-	    <div class="inprogress droptarget">
-		<h2 class="title">In Progress</h1>
-	    </div>
-	    <div class="done droptarget">
-		<h2 class="title">Done</h1>
-	    </div>
-	</div>
+    	<div id="hidden" hidden>
+    		<h1 class ="title"> Rob</h1>
+            <div class ="todo droptarget">
+                <h2 class = "title"> To Do</h1>
+            </div>
+            <div class ="inprogress droptarget">
+                <h2 class = "title"> In Progress</h1>
+            </div>
+            <div class ="done droptarget">
+                <h2 class = "title"> Done</h1>
+            </div>
+    	</div>
     </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/kanban.js"></script>
+    
     <script type="text/javascript">
     $('document').ready(init);
     function init(){
