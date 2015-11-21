@@ -1,57 +1,72 @@
-function updateValues() {
-    $('.connectedSortable').each(function () {
-        $(this).parents('.list').siblings('.details').find('.nb-item-value').html($(this).find('li').length);
-        var points = 0;
-        $(this).find('li .effort').each(function () {
-            points += parseFloat($(this).attr('data-points'));
-        });
-        $(this).parents('.list').siblings('.details').find('.nb-pts-value').html(points);
-    });
-}
-updateValues();
-$('.list').jScrollPane({
-    autoReinitialise: true,
-    verticalGutter: 0
-}).bind('jsp-scroll-y', function (event, scrollPositionY, isAtTop, isAtBottom) {
-    if (scrollPositionY > 70) {
-        $(this).siblings('.drop-top').show();
-    } else {
-        $(this).siblings('.drop-top').hide();
+function add_developer() {
+		var dev = window.prompt('Enter the developer\'s name');
+		var devid = dev.replace(/\s/g,'').toLowerCase();
+		if (devid.length > 0) {
+		    if ($('#' + devid).attr('id') == devid) { window.alert('Already added'); return; }
+		    var new_dev = $('#board > div:first-child')
+			.clone()
+			.attr('id',devid);
+		    new_dev.find('a').remove();
+		    new_dev.find('h1').text(dev);
+		    $('#board').append(new_dev);
+		}
     }
-});
-$('.drop-top').droppable({
-    accept: '.connectedSortable li',
-    tolerance: 'touch',
-    hoverClass: 'on-top',
-    drop: function (event, ui) {
-        var ul = $(this).siblings('.list').find('.connectedSortable');
-        ul.addClass('dropped');
-        ul.prepend(ui.draggable.clone().show());
-        ui.draggable.remove();
+    function remove_developer() {
+	//need to add check here that there's at least one developer
+		$('#board')
+		    .css('cursor','crosshair')
+		    .click(function(event) {
+		        $(event.target).closest('#board > div').remove();
+			$('#board').css('cursor','default').unbind('click');    
+		});
     }
-});
-$('.connectedSortable').sortable({
-    appendTo: document.body,
-    helper: 'clone',
-    cursor: 'move',
-    connectWith: '.connectedSortable',
-    stop: function (event, ui) {
-        updateValues();
-        if ($(this).hasClass('dropped')) {
-            ui.helper.remove();
-            $(this).sortable('cancel').removeClass('dropped');
-        }
+    function add_task() {
+		var task = window.prompt('Enter task name');
+		var taskid = task.replace(/\s/g,'').toLowerCase();
+		if (taskid.length > 0) {
+		    if ($('#' + taskid).attr('id') == taskid) { window.alert('Already added'); return; }
+		    var new_task = $('#board a[draggable]')
+			.first()
+			.clone()
+			.attr('id', taskid);
+		    new_task.find('.cardTitle').text(task);
+		    $('#board > div > div').first().append(new_task);
+		}
     }
-}).disableSelection();
-(function addCaseInsensitiveContainsSelector() {
-    $.expr[':'].caseInsensitiveContains = function (a, i, m) {
-        return $(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-    };
-}());
-$('input').keyup(function (event) {
-    if (event.keyCode == 27) {
-        $(this).val('');
+    function remove_task() {
+	//need to add check here that there's at least one task
+		$('#board')
+		    .css('cursor','crosshair')
+		    .click(function(event) {
+		        $(event.target).closest('#board a[draggable]').remove();
+			$('#board').css('cursor','default').unbind('click');    
+		});
     }
-    $(this).siblings('.list').find('ul li:not(:caseInsensitiveContains(' + $(this).val() + '))').hide();
-    $(this).siblings('.list').find('ul li:caseInsensitiveContains(' + $(this).val() + ')').show();
-});
+    function add_status() {
+		var stat = window.prompt('Enter status name');
+		var statclass = stat.replace(/\s/g,'').toLowerCase();
+		if (statclass.length > 0) {
+		    if ($('#board > div:first-child > div.' + statclass).hasClass(statclass)) { window.alert('Already added'); return; }
+		    var new_stat = $('#board > div > div')
+			.first()
+			.clone();
+		    var cc = new_stat.attr('class').replace('droptarget','').replace(/\s/g,'');
+		    new_stat
+			.removeClass(cc)
+			.addClass(statclass);
+		    new_stat.find('h2.title').text(stat);
+		    new_stat.find('a[draggable]').remove();
+		    $('#board > div').append(new_stat);
+		}
+    }
+    function remove_status() {
+	//need to add check here that there's at least one status
+	$('#board')
+	    .css('cursor','crosshair')
+	    .click(function(event) {
+	        var rstat = $(event.target).closest('.droptarget');
+		var rclass = rstat.attr('class').replace('droptarget','').replace(/\s/g,'');
+		$('.' + rclass).remove();
+		$('#board').css('cursor','default').unbind('click');    
+	});
+    }

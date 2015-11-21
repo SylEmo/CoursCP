@@ -1,181 +1,57 @@
 body {
-    font-family: 'Helvetica Neue', Arial;
-    font-size: 0.8em;
-    -webkit-font-smoothing: antialiased;
-}
-
-#psss {
-  color: SteelBlue;
-  margin: 20px 0 0 20px;
-}
-
-h1 {
-    font-size: 1.5em;
-    padding: 10px 5px 0;
-}
-
-.details {
-    padding-left: 5px;
-    margin-bottom: 15px;
-}
-.details p {
-    padding: 0;
-    margin: 0;
-}
-.details .label {
-    color: #AAA;
-    margin-right: 5px;
-}
-.details .nb-item-value, .details .nb-pts-value {
-    color: SteelBlue;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-input {
-    border-radius: 3px;
-    border: 1px solid #CCC;
-    width: 335px;
-    font-size: 1em;
-    padding: 8px 4px;
-    margin: 0 0 0 5px;
-    box-shadow: inset 1px 1px 1px #EEE;
-}
-
-#backlogs {
-    width: 1200px;
-    overflow-x: hidden;
-}
-
-#content {
-    height: 650px;
-    width: 1800px;
-}
-
-.backlog {
-    float: left;
-    width: 350px;
-    margin: 0 15px;
-}
-
-.list {
-    margin-top: 10px;
-    height: 550px;
-    overflow-y: scroll;
-}
-.drop-top {
-  position: absolute;
-  z-index: 1000;
-  display: none;
-  width: 338px;
-  height: 25px;
-  border-radius: 0px;
-  background: #F7F7F7;
-  text-align: center;
-  text-transform: uppercase;
-  padding-top: 10px;
-  color: #BBB;
-  font-size: 0.8em;
-  margin: 10px 0 0 4px;
-}
-.drop-top.on-top {
-  background-color: lightgreen;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
-  color: #FFF;
-}
-ul {
-    padding: 0 5px;
-    position: relative;
-    top: -12px;
-}
-
-li {
-    list-style-type: none;
-    box-shadow: 0 0 1px #888;
-    cursor: pointer;
-    background: #FFF;
-    color: #222;
-    padding: 0 0 0 5px;
-    margin: 10px 0 0 0;
-    border-radius: 3px;
-    min-height: 50px;
-}
-li div {
-    background: #FFF;
-    padding: 5px;
-    min-height: 50px;
-}
-li.user-story {
-    background: #0E89CE;
-}
-
-li.request {
-    background: #70A034;
-}
-
-li.bug {
-    background: #E63737;
-}
-li.sortable-placeholder {
-    background: #FFF;
-    box-shadow: none;
-    height: 70px;
-}
-
-.id {
-    margin: 0 5px 0 0;
-    color: #777;
-    font-size: 0.9em;
-}
-.type {
-    margin: 0 5px 0 0;
-    display: none;
-}
-.title {
-    margin: 0;
-    line-height: 1.8em;
-}
-.effort {
-    margin: 0 0 3px 3px;
-    background: SteelBlue;
-    color: white;
-    font-weight: bold;
-    font-size: 0.9em;
-    padding: 2px;
-    border-radius: 3px;
-    width: 40px;
-    text-align: center;
-    display: block;
-    float: right;
-}
-.parent {
-    margin: 0;
-    line-height: 1.8em;
-    display: block;
-    padding: 0 3px;
-    font-size: 0.85em;
-    color: #888;
-    font-style: italic;
-}
-
-.jspVerticalBar {
-    width: 4px;
-    background: transparent;
-}
-
-.jspHorizontalBar {
-    height: 4px;
-    background: transparent;
-}
-
-.jspTrack {
-    background: #EEE;
-}
-
-.jspDrag {
-    background: #BBB;
-    border-radius: 5px;
-}
-.jspScrollable:focus {
-    outline: 0;
-}
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    #board {
+	position:relative;
+	display: table;
+	width: 100%;
+    }
+    .title {
+	background-color:#52460a;
+	text-align:center;
+	color:white;
+	padding: 2px 0px;
+	font-size: 100%;
+	margin: 0;
+    }
+    #board > div > .title {
+	border: 2px solid black;
+	border-width: 0 2px;
+    }
+    #board > div:first-child > .title {
+	border-top-width: 2px;
+    }
+    #board > div > div {
+	background-color: tan;
+	min-width: 300px;
+	width: 50%;
+	height: 200px;
+	border: 2px solid black;
+	border-width: 2px 0 2px 2px;
+	display: table-cell;
+	border-collapse: collapse;
+    }
+    #board > div > div:last-child {
+	border-right-width: 2px;
+    }
+    *[draggable=true] {
+	float:left;
+	min-width: 50px;
+	min-height: 50px;
+	border: 2px solid black;
+	margin: 10px;
+	display: block;
+	font-weight:bold;
+	text-decoration: none;
+	min-height:60px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.63, white), color-stop(0.92, rgb(5,161,245)));
+	background-image:-moz-linear-gradient(center top, white 63%, rgb(5,161,245) 92%);
+	-webkit-background-size:1px 8px;
+	-moz-background-size:1px 8px;
+	background-size:1px 8px;
+	background-repeat:repeat;
+    }
+    .cardTitle {
+	background-color: rgb(255,255,255);
+	border:2px solid white;
+    }

@@ -3,116 +3,106 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex">
-	<link rel="canonical" href="http://codepen.io/bdauton/pen/oGcCE">
-	<link rel="stylesheet prefetch" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet prefetch" href="http://www.dauton.net/_js/codepen.css">
+	<title>Kanban - Adopi</title>
 	<link rel="stylesheet" href="css/kanban.css">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <script src="./js/verif_session.js"></script>
 </head>
-<body style="cursor: auto;">
-	<div id="backlogs">
-	    <div id="content">
-	        <div class="backlog">
-	            <h1>Sandbox</h1>
-	            <div class="details">
-	                <p><span class="label">Number of items:</span><span class="nb-item-value">24</span></p>
-	                <p><span class="label">Number of points:</span><span class="nb-pts-value">0</span></p>
-	            </div>
-	            <input type="text" placeholder="Filter...">
-	            <div class="drop-top ui-droppable" style="display: none;">Drop here to put on top</div>
-	            <div class="list jspScrollable" style="overflow: hidden; padding: 0px; width: 350px;" tabindex="0">
-	            
-	            <div class="jspContainer" style="width: 350px; height: 550px;"><div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 346px;"><ul class="connectedSortable ui-sortable">
-	                
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#5618</span><span class="type">User stories</span><span class="title">Refactor events needed by Layout</span><span class="parent">UX/UI Redesign</span></div></li><li class="bug ui-sortable-handle" style="display: list-item;"><div><span class="id">#5530</span><span class="type">User stories</span><span class="title">break bugs in tasks</span><span class="parent">AD Cardwall enhancements</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4590</span><span class="type">User stories</span><span class="title">display/have a quick access to the current sprint</span><span class="parent">Agile Dashboard Enhancements</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#2493</span><span class="type">User stories</span><span class="title">link an existing artifact while creating a new one</span><span class="parent">Tracker enhancements</span></div></li>
-	                <li class="request ui-sortable-handle" style="display: list-item;"><div><span class="id">#2681</span><span class="type">User stories</span><span class="title">allow access to git repositories to non project members (private project) or restricted users</span><span class="parent">User group management</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4501</span><span class="type">User stories</span><span class="title">select openid providers</span><span class="parent">Use an OpenId provider</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4500</span><span class="type">User stories</span><span class="title">create an account with openid</span><span class="parent">Use an OpenId provider</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4504</span><span class="type">User stories</span><span class="title"> login with my CAS account</span><span class="parent">Use an external CAS provider</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4494</span><span class="type">User stories</span><span class="title">add tasks in overlay on the cardwall</span><span class="parent">New content &amp; planning views for agile dashboard</span></div></li>
-	                <li class="request ui-sortable-handle" style="display: list-item;"><div><span class="id">#5645</span><span class="type">User stories</span><span class="title">Cherry pick certain artifacts to add to the Backlog</span><span class="parent"></span></div></li>
-	                <li class="request ui-sortable-handle" style="display: list-item;"><div><span class="id">#4045</span><span class="type">User stories</span><span class="title">create new backlog content and milestone in overlay</span><span class="parent">New content &amp; planning views for agile dashboard</span></div></li>
-	                <li class="request ui-sortable-handle" style="display: list-item;"><div><span class="id">#5679</span><span class="type">User stories</span><span class="title">upgrade to gerrit 2.8</span><span class="parent">Gerrit miscallaneous</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#2198</span><span class="type">User stories</span><span class="title">See the tracker hierachy from project dashboard &amp; tracker main page</span><span class="parent">Tracker enhancements</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#2501</span><span class="type">User stories</span><span class="title">be able to unsuscribe to an artifact</span><span class="parent">Tracker enhancements</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#3071</span><span class="type">User stories</span><span class="title">Have the field dependecy rules in the workflow section</span><span class="parent">Tracker enhancements</span></div></li>
-	                <li class="bug ui-sortable-handle" style="display: list-item;"><div><span class="id">#4179</span><span class="type">User stories</span><span class="title">see tracker hierarchy from tracker main page</span><span class="parent">Tracker enhancements</span></div></li>
-	                <li class="bug ui-sortable-handle" style="display: list-item;"><div><span class="id">#4046</span><span class="type">User stories</span><span class="title">see new epics/stories when they have no semantic</span><span class="parent">New content &amp; planning views for agile dashboard</span></div></li>
-	                <li class="bug ui-sortable-handle" style="display: list-item;"><div><span class="id">#2077</span><span class="type">User stories</span><span class="title">Auto-fill a blank remaining effort when setting the story effort</span><span class="parent">Have a very user friendly Agile Dasboard UX</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#2090</span><span class="type">User stories</span><span class="title">auto-refresh the cardwall</span><span class="parent">Have a very user friendly Agile Dasboard UX</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#2089</span><span class="type">User stories</span><span class="title">auto-assign task to person moving the task</span><span class="parent">Have a very user friendly Agile Dasboard UX</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#2187</span><span class="type">User stories</span><span class="title">know when a story is done (as opposed to deducing status from tasks)</span><span class="parent">Have a very user friendly Agile Dasboard UX</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4502</span><span class="type">User stories</span><span class="title">login to jenkins/gerrit/... with the same account than Tuleap use</span><span class="parent">Provide an OpenId account for Tuleap users</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#4042</span><span class="type">User stories</span><span class="title">replicate gerrit to tuleap using http</span><span class="parent">Gerrit miscallaneous</span></div></li>
-	                <li class="user-story ui-sortable-handle" style="display: list-item;"><div><span class="id">#1660</span><span class="type">User stories</span><span class="title">Link from Gerrit Project to Tuleap Repo</span><span class="parent">Gerrit miscallaneous</span></div></li>
-	            </ul></div><div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 550px;"><div class="jspDrag" style="height: 168px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
-	        </div>
-	        <div class="backlog">
-	            <h1>To be estimated</h1>
-	            <div class="details">
-	                <p><span class="label">Number of items:</span><span class="nb-item-value">16</span></p>
-	                <p><span class="label">Number of points:</span><span class="nb-pts-value">8</span></p>
-	            </div>
-	            <input type="text" placeholder="Filter...">
-	            <div class="drop-top ui-droppable" style="display: none;">Drop here to put on top</div>
-	            <div class="list jspScrollable" style="overflow: hidden; padding: 0px; width: 350px;" tabindex="0">
-	            
-	            <div class="jspContainer" style="width: 350px; height: 550px;"><div class="jspPane" style="padding: 0px; top: 0px; width: 346px;"><ul class="connectedSortable ui-sortable">
-	                <li class="user-story ui-sortable-handle"><div><span class="id">#5123</span><span class="type">User stories</span><span class="title">get an activity feed when certain trackers are updated</span><span class="parent">Ability to create and follow different feeds within the ALM</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="2">2 pts</span><span class="id">#5124</span><span class="type">User stories</span><span class="title">events to be logged when any changes are made to the tracker configuration</span><span class="parent">Project Access Logs enhancements</span></div></li>
-	                <li class="request ui-sortable-handle"><div><span class="id">#5125</span><span class="type">User stories</span><span class="title">events to be logged when any changes are made to the Agile Dashboard configuration</span><span class="parent">Project Access Logs enhancements</span></div></li>
-	                <li class="bug ui-sortable-handle"><div><span class="id">#5126</span><span class="type">User stories</span><span class="title">impediment field to be displayed on the card only if it has been flagged as an impediment</span><span class="parent">AD Cardwall enhancements</span></div></li>
-	                <li class="request ui-sortable-handle"><div><span class="id">#5127</span><span class="type">User stories</span><span class="title">set my e-mail notification preferences to receive an e-mail on each update that is done to artifacts that I am monitoring in the project</span><span class="parent">Tighter e-mail control</span></div></li>
-	                <li class="request ui-sortable-handle"><div><span class="id">#5128</span><span class="type">User stories</span><span class="title">set my e-mail notification preferences for one e-mail which displays all the updates to artifacts that I am monitoring in the project</span><span class="parent">Tighter e-mail control</span></div></li>
-	                <li class="request ui-sortable-handle"><div><span class="id">#5129</span><span class="type">User stories</span><span class="title">disable e-mail notification on my own updates</span><span class="parent">Tighter e-mail control</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="1">1 pts</span><span class="id">#5463</span><span class="type">User stories</span><span class="title">have route(s) to get the top level planning information</span><span class="parent">Core RESt API</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="id">#5444</span><span class="type">User stories</span><span class="title">Base listing of the /api/vx</span><span class="parent">Core RESt API</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="id">#5067</span><span class="type">User stories</span><span class="title">Single Sign On Support within Tuleap</span><span class="parent">Trackers SOAP API</span></div></li>
-	                <li class="request ui-sortable-handle"><div><span class="effort" data-points="5">5 pts</span><span class="id">#5066</span><span class="type">User stories</span><span class="title">Create an endpoint addArtifacts, whereby data could be sent in an array of artifacts which would create multiple artifacts on a single tracker in a single SOAP call</span><span class="parent">Trackers SOAP API</span></div></li>
-	                <li class="request ui-sortable-handle"><div><span class="id">#5754</span><span class="type">User stories</span><span class="title">find documents in docman</span><span class="parent">Finish full text search on docman</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="id">#5756</span><span class="type">User stories</span><span class="title">search in tuleap with a nice interface</span><span class="parent">Finish full text search on docman</span></div></li>
-	                <li class="bug ui-sortable-handle"><div><span class="id">#5817</span><span class="type">User stories</span><span class="title">have the possibility to add values to selectBox field in tracker V5 with SOAP</span><span class="parent"></span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="id">#5875</span><span class="type">User stories</span><span class="title">see artifacts links in a dedicated view</span><span class="parent">Artifact links v2</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="id">#5894</span><span class="type">User stories</span><span class="title">update the artifact link data model</span><span class="parent">Artifact links v2</span></div></li>
-	            </ul></div><div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 550px;"><div class="jspDrag" style="height: 227px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
-	        </div>
-	        <div class="backlog">
-	            <h1>To be planned</h1>
-	            <div class="details">
-	                <p><span class="label">Number of items:</span><span class="nb-item-value">8</span></p>
-	                <p><span class="label">Number of points:</span><span class="nb-pts-value">34.5</span></p>
-	            </div>
-	            <input type="text" placeholder="Filter...">
-	            <div class="drop-top ui-droppable" style="display: none;">Drop here to put on top</div>
-	            <div class="list jspScrollable" style="overflow: hidden; padding: 0px; width: 350px;" tabindex="0">
-	            
-	            <div class="jspContainer" style="width: 350px; height: 550px;"><div class="jspPane" style="padding: 0px; top: 0px; width: 346px;"><ul class="connectedSortable ui-sortable">
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="1">1 pts</span><span class="id">#5998</span><span class="type">User stories</span><span class="title">delegate the validation of projects to users</span><span class="parent">Siteadmin rights delegation</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="3">3 pts</span><span class="id">#6048</span><span class="type">User stories</span><span class="title">Retreive a old svnaccessfile</span><span class="parent"></span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="0.5">0.5 pts</span><span class="id">#6053</span><span class="type">User stories</span><span class="title">define a text field default value in a text area</span><span class="parent">Tracker v5 enhancement</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="8">8 pts</span><span class="id">#6056</span><span class="type">User stories</span><span class="title">install tuleap without directory creation in /home</span><span class="parent"></span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="5">5 pts</span><span class="id">#6074</span><span class="type">User stories</span><span class="title">see meaningful URLs for git repositories</span><span class="parent"></span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="3">3 pts</span><span class="id">#6083</span><span class="type">User stories</span><span class="title">see artifact link reverse links</span><span class="parent">Artifact links v2</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="13">13 pts</span><span class="id">#6127</span><span class="type">User stories</span><span class="title">release a SFTP file in FRS</span><span class="parent">(S)FTP Browing</span></div></li>
-	                <li class="user-story ui-sortable-handle"><div><span class="effort" data-points="1">1 pts</span><span class="id">#6128</span><span class="type">User stories</span><span class="title">download through HTTP the files uploaded into SFTP area</span><span class="parent">(S)FTP Browing</span></div></li>
-	            </ul></div><div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 550px;"><div class="jspDrag" style="height: 490px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
-	        </div>
-	        <div style="clear: both"></div>
+<body>
+    <menu>
+		<button onclick="add_developer();">Add developer</button>
+		<button onclick="remove_developer();">Remove developer</button>
+		<button onclick="add_task();">Add task</button>
+		<button onclick="remove_task();">Remove task</button>
+		<button onclick="add_status();">Add status</button>
+		<button onclick="remove_status();">Remove status</button>
+    </menu>
+    <div id="board">
+	<div id="rob">
+	    <h1 class="title">Rob</h1>
+	    <div class="todo droptarget">
+		<h2 class="title">To Do</h1>
+		<a id="item1" draggable="true" href="#">
+		    <div class="cardTitle">
+			Learn HTML5
+		    </div>
+		</a>
+		<a id="item2" draggable="true" href="#">
+		    <div class="cardTitle">
+		        Learn CSS3
+		    </div>
+		</a>
+		<a id="item3" draggable="true" href="#">
+		    <div class="cardTitle">
+			Make an amazing site
+		    </div>
+		</a>
+		<a id="item4" draggable="true" href="#">
+		    <div class="cardTitle">
+			Impress my friends
+		    </div>
+		</a>
+	    </div>
+	    <div class="inprogress droptarget">
+		<h2 class="title">In Progress</h1>
+	    </div>
+	    <div class="done droptarget">
+		<h2 class="title">Done</h1>
 	    </div>
 	</div>
-	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-	<script src="http://www.dauton.net/_js/codepen.js"></script>
-	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
-	<script src="js/kanban.js"></script>
-<script>
-	$(window).load(function(){
-		verifSession();
-	});
-</script>
+	<div id="john">
+	    <h1 class="title">John</h1>
+	    <div class="todo droptarget">
+		<h2 class="title">To Do</h1>
+		<a id="item5" draggable="true" href="#">
+		    <div class="cardTitle">
+			Learn JavaScript
+		    </div>
+		</a>
+		<a id="item6" draggable="true" href="#">
+		    <div class="cardTitle">
+		        Learn AJAX
+		    </div>
+		</a>
+		<a id="item7" draggable="true" href="#">
+		    <div class="cardTitle">
+			Jump the shark
+		    </div>
+		</a>
+		<a id="item8" draggable="true" href="#">
+		    <div class="cardTitle">
+			Profit
+		    </div>
+		</a>
+	    </div>
+	    <div class="inprogress droptarget">
+		<h2 class="title">In Progress</h1>
+	    </div>
+	    <div class="done droptarget">
+		<h2 class="title">Done</h1>
+	    </div>
+	</div>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/kanban.js"></script>
+    <script type="text/javascript">
+    $('document').ready(init);
+    function init(){
+		$('#board').bind('dragstart', function(event) {
+            event.originalEvent.dataTransfer.setData("Text", $(event.target).closest('a[id]').attr('id'));
+        });
+        // bind the dragover event on the board sections
+        $('#board').bind('dragover', function(event) {
+		    if ($(event.target).closest('.droptarget').hasClass('droptarget')) {
+				event.preventDefault();
+	    	}
+        }).bind('drop', function(event) {
+		    var notecard = event.originalEvent.dataTransfer.getData("Text");
+		    var drop = $(event.target).closest('.droptarget');
+		    drop.append($('#' + notecard));
+		    // Turn off the default behaviour
+		    // without this, FF will try and go to a URL with your id's name
+		    event.preventDefault();
+        }).bind('click', function(event) {event.preventDefault();} );
+    }
+    </script>
 </body>
 </html>
