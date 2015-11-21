@@ -5,7 +5,8 @@ $idprojet = $_POST['id'];
 require_once("Verifier1.php");
 session_start();
 require_once("Connexion.php");
-$req= "select * from USERSTORY WHERE IDPROJET=".$idprojet;
+$req= "select * from USERSTORY WHERE IDPROJET=(select ID from PROJET where ID=".$idprojet." and IDUTIL=".$_SESSION['Niv'].")";
+$rs=mysql_query($req) or die(mysql_error());
 $rs=mysql_query($req) or die(mysql_error());
 
 $result='';
