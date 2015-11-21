@@ -6,7 +6,8 @@
   <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="./js/verif_session.js"></script>
+  <script type="text/javascript" src="./js/verif_session.js"></script>
+  <script type="text/javascript" src="./js/adopi.js"></script>
   <link rel="stylesheet" href="css/backlog.css">
   
   <script type="text/javascript">
@@ -44,48 +45,35 @@
 			alert("A faire !");
 		}
 
-		var params = window.location.search;
-		var param,uss,us,i;
-		params = params.substring(1);
-		params = params.split("&");
-		for(i=0; i<params.length;i++){
-			param = params[i].split("=");
-			if(param[0]=="id"){
-				//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
-
-
-				$.ajax({
-					url: './php/ListerUserStory.php', //toujours la mÃªme page qui est appelÃ©e
-					type: 'POST',
-					data: {id: param[1]}, // paramÃ¨tre fonction qui dÃ©termine la fonction qui sera exÃ©cutÃ©e
-					success: function(data) {
-						//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
-						uss=data.split("&");
-						if(!uss[0]){
-							document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'>Ce projet ne possede aucune userstory</tr>";
-						}else{
-							while(uss.length>0){
-								//on veut maintenant récupérer chaque info de l'us, séparées par un -
-								us=uss[0].split("-");
-								document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'><td class='number'>"+us[0]+"</td><td>"+us[4]+"</td><td>"+us[1]+"</td><td class='number'>"+us[2]+"</td><td class='number'>"+us[3]+"</td><td><a onclick='editableGrid.removeRow("+us[0]+");'>Supprimer</a></td></tr>";
-								uss.shift();
-							}
-						}
+		var idProjet = recupererIdProjetURL();
+		var uss,us;
+		//on cherche dans le tableau des paramï¿½tres le paramï¿½tre ID qui correspond ï¿½ l'id du projet cliquï¿½
+		$.ajax({
+			url: './php/ListerUserStory.php', //toujours la mÃªme page qui est appelÃ©e
+			type: 'POST',
+			data: {id: idProjet}, // paramÃ¨tre fonction qui dÃ©termine la fonction qui sera exÃ©cutÃ©e
+			success: function(data) {
+				//on recupï¿½re le retour du php qui nous renvoie un tableau contenant toutes les us, sï¿½parï¿½es par un &
+				uss=data.split("&");
+				if(!uss[0]){
+					document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'>Ce projet ne possede aucune userstory</tr>";
+				}else{
+					while(uss.length>0){
+						//on veut maintenant rï¿½cupï¿½rer chaque info de l'us, sï¿½parï¿½es par un -
+						us=uss[0].split("-");
+						document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'><td class='number'>"+us[0]+"</td><td>"+us[4]+"</td><td>"+us[1]+"</td><td class='number'>"+us[2]+"</td><td class='number'>"+us[3]+"</td><td><a onclick='editableGrid.removeRow("+us[0]+");'>Supprimer</a></td></tr>";
+						uss.shift();
 					}
-				});
-
-
-				//si on trouve le param id, modif pour couper la boucle for, on ne doit avoir qu'un param id
-				i = params.lenth;
+				}
 			}
-		}
+		});
     }
   </script>
 
 </head>
 <body>
 	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
-	Retour accueil
+		Retour accueil
 	</button>
 	<h1>Backlog</h1>
 	<a onclick="editableGrid.ajouterLigne();">Ajouter une ligne</a>
@@ -97,7 +85,6 @@
 			<th class="number">PrioritÃ©</th>
 			<th class="number">DifficultÃ©</th>	
 		</tr></thead>
-
 	</table>
 	<button onclick="validerBacklog">Valider le backlog</button>
 </body>
