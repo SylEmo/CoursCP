@@ -28,6 +28,20 @@
 				}
 			}
 		}
+
+		function ouvrirListeSprints(){
+			var params = window.location.search;
+			var param;
+			var i;
+			params = params.substring(1);
+			params = params.split("&");
+			for(i=0;i<params.length;i++){
+				param = params[i].split("=");
+				if(param[0] == "id"){
+					document.location.href="liste-sprints.html?id="+param[1];
+				}
+			}
+		}
 	</script>
 
 </head>
@@ -44,7 +58,7 @@ Retour accueil
 	<h2>Nombre de commits sur le projet : nombreDeCommits</h2>
 	<h3><a href="#">Accéder à la liste des commits</a></h3>
 	<h2>Nombre de sprints planifiés : nombreDeSprints</h2>
-	<h3><a href="#">Gestion des sprints</a></h3>
+	<h3><a onclick="ouvrirListeSprints()">Gestion des sprints</a></h3>
 	<h2>Burndown Chart actuel et prévisionnel</h2>
 	<svg></svg>
 </body>

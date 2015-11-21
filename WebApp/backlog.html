@@ -52,6 +52,8 @@
 			param = params[i].split("=");
 			if(param[0]=="id"){
 				//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
+
+
 				$.ajax({
 					url: './php/ListerUserStory.php', //toujours la mÃªme page qui est appelÃ©e
 					type: 'POST',
@@ -59,8 +61,6 @@
 					success: function(data) {
 						//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
 						uss=data.split("&");
-						//ERREUR!!!
-						//NE RENTRE PAS DANS LE WHILE
 						while(uss.length>0){
 							//on veut maintenant récupérer chaque info de l'us, séparées par un -
 							us=uss[0].split("-");
@@ -69,6 +69,8 @@
 						}
 					}
 				});
+
+
 				//si on trouve le param id, modif pour couper la boucle for, on ne doit avoir qu'un param id
 				i = params.lenth;
 			}

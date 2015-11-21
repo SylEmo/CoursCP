@@ -14,10 +14,13 @@
 	<div id="users">
 	  <input class="search" placeholder="Rechercher">
 	  <button class="sort desc" data-sort="name">
-	    Trier par numéro
+	    Trier par numÃ©ro
+	  </button>
+	  <button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+	  Retour accueil
 	  </button>
 	
-	  <ul class="list"><li>
+	  <ul class="list" id="listesprints"><li>
 	      <h3 class="name"><a onclick="ouvrirSprint(1);">Sprint 1</a></h3>
 	    </li><li>
 	      <h3 class="name"><a onclick="ouvrirSprint(2);">Sprint 2</a></h3>
@@ -33,6 +36,38 @@
 	<script>
 		$(window).load(function(){
 			verifSession();
+
+			var params = window.location.search;
+			var param,sprints,sprint,i;
+			params = params.substring(1);
+			params = params.split("&");
+			for(i=0; i<params.length;i++){
+				param = params[i].split("=");
+				if(param[0]=="id"){
+					//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
+
+
+					$.ajax({
+						url: './php/ListerSprints.php', //toujours la mÃªme page qui est appelÃ©e
+						type: 'POST',
+						data: {id: param[1]}, // paramÃ¨tre fonction qui dÃ©termine la fonction qui sera exÃ©cutÃ©e
+						success: function(data) {
+							//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
+							sprints=data.split("&");
+							while(sprints.length>0){
+								//on veut maintenant récupérer chaque info de l'us, séparées par un -
+								sprint=sprints[0].split("-");
+								document.getElementById('listesprints').innerHTML += "<li><h3 class='name'><a onclick='ouvrirSprint("+sprint[0]+");'>Sprint "+sprint[1]+"</a></h3></li>";
+								sprints.shift();
+							}
+						}
+					});
+
+
+					//si on trouve le param id, modif pour couper la boucle for, on ne doit avoir qu'un param id
+					i = params.lenth;
+				}
+			}
 		});
 		var options = {
 		    valueNames: [
