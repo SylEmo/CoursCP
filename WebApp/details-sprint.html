@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<title>Détails du sprint n°XX - Adopi</title>
+	<link rel="stylesheet" href="lib/foundation/css/foundation.min.css">
+	<link rel="stylesheet" href="css/details-projet.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="./js/verif_session.js"></script>
+
+	<script>
+
+		$(window).load(function(){
+			verifSession();
+		});
+
+		function ouvrirListeTaches(){
+			var params = window.location.search;
+			var param;
+			var i;
+			params = params.substring(1);
+			params = params.split("&");
+			for(i=0;i<params.length;i++){
+				param = params[i].split("=");
+				if(param[0] == "id"){
+					document.location.href="backlog.html?id="+param[1];
+				}
+			}
+		}
+		
+		function ouvrirKanban(){
+		}
+		
+		function ouvrirListeCommits(){
+		}
+		
+		function ouvrirPert(){
+		}
+		
+		function ouvrirGantt(){
+		}
+	</script>
+
+</head>
+<body>
+	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>	
+	
+	<h1>Détails du sprint n°XX pour "nomDuProjet" </h1>
+	<hr>
+	<h2><a onclick="ouvrirListeTaches()">Accéder à la liste des tâches</a></h2>
+	<h2><a onclick="ouvrirKanban()">Accéder au Kanban</a></h2>
+	<h2>Nombre de commits sur le sprint : nombreDeCommits</h2>
+	<h3><a onclick="ouvrirListeCommits()">Accéder à la liste des commits</a></h3>
+	<h2><a onclick="ouvrirPert()">Accéder au Pert</a></h2>
+	<h2><a onclick="ouvrirGantt()">Accéder au Gantt</a></h2>
+	
+	<svg></svg>
+</body>
+</html>
