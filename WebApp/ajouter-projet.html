@@ -3,51 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/ajouter-projet.css">
+    <link rel="stylesheet" type="text/css" href="./lib/foundation/css/foundation.min.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="./js/verif_session.js"></script>
 </head>
 <body>
-<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
-Retour accueil
-</button>
-
-<form method="POST" action="./php/AjouterProjet.php">
-    <table>
-        <tr>
-            <td>Nom Du Projet : </td>
-            <td><input type="text" name="NOM"></td>
-        </tr>
-
-        <tr>
-            <td>Date de Création :</td>
-            <td><input type="text" name="DATECREATION"></td>
-        </tr>
-
-        <tr>
-            <td>Date de Fin : </td>
-            <td><input type="text" name="DEADLINE"></td>
-        </tr>
-		
-		<tr>
-            <td>Lien du depot Git : </td>
-            <td><input type="text" name="LIENGIT"></td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td><button  type="submit"  class="btn btn-primary">Ajouter</button></td>
-        </tr>
-
-    </table>
-</form>
-
-<script>
-	$(window).load(function(){
-		verifSession();
-	});
-
-</script>
+	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>
+	
+	<form method="POST" action="./php/AjouterProjet.php">
+	    <table>
+	        <tr>
+	            <td>Nom Du Projet : </td>
+	            <td><input type="text" name="NOM"></td>
+	        </tr>
+	
+	        <tr>
+	            <td>Date de Crï¿½ation :</td>
+	            <td><input type="text" name="DATECREATION"></td>
+	        </tr>
+	
+	        <tr>
+	            <td>Date de Fin : </td>
+	            <td><input type="text" name="DEADLINE"></td>
+	        </tr>
+			
+			<tr>
+	            <td>Lien du depot Git : </td>
+	            <td><input type="text" name="LIENGIT"></td>
+	        </tr>
+	
+	        <tr>
+	            <td></td>
+	            <td><button  type="submit"  class="btn btn-primary">Ajouter</button></td>
+	        </tr>
+	
+	    </table>
+	</form>
+	
+	<script>
+		$(window).load(function(){
+			verifSession();
+		});
+	
+	</script>
 </body>
 </html>

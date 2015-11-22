@@ -9,20 +9,24 @@
     <script src="./js/verif_session.js"></script>
 </head>
 <body>
-<h3>Page de Creation des sprints</h3>
-<form action="./php/AjouterSprint.php" method="post">
-    <table>
-        <tr>
-            <td>Cliquer sur le button ajouter pour ajouter un nouveau sprint</td>
-            <td><button  type="submit"  class="btn btn-primary">Ajouter</button></td>
-        </tr>
-
-    </table>
-</form>
-<script>
-	$(window).load(function(){
-		verifSession();
-	});
-</script>
+	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>
+	
+	<h1>Page de Creation des sprints</h1>
+	<form action="./php/AjouterSprint.php" method="post">
+	    <table>
+	        <tr>
+	            <td>Cliquer sur le button ajouter pour ajouter un nouveau sprint</td>
+	            <td><button  type="submit"  class="btn btn-primary">Ajouter</button></td>
+	        </tr>
+	
+	    </table>
+	</form>
+	<script>
+		$(window).load(function(){
+			verifSession();
+		});
+	</script>
 </body>
 </html>
