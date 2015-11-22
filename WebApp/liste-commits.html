@@ -4,51 +4,62 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex">
-	<title>Liste des projet - Adopi</title>
+	<title>Liste des commits - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
-	<link rel="stylesheet" href="css/liste-projets.css">
+	<link rel="stylesheet" href="./lib/foundation/css/foundation.min.css">
+	<link rel="stylesheet" href="./css/liste-commits.css">
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-	<script src="./js/verif_session.js"></script>
-	<script type="text/javascript" src="./js/adopi.js"></script>
+	<script type="text/javascript" src="./js/verif_session.js"></script>
+	
   </body>
 </head>
 <body>
-	<h1>Liste des sprints du projet :</h1>
-	<div id="users">
-	  <button class="sort" onclick="document.location.href='ajouter-projet.html'">
-	    Ajouter projet
-	  </button>
-	</div>
-
-	<div id="sprints">
-	</div>
+	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>
 	
-
+	<h1>Liste des sprints du projet :</h1>
+	
+	<div id="div_taches">
+    	<select id="select_taches" name="select_taches">
+    		<optgroup label="Test1">
+    			<option id="bonjour">Bonjour</option>
+    		</optgroup>
+    		<optgroup label="Test2">
+    			<option id="aurevoir">Aurevoir</option>
+    		</optgroup>
+    	</select>
+    	<button onclick="listerCommits()"></button>
+    </div>
+	
+	<div id="div_commits">
+		<table id="table_commits">
+			<thead><tr>
+				<th>Auteur</th>
+				<th>Titre</th>
+				<th>Description</th>			
+				<th>Date et Heure</th>
+			</tr></thead>
+			<tbody id="lignes_commits"></tbody>
+		</table>
+    </div>
+    
 	<a href="./php/Deconnexion.php">Deconnexion</a>
+	
 	<script src="http://listjs.com/no-cdn/list.js"></script>
 	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+	
 	<script>
-
 		$(window).load(function(){
-
 			verifSession();
-
-			var idProjet = recupererIdProjetURL();
-
-			$.ajax({
-				url: './php/ListerSprintsCommits.php', //toujours la même page qui est appelée
-				type: 'POST',
-				data: {id: idProjet}, // paramètre fonction qui détermine la fonction qui sera exécutée
-				success: function(data) {
-					document.getElementById('sprints').innerHTML += data;
-				}
-			});
-			
 		});
-		
 	</script>
+	
+	<script type="text/javascript" src="./js/adopi.js"></script>
+	<script type="text/javascript" src="./js/liste-commits.js"></script>
+	
 	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
 </body>
 </html>
