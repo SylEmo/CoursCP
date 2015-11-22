@@ -1,18 +1,18 @@
 var idProjet = recupererIdProjetURL();
 
 $.ajax({
-	url: './php/ListerSprintsCommit.php', //toujours la même page qui est appelée
+	url: './php/ListerSprintsCommits.php', //toujours la même page qui est appelée
 	type: 'POST',
 	data: {id: idProjet}, // paramètre fonction qui détermine la fonction qui sera exécutée
 	
 	dataType : 'html',
 	
 	success: function(data) {
-		$('#select_tache').html(data);
+		$('#select_taches').html(data);
 	},
 	
 	error:function(msg, string){
-        alert( "Error !: " + string );
+        alert( "Error tache !: " + string );
     }
 });
 
@@ -30,7 +30,7 @@ function listerCommits() {
 		},
 		
 		error:function(msg, string){
-	        alert( "Error !: " + string );
+	        alert( "Error commit !: " + string );
 	    }
 	});
 }

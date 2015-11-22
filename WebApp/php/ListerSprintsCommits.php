@@ -8,7 +8,7 @@ require_once("Connexion.php");
 $req= "SELECT * FROM TACHE WHERE IDSPRINT IN (SELECT ID FROM SPRINT WHERE IDPROJET=(SELECT ID FROM PROJET WHERE ID=".$idprojet." AND IDUTIL=".$_SESSION['Niv']."))";
 $rs=mysql_query($req) or die(mysql_error());
 
-$result="<select>";
+$result="";//<select>";
 $sprint="";
 while($pr=mysql_fetch_assoc($rs)) {
 	if(empty($sprint)){
@@ -23,7 +23,7 @@ while($pr=mysql_fetch_assoc($rs)) {
 	}
 }
 
-$result.="</optgroup></select>";
+$result.="</optgroup>";//</select>";
 
 echo $result;
 ?>
