@@ -13,7 +13,7 @@ $sprint="";
 while($pr=mysql_fetch_assoc($rs)) {
 	if(empty($sprint)){
 		$sprint = $pr['IDSPRINT'];
-		$result.= "<optgroup label=\"Sprint ".$pr['IDSPRINT']."\">";
+		$result.= "<optgroup label=\"Sprint ".$pr['NUMERO']."\">";
 	}
 	if($pr['IDSPRINT'] == $sprint){
 		$result.="<option id=\"S".$pr['NUMERO']."-".$pr['IDENTIFIANT']."\"> Tache ".$pr['IDENTIFIANT']."</option>";
