@@ -17,11 +17,17 @@ $.ajax({
 });
 
 function listerCommits() {
-	var idTache = $('select option:selected').attr('id');
+	var param = $('select option:selected').attr('id');
+	param = param.split("-");
+	var idTache;
+	var idSprint;
+	idSprint = param[0];
+	idTache = param[1];
+
 	$.ajax({
 		url: './php/ListerCommits.php', //toujours la même page qui est appelée
 		type: 'POST',
-		data: {id: idTache}, // paramètre fonction qui détermine la fonction qui sera exécutée
+		data: {tache: idTache, sprint: idSprint}, // paramètre fonction qui détermine la fonction qui sera exécutée
 		
 		dataType : 'html',
 		
