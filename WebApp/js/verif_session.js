@@ -5,7 +5,7 @@ $.ajax({
 	data: {}, // paramètre fonction qui détermine la fonction qui sera exécutée
 	success: function(data) {
 		if(! data){
-			document.location.href='./php/Deconnexion.php'
+			document.location.href='./php/Deconnexion.php';
 		}
 	}
 });

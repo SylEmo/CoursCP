@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<title>Liste des projet - Adopi</title>
+	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
+	<link rel="stylesheet" href="css/liste-projets.css">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+	<script src="./js/verif_session.js"></script>
+	<script type="text/javascript" src="./js/adopi.js"></script>
+  </body>
+</head>
+<body>
+	<h1>Liste des sprints du projet :</h1>
+	<div id="users">
+	  <button class="sort" onclick="document.location.href='ajouter-projet.html'">
+	    Ajouter projet
+	  </button>
+	</div>
+
+	<div id="sprints">
+	</div>
+	
+
+	<a href="./php/Deconnexion.php">Deconnexion</a>
+	<script src="http://listjs.com/no-cdn/list.js"></script>
+	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+	<script>
+
+		$(window).load(function(){
+
+			verifSession();
+
+			var idProjet = recupererIdProjetURL();
+
+			$.ajax({
+				url: './php/ListerSprintsCommits.php', //toujours la même page qui est appelée
+				type: 'POST',
+				data: {id: idProjet}, // paramètre fonction qui détermine la fonction qui sera exécutée
+				success: function(data) {
+					document.getElementById('sprints').innerHTML += data;
+				}
+			});
+			
+		});
+		
+	</script>
+	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
+</body>
+</html>
