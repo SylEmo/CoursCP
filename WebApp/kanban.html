@@ -4,12 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex">
 	<title>Kanban sprint n°XX - Adopi</title>
+	<link rel="stylesheet" href="lib/foundation/css/foundation.min.css">
 	<link rel="stylesheet" href="css/kanban.css">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="js/kanban.js"></script>
 </head>
 <body>
 	<h1>Kanban du sprint n°XX - NomDuProjet</h1>
+	
+    <div id="div_taches">
+    	<select id="select_taches" name="select_taches">
+    		<optgroup label="Test1">
+    			<option id="bonjour">Bonjour</option>
+    		</optgroup>
+    		<optgroup label="Test2">
+    			<option id="aurevoir">Aurevoir</option>
+    		</optgroup>
+    	</select>
+    	<button onclick="listerCommits()"></button>
+    </div>
+    
     <menu>
 		<button onclick="add_developer();">Ajouter un développeur</button>
 		<button onclick="remove_developer();">Supprimer un dévelopeur</button>
@@ -35,6 +49,18 @@
                 <h2 class = "title"> Done</h1>
             </div>
     	</div>
+    </div>
+    
+    <div id="div_commits">
+		<table id="table_commits">
+			<thead><tr>
+				<th>Auteur</th>
+				<th>Titre</th>
+				<th>Description</th>			
+				<th>Date et Heure</th>
+			</tr></thead>
+			<tbody id="lignes_commits"></tbody>
+		</table>
     </div>
     
     <script type="text/javascript">
