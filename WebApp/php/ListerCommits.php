@@ -26,10 +26,9 @@ while($stopwhile!=0){
 
 	foreach($commits as $commit)
 	{
-	    /* @var $commit GitHubCommit */
-
-	    $sprint=substr($commit->getCommit()->getMessage(),1,2);
-	    $tache=substr($commit->getCommit()->getMessage(),5,2);
+            preg_match_all( '#\[(\w+)]#', $commit->getCommit()->getMessage(), $donnees);
+            $sprint = $donnees[1][0]; 
+    	    $tache = $donnees[1][1];
 
 	    if(strcmp($sprint,$idsprint)==0 && strcmp($tache,$idtache)==0){
 		    echo "<tr>";
