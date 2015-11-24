@@ -10,11 +10,7 @@ $rs=mysql_query($req) or die(mysql_error());
 
 $result='';
 while($pr=mysql_fetch_assoc($rs)) {
-	$result.= $pr['ID'] .'-'.$pr['NOM'].'-';
+	$result.="<li><h3 class=\"name\"><a onclick=\"ouvrirProjet(".$pr['ID'].");\">".$pr['NOM']."</a></h3></li>";
 }
-
-//on efface le dernier "-" pour aider le split dans le fichier liste-projets.html et ainsi empecher d'avoir une entrée vie dans le tableau et donc une ligne de projet vide
-$result = substr($result, 0, -1);
-
 echo $result;
 ?>
