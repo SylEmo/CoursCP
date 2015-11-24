@@ -15,13 +15,13 @@
 	
 	<h1>Liste des sprints du projet :</h1>
 	
-	<div id="users">
+	<div id="div-sprints">
 	  <input class="search" placeholder="Rechercher">
 	  <button class="sort desc" data-sort="name">
 	    Trier par numéro
 	  </button>
 	  
-	  <ul class="list" id="listesprints"><li>
+	  <ul class="list" id="listesprints">
 	  </ul>
 	
 	</div>
@@ -38,6 +38,7 @@
 			
 			var idProjet = recupererIdProjetURL();
 			
+			var sprints;
 			//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
 			$.ajax({
 				url: './php/ListerSprints.php', //toujours la mÃªme page qui est appelÃ©e
@@ -47,28 +48,29 @@
 					//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
 					sprints=data.split("&");
 					if(!sprints[0]){
-						document.getElementById('listesprints').innerHTML += "<li><h3 class='name'><a onclick=''>Ce projet ne possede aucun sprint</a></h3></li>";
+						document.getElementById('listesprints').innerHTML += "<li><h3 class='name'>Ce projet ne possede aucun sprint</h3></li>";
 					}else{
+						var options = {
+						    valueNames: ['id','sprint'],
+						    item: '<li onclick="ouvrirSprint($(this))"><h4 class="sprint"></h4><span class="id" hidden></span></li>'
+						};
+						var values = [], i = 0;
 						while(sprints.length>0){
 							//on veut maintenant récupérer chaque info de l'us, séparées par un -
-							sprint=sprints[0].split("-");
-							document.getElementById('listesprints').innerHTML += "<li><h3 class='name'><a onclick='ouvrirSprint("+sprint[0]+");'>Sprint "+sprint[1]+"</a></h3></li>";
+							sprint = sprints[0].split("-");
+							values[i]= {'id' : sprint[0], 'sprint' : 'Sprint ' + sprint[1]};
+							i++;
 							sprints.shift();
 						}
+						var sprintsList = new List('div-sprints', options, values);
 					}
 				}
 			});
 		});
-		
-		var options = {
-		    valueNames: [
-		        'name',
-		        'born'
-		    ]
-		};
-		var userList = new List('users', options);
-		var ouvrirSprint = function(id){
-			alert("A faire !");
+		var ouvrirSprint = function(sprintClicked){
+			var liElements = sprintClicked.children();
+			var idSprint = liElements[1].firstChild;
+			document.location.href = "details-sprint.html?idSprint=" + idSprint + "&idProjet=" + idProjet;
 		}
 	</script>
 	
