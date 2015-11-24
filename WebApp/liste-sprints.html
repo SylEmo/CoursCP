@@ -17,7 +17,7 @@
 	
 	<div id="div-sprints">
 	  <input class="search" placeholder="Rechercher">
-	  <button class="sort desc" data-sort="name">
+	  <button class="sort" data-sort="sprint">
 	    Trier par numéro
 	  </button>
 	  
@@ -51,8 +51,8 @@
 						document.getElementById('listesprints').innerHTML += "<li><h3 class='name'>Ce projet ne possede aucun sprint</h3></li>";
 					}else{
 						var options = {
-						    valueNames: ['id','sprint'],
-						    item: '<li onclick="ouvrirSprint($(this))"><h4 class="sprint"></h4><span class="id" hidden></span></li>'
+						    valueNames: ['sprint','id'],
+						    item: '<li><a href="#" onclick="ouvrirSprint($(this))"><h4 class="sprint"></h4></a><span class="id" hidden></span></li>'
 						};
 						var values = [], i = 0;
 						while(sprints.length>0){
