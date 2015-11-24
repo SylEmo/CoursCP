@@ -10,7 +10,7 @@ $rs=mysql_query($req) or die(mysql_error());
 
 $result='';
 while($pr=mysql_fetch_assoc($rs)) {
-	$result.="<li><h3 class=\"name\"><a onclick=\"ouvrirProjet(".$pr['ID'].");\">".$pr['NOM']."</a></h3></li>";
+	$result.="<li><h3 class=\"name\"><a onclick=\"ouvrirProjet(".$pr['ID'].");\">".$pr['NOM']."</a></h3><a onclick=\"modifierProjet(".$pr['ID'].");\">Modifier</a> <a onclick=\"supprimerProjet(".$pr['ID'].");\">Supprimer</a></li>";
 }
 echo $result;
 ?>
