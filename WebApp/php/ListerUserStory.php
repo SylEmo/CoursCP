@@ -11,11 +11,7 @@ $rs=mysql_query($req) or die(mysql_error());
 
 $result='';
 while($pr=mysql_fetch_assoc($rs)) {
-	$result.= $pr['ID'] .'-'.$pr['DESCRIPTION'].'-'.$pr['DIFFICULTE'].'-'.$pr['PRIORITE'].'-'.$pr['IDENTIFIANT'].'&';
+	$result.="<tr id=\"3\" style=\"min-height: 28px;\"><td class=\"number\">".$pr['ID']."</td><td>".$pr['IDENTIFIANT']."</td><td>".$pr['DESCRIPTION']."</td><td class=\"number\">".$pr['PRIORITE']."</td><td class=\"number\">".$pr['DIFFICULTE']."</td><td><a onclick=\"editableGrid.removeRow(".$pr['ID'].");\">Supprimer</a></td></tr>";
 }
-
-//on efface le dernier "-" pour aider le split dans le fichier liste-projets.html et ainsi empecher d'avoir une entrée vie dans le tableau et donc une ligne de projet vide
-$result = substr($result, 0, -1);
-
 echo $result;
 ?>
