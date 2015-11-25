@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Suppression  du projet - Adopi</title>
+    <link rel="stylesheet" href="lib/foundation/css/foundation.min.css">
+    <link rel="stylesheet" href="css/modifier-projet.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="./js/verif_session.js"></script>
+    <script type="text/javascript" src="./js/adopi.js"></script>
+</head>
+<body>
+
+<script>
+    $(window).load(function(){
+        verifSession();
+        var idProjet = recupererIdProjetURL();
+        $.ajax({
+            url: './php/SupprimerProjet.php', 
+            type: 'GET',
+            data: {id: idProjet}, 
+            success: function (data) {
+                
+                document.location.href = 'liste-projets.html';
+            }
+        });
+
+
+
+    });
+</script>
+</body>
+</html>
