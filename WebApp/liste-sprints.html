@@ -20,7 +20,9 @@
 	  <button class="sort" data-sort="sprint">
 	    Trier par numéro
 	  </button>
-	  
+	  <button id="bouton-nouveau-sprint" onclick="creerSprint()">
+	    Créer un nouveau sprint
+	  </button>
 	  <ul class="list" id="listesprints">
 	  </ul>
 	
@@ -33,10 +35,10 @@
 	<script type="text/javascript" src="./js/adopi.js"></script>
 	
 	<script>
+		var nombreSprints = 0;
+		var idProjet = recupererIdProjetURL();
 		$(window).load(function(){
-			verifSession();
-			
-			var idProjet = recupererIdProjetURL();
+			verifSession();	
 			
 			var sprints;
 			//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
@@ -52,7 +54,7 @@
 					}else{
 						var options = {
 						    valueNames: ['sprint','id'],
-						    item: '<li><a href="#" onclick="ouvrirSprint($(this))"><h4 class="sprint"></h4></a><span class="id" hidden></span></li>'
+						    item: '<li><a href="#" onclick="ouvrirSprint($(this))"><h4 class="sprint"></h4></a><button id="bouton-supprimer-sprint" onclick="supprimerSprint($(this))">Supprimer</button><span class="id" hidden></span></li>'
 						};
 						var values = [], i = 0;
 						while(sprints.length>0){
@@ -62,16 +64,26 @@
 							i++;
 							sprints.shift();
 						}
+						nombreSprints = i;
 						var sprintsList = new List('div-sprints', options, values);
 					}
 				}
 			});
 		});
-		var ouvrirSprint = function(sprintClicked){
-			var liElements = sprintClicked.children();
-			var idSprint = liElements[1].firstChild;
+		var ouvrirSprint = function(sprintClique){
+			var liElements = sprintClique.children();
+			var idSprint = liElements[2].firstChild;
 			document.location.href = "details-sprint.html?idSprint=" + idSprint + "&idProjet=" + idProjet;
 		}
+		var creerSprint = function(){
+			document.location.href = "./php/AjouterSprint.php?id=" + idProjet;
+		}
+		var supprimerSprint = function(boutonSupprimerClique){
+			var liElements = boutonSupprimerClique.parent().children();
+			var idSprint = liElements[2].firstChild;
+			document.location.href = "./php/SupprimerSprint.php?idSprint=" + idSprint + "&idProjet=" + idProjet;
+		}
+		
 	</script>
 	
 	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>

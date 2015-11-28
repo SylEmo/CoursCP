@@ -6,19 +6,15 @@
 	<meta name="robots" content="noindex">
 	<title>Liste des projet - Adopi</title>
 	<link rel="canonical" href="http://codepen.io/javve/pen/zpuKF">
+	<link rel="stylesheet" href="./lib/foundation/css/foundation.min.css">
 	<link rel="stylesheet" href="css/liste-projets.css">
-
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
-	<script src="./js/verif_session.js"></script>
-
   </body>
 </head>
 <body>
-	<h1>Liste des sprints du projet :</h1>
-	<div id="users">
+	<h1>Liste de vos projets :</h1>
+	<div id="div-projets">
 	  <input class="search" placeholder="Rechercher">
-	  <button class="sort desc" data-sort="name">
+	  <button class="sort desc" data-sort="titre">
 	    Trier par nom
 	  </button>
 	  <button class="sort" onclick="document.location.href='ajouter-projet.html'">
@@ -26,48 +22,60 @@
 	  </button>
 	
 	  <ul class="list" id="liste-projets">
-
 	  </ul>
 	
 	</div>
 	<a href="./php/Deconnexion.php">Deconnexion</a>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="./js/verif_session.js"></script>
 	<script type="text/javascript" src="./lib/listjs/list.js"></script>
 	<script src="http://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
 	<script>
-		var projets;
-		var options = {
-		    valueNames: [
-		        'name',
-		    ]
-		};
-		var userList = new List('users', options);
-		var ouvrirProjet = function(id){
-			//alert("A faire ! : "+id);
-			document.location.href="details-projet.html?id="+id;
-		}
-		var modifierProjet = function(id){
-			//alert("A faire ! : "+id);
-			document.location.href="modifier-projet.html?id="+id;
-		}
-		var supprimerProjet = function(id){
-			document.location.href="supprimer-projet.html?id="+id;
-		}
-
 		$(window).load(function(){
-
-			verifSession();
-
+			verifSession();	
+			
+			var projets;
+			//on cherche dans le tableau des paramètres le paramètre ID qui correspond à l'id du projet cliqué
 			$.ajax({
 				url: './php/ListerProjets.php', //toujours la même page qui est appelée
 				type: 'POST',
-				data: {bla: "blablabla"}, // paramètre fonction qui détermine la fonction qui sera exécutée
 				success: function(data) {
-					document.getElementById('liste-projets').innerHTML +=data;
+					//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
+					projets=data.split("&");
+					if(!projets[0]){
+						document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'>Vous ne possédez pas de projets.</h3></li>";
+					}else{
+						var options = {
+						    valueNames: ['titre','id'],
+						    item: '<li><a href="#" onclick="ouvrirProjet($(this))"><h4 class="titre"></h4></a><button id="bouton-supprimer-projet" onclick="supprimerProjet($(this))">Supprimer</button><span class="id" hidden></span></li>'
+						};
+						var values = [], i = 0;
+						while(projets.length>0){
+							//on veut maintenant récupérer chaque info de l'us, séparées par un -
+							var test = "\\|/";
+							projet = projets[0].split("\\|/");
+							values[i]= {'id' : projet[0], 'titre' : projet[1]};
+							i++;
+							projets.shift();
+						}
+						nombreProjets = i;
+						var projetsList = new List('div-projets', options, values);
+					}
 				}
 			});
-			
 		});
-		
+
+		var ouvrirProjet = function(projetClique){
+			var liElements = projetClique.children();
+			var idProjet = liElements[2].firstChild;
+			document.location.href = "details-projet.html?id=" + idProjet;
+		}
+		var supprimerProjet = function(projetClique){
+			var liElements = projetClique.children();
+			var idProjet = liElements[2].firstChild;
+			document.location.href="supprimer-projet.html?id="+id;
+		}		
 	</script>
 	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
 </body>
