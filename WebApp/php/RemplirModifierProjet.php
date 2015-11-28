@@ -10,7 +10,7 @@ $rs=mysql_query($req) or die(mysql_error());
 
 $result="";
 while($pr=mysql_fetch_assoc($rs)) {
-	$result.= $pr['NOM'] ."&".$pr['DEADLINE']."&".$pr['LIEN_GIT']."&";
+	$result.= $pr['NOM'] ."&".$pr['DEADLINE']."&".$pr['GITUTIL']."&".$pr['GITDEPOT']."&";
 }
 
 //on efface le dernier "-" pour aider le split dans le fichier liste-projets.html et ainsi empecher d'avoir une entrée vie dans le tableau et donc une ligne de projet vide

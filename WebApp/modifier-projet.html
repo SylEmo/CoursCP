@@ -12,21 +12,23 @@
 </head>
 <body>
 	<form method="post" action="./php/ModifierProjet.php" name="form-projet" id="form-projet">
-		<input type="hidden" name="id-projet" id="id-projet">
+		<input type="hidden" name="IDPROJET" id="IDPROJET">
 		<h1 id="titre-modifier">Modification du projet :</h1>
 		<h2>Nom du projet :</h2>
-		<input type="text" name="nom-projet" id="nom-projet" placeholder="Nom de votre projet" required autofocus>
+		<input type="text" name="NOM" id="NOM" placeholder="Nom de votre projet" required autofocus>
 		<h2>Deadline du projet :</h2>
-		<input type="date" max="2015-11-11" min="1900-01-01" name="deadline-projet" id="deadline-projet" required>
-		<h2>URL du repository Git du projet :</h2>
-		<input type="text" name="git-projet" id="git-projet" placeholder="URL de votre repository Git" required>
+		<input type="date" max="2015-11-11" min="1900-01-01" name="DEADLINE" id="DEADLINE" required>
+		<h2>Nom du propri&eacute;taire du repository Git du projet :</h2>
+		<input type="text" name="GITUTIL" id="GITUTIL" placeholder="Propri&eacute;taire de votre repository Git">
+		<h2>Nom du repository Git du projet :</h2>
+		<input type="text" name="GITDEPOT" id="GITDEPOT" placeholder="Nom de votre repository Git">
 		<p><button type="submit" name="bouton-sauvegarder" id="bouton-sauvegarder">Sauvegarder</button></p>
 	</form>
 <script>
 	$(window).load(function(){
 		verifSession();
 		var idProjet = recupererIdProjetURL();
-		document.getElementById('id-projet').value = idProjet;
+		document.getElementById('IDPROJET').value = idProjet;
 		$.ajax({
 			url: './php/RemplirModifierProjet.php', //toujours la même page qui est appelée
 			type: 'POST',
@@ -38,9 +40,10 @@
 					//document.location.href='liste-projets.html';
 				}else{
 					while(infosproj.length>0){
-						document.getElementById('nom-projet').value = infosproj[0];
-						document.getElementById('deadline-projet').value = infosproj[1];
-						document.getElementById('git-projet').value = infosproj[2];
+						document.getElementById('NOM').value = infosproj[0];
+						document.getElementById('DEADLINE').value = infosproj[1];
+						document.getElementById('GITUTIL').value = infosproj[2];
+						infosproj.shift();
 						infosproj.shift();
 						infosproj.shift();
 						infosproj.shift();
