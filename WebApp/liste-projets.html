@@ -42,7 +42,7 @@
 				type: 'POST',
 				success: function(data) {
 					//on recupère le retour du php qui nous renvoie un tableau contenant toutes les us, séparées par un &
-					projets=data.split("&");
+					projets = data.split("\\|/");
 					if(!projets[0]){
 						document.getElementById('liste-projets').innerHTML += "<li><h3 class='name'>Vous ne possédez pas de projets.</h3></li>";
 					}else{
@@ -52,11 +52,9 @@
 						};
 						var values = [], i = 0;
 						while(projets.length>0){
-							//on veut maintenant récupérer chaque info de l'us, séparées par un -
-							var test = "\\|/";
-							projet = projets[0].split("\\|/");
-							values[i]= {'id' : projet[0], 'titre' : projet[1]};
+							values[i]= {'id' : projets[0], 'titre' : projets[1]};
 							i++;
+							projets.shift();
 							projets.shift();
 						}
 						nombreProjets = i;
