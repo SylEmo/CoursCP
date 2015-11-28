@@ -65,14 +65,14 @@
 		});
 
 		var ouvrirProjet = function(projetClique){
-			var liElements = projetClique.children();
+			var liElements = projetClique.parent().children();
 			var idProjet = liElements[2].firstChild;
 			document.location.href = "details-projet.html?id=" + idProjet;
 		}
 		var supprimerProjet = function(projetClique){
-			var liElements = projetClique.children();
+			var liElements = projetClique.parent().children();
 			var idProjet = liElements[2].firstChild;
-			document.location.href="supprimer-projet.html?id="+id;
+			document.location.href="supprimer-projet.html?id=" + idProjet;
 		}		
 	</script>
 	<script src="http://codepen.io/assets/editor/live/css_live_reload_init.js"></script>
