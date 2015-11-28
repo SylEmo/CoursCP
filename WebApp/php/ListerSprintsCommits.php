@@ -3,7 +3,9 @@ $idprojet = $_POST['id'];
 //echo "testderetourphp".$bla;
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 $req= "SELECT TACHE.ID, IDSPRINT, IDENTIFIANT, NUMERO FROM TACHE, SPRINT WHERE IDSPRINT IN (SELECT ID FROM SPRINT WHERE IDPROJET=(SELECT ID FROM PROJET WHERE ID=".$idprojet." AND IDUTIL=".$_SESSION['Niv'].")) AND IDSPRINT=SPRINT.ID";
 $rs=mysql_query($req) or die(mysql_error());

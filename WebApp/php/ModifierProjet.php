@@ -2,7 +2,9 @@
 
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 
 $id=$_POST['IDPROJET'];

@@ -1,7 +1,9 @@
 <?php
 $idprojet = $_GET['id'];
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 
 $req1="SELECT MAX(NUMERO) AS NUM FROM SPRINT, PROJET WHERE IDPROJET=".$idprojet." AND IDUTIL=".$_SESSION['Niv'];

@@ -3,7 +3,9 @@ $idprojet = $_POST['id'];
 //echo "testderetourphp".$bla;
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 $req= "select * from SPRINT WHERE IDPROJET=(select ID from PROJET where ID=".$idprojet." and IDUTIL=".$_SESSION['Niv'].")";
 $rs=mysql_query($req) or die(mysql_error());

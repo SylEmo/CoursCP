@@ -3,7 +3,9 @@ $idSprint = $_POST['id'];
 
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 
 $req= "SELECT * FROM TACHE WHERE IDSPRINT =(SELECT ID FROM SPRINT WHERE ID=".$idSprint." AND IDPROJET IN(SELECT ID FROM PROJET WHERE IDUTIL=".$_SESSION['Niv']."))";

@@ -1,9 +1,9 @@
 <?php
-$bla = $_POST['bla'];
-//echo "testderetourphp".$bla;
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 $req= "select * from PROJET WHERE IDUTIL=".$_SESSION['Niv'];
 $rs=mysql_query($req) or die(mysql_error());

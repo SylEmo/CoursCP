@@ -3,7 +3,9 @@ $idtache = $_POST['tache'];
 $idsprint = $_POST['sprint'];
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 require_once('../lib/client/GitHubClient.php');
 

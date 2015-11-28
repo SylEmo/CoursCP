@@ -3,7 +3,9 @@ $idprojet = $_POST['id'];
 //echo "testderetourphp".$bla;
 
 require_once("Verifier1.php");
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 require_once("Connexion.php");
 $req= "select NOM, DEADLINE, LIEN_GIT from PROJET WHERE IDUTIL=".$_SESSION['Niv']." AND ID =".$idprojet;
 $rs=mysql_query($req) or die(mysql_error());
