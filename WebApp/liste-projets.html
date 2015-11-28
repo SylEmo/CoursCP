@@ -66,12 +66,12 @@
 
 		var ouvrirProjet = function(projetClique){
 			var liElements = projetClique.parent().children();
-			var idProjet = liElements[2].firstChild;
+			var idProjet = liElements[2].firstChild.data;
 			document.location.href = "details-projet.html?id=" + idProjet;
 		}
 		var supprimerProjet = function(projetClique){
 			var liElements = projetClique.parent().children();
-			var idProjet = liElements[2].firstChild;
+			var idProjet = liElements[2].firstChild.data;
 			document.location.href="supprimer-projet.html?id=" + idProjet;
 		}		
 	</script>
