@@ -13,6 +13,7 @@
 	<script>
 		$(window).load(function(){
 			verifSession();
+			remplirsource();
 		});
 		
 		var idProjet = recupererIdProjetURL();
@@ -27,6 +28,9 @@
 		
 		function ouvrirListeSprints(){
 			document.location.href="liste-sprints.html?id=" + idProjet;
+		}
+		function remplirsource(){
+			 document.getElementById('imgburndown').src="./php/BurndownChartControleur.php?id=" + idProjet;
 		}
 	</script>
 
@@ -46,6 +50,6 @@
 	<h2>Nombre de sprints planifiés : nombreDeSprints</h2>
 	<h3><a onclick="ouvrirListeSprints()">Gestion des sprints</a></h3>
 	<h2>Burndown Chart actuel et prévisionnel</h2>
-	<img src="./php/BurndownChart_controleur.php" width="400" height="300"/>
+	<img id="imgburndown" src="" width="400" height="300"/>
 </body>
 </html>
