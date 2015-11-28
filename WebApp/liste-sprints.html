@@ -71,8 +71,8 @@
 			});
 		});
 		var ouvrirSprint = function(sprintClique){
-			var liElements = sprintClique.children();
-			var idSprint = liElements[2].firstChild;
+			var liElements = sprintClique.parent().children();
+			var idSprint = liElements[2].firstChild.data;
 			document.location.href = "details-sprint.html?idSprint=" + idSprint + "&idProjet=" + idProjet;
 		}
 		var creerSprint = function(){
@@ -80,7 +80,7 @@
 		}
 		var supprimerSprint = function(boutonSupprimerClique){
 			var liElements = boutonSupprimerClique.parent().children();
-			var idSprint = liElements[2].firstChild;
+			var idSprint = liElements[2].firstChild.data;
 			document.location.href = "./php/SupprimerSprint.php?idSprint=" + idSprint + "&idProjet=" + idProjet;
 		}
 		
