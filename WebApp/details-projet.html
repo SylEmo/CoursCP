@@ -12,15 +12,14 @@
 		Retour accueil
 	</button>
 	
-	<h1>Détails du projet "nomDuProjet" </h1>
+	<h1 id="nom_projet">Détails du projet : </h1>
 	<button onclick="modifierProjet()">Modifier</button>
 	<hr>
-	<h2>Date de création du projet : dateDeCreation</h2>
-	<h2>Deadline fixée : dateDeDeadline</h2>
+	<h2 id="date_creation">Date de création du projet : </h2>
+	<h2 id="deadline">Deadline fixée : </h2>
 	<h2><a onclick="ouvrirBacklog()">Accéder au backlog</a></h2>
-	<h2>Fichier Git lié au projet : OUI/NON</h2>
-	<h2><a onclick="ouvrirListeCommits()">Accéder à la liste des commits</a></h2>
-	<h2>Nombre de sprints planifiés : nombreDeSprints</h2>
+	<h2 id="git">Fichier Git lié au projet : </h2>
+	<h2 id="commit"><a onclick="ouvrirListeCommits()">Accéder à la liste des commits</a></h2>
 	<h3><a onclick="ouvrirListeSprints()">Gestion des sprints</a></h3>
 	<h2>Burndown Chart actuel et prévisionnel</h2>
 	<img id="imgburndown" src="" width="400" height="300"/>
@@ -33,6 +32,26 @@
 		$(window).load(function(){
 			verifSession();
 			remplirsource();
+			$.ajax({
+				url: './php/RemplirDetailsProjet.php', //toujours la même page qui est appelée
+				type: 'POST',
+				data: {id: idProjet},
+				success: function(data) {
+					projet = data.split("\\|/");
+					if(!projet[0]){
+					}else{
+						//document.getElementById('nom_projet').value=projet[0];
+						$('#nom_projet').replaceWith(projet[0]);
+						$('#date_creation').append(projet[1]);
+						$('#deadline').append(projet[2]);
+						if(projet[3] && projet[4]){
+							$('#git').append("OUI");
+						}else{
+							document.getElementById('commit').style.display='none';
+						}
+					}
+				}
+			});
 		});
 		
 		var idProjet = recupererIdProjetURL();

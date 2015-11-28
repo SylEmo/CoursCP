@@ -28,14 +28,16 @@ while($stopwhile!=0){
 
 	foreach($commits as $commit)
 	{
-            preg_match_all( '#\[(\w+)]#', $commit->getCommit()->getMessage(), $donnees);
-            $sprint = $donnees[1][0]; 
-    	    $tache = $donnees[1][1];
+        preg_match_all( '#\[(\w+)]#', $commit->getCommit()->getMessage(), $donnees);
+        if(!empty($donnees[1][0]) && !empty($donnees[1][1])){
+	        $sprint = $donnees[1][0]; 
+		    $tache = $donnees[1][1];
 
-	    if(strcmp($sprint,$idsprint)==0 && strcmp($tache,$idtache)==0){
-		    echo "<tr>";
-		    echo " <td>".$commit->getCommit()->getAuthor()->getName()."</td><td>".$commit->getCommit()->getMessage()."</td><td> </td><td>".$commit->getCommit()->getAuthor()->getDate()."</td>";
-		    echo "</tr>";
+		    if(strcmp($sprint,$idsprint)==0 && strcmp($tache,$idtache)==0){
+			    echo "<tr>";
+			    echo " <td>".$commit->getCommit()->getAuthor()->getName()."</td><td>".$commit->getCommit()->getMessage()."</td><td> </td><td>".$commit->getCommit()->getAuthor()->getDate()."</td>";
+			    echo "</tr>";
+			}
 		}
 	}
 
