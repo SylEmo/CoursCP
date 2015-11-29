@@ -19,7 +19,7 @@ if($res1=mysql_fetch_assoc($rs1)){
 	$rs3=mysql_query($req3) or die(mysql_error());
 
 	if($res3=mysql_fetch_assoc($rs3)){
-		header("location:../liste-sprints.php?id=".$res3['ID']);
+		header("location:../details-sprint.html?id=".$res3['ID']);
 	}else{
 		header("location:../liste-projets.html?id=".$idprojet);
 	}
