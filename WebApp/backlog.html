@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+	<button onclick="document.location.href='liste-projets.html'">
 		Retour accueil
 	</button>
 
@@ -40,7 +40,7 @@
 
 		var dataTable = [];
 		var idProjet = recupererIdProjetURL();
-		var uss, id = 1, numeroMax = 0;;
+		var uss, id = 1, numeroMax = 0;
 		$.ajax({
 			url: './php/ListerUserStory.php',
 			type: 'POST',
