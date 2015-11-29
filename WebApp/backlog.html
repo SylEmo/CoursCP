@@ -72,17 +72,18 @@
     });
 
 	
-
 	var validerBacklog = function(){
 		var finalUss = [];
 		for (var i = 0; i < editableGrid.getRowCount(); i++) {
 			finalUss.push(editableGrid.getRowValues(i));
 		};
 		$.ajax({
-			url: './php/ListerUserStory.php',
+			url: './php/ValiderBacklog.php',
 			type: 'POST',
 			data: {values: finalUss},
-			success: function(data) {}
+			success: function(data) {
+				window.location.reload();
+			}
 		});
 	}
     </script>
