@@ -3,103 +3,130 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Gantt - Adopi</title>
-  <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="./js/verif_session.js"></script>
-  <link rel="stylesheet" href="css/gantt.css">
-  
-  <script type="text/javascript">
-	window.onload=function(){
+  <link rel="stylesheet" href="./lib/foundation/css/foundation.min.css">
+  <link rel="stylesheet" href="./css/gantt.css">
+</head>
 
+<body>
+	<button onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>
+
+	<h1>Gantt de votre sprint n°1</h1>
+	<a onclick="editableGrid.ajouterLigne();">Ajouter un développeur</a>
+	<div id="conteneur-gantt"></div>
+	<button onclick="validerGantt()">Valider le Gantt</button>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
+    <script type="text/javascript" src="./js/verif_session.js"></script>
+    <script type="text/javascript" src="./js/adopi.js"></script>
+    <script type="text/javascript">
+	$(window).load(function(){
 		verifSession();
 
-		editableGrid = new EditableGrid("tableGantt",
+		editableGrid = new EditableGrid("DemoGridAttach",
 			{
 				enableSort:true,
 			}
 		); 
 		
 		var metadata = [];
-		metadata.push({ name: "numero", datatype: "integer", editable: false });
-		metadata.push({ name: "developpeur", datatype: "string", editable: true });
-		metadata.push({ name: "lundi-matin", datatype: "string", editable: true });
-		metadata.push({ name: "lundi-apresmidi", datatype: "string", editable: true });
-		metadata.push({ name: "mardi-matin", datatype: "string", editable: true });
-		metadata.push({ name: "mardi-apresmidi", datatype: "string", editable: true });
-		metadata.push({ name: "mercredi-matin", datatype: "string", editable: true });
-		metadata.push({ name: "mercredi-apresmidi", datatype: "string", editable: true });
-		metadata.push({ name: "jeudi-matin", datatype: "string", editable: true });
-		metadata.push({ name: "jeudi-apresmidi", datatype: "string", editable: true });
-		metadata.push({ name: "vendredi-matin", datatype: "string", editable: true });
-		metadata.push({ name: "vendredi-apresmidi", datatype: "string", editable: true });
+		metadata.push({ name: "Numero", datatype: "integer", editable: false });
+		metadata.push({ name: "Developpeur", datatype: "string", editable: true });
+		metadata.push({ name: "Lundi-matin", datatype: "string", editable: true });
+		metadata.push({ name: "Lundi-apresmidi", datatype: "string", editable: true });
+		metadata.push({ name: "Mardi-matin", datatype: "string", editable: true });
+		metadata.push({ name: "Mardi-apresmidi", datatype: "string", editable: true });
+		metadata.push({ name: "Mercredi-matin", datatype: "string", editable: true });
+		metadata.push({ name: "Mercredi-apresmidi", datatype: "string", editable: true });
+		metadata.push({ name: "Jeudi-matin", datatype: "string", editable: true });
+		metadata.push({ name: "Jeudi-apresmidi", datatype: "string", editable: true });
+		metadata.push({ name: "Vendredi-matin", datatype: "string", editable: true });
+		metadata.push({ name: "Vendredi-apresmidi", datatype: "string", editable: true });
 		
-		var x;
-		for(x=2 ; x <= 11 ; x++){
-			metadata[x].values = {};
-			metadata[x].values["Tâches :"] = {"ident1":"ident1","ident2":"ident2","ident3":"ident3","ident4":"ident4"};
-		}	
+		var dataTable = [];
+		var tabIds = recupererIdsProjetSprintURL();
+		var indexTab = 0;
+		var tabIdentifiantsTaches = [];
+		var recupererTaches = function(){
+			$.ajax({
+				url: './php/ListerTaches.php', 
+				type: 'POST',
+				data: {idProjet: tabIds[0], idSprint : tabIds[1]}, 
+				success: function(data){
+					taches = data.split("\\|/");
+					if(taches[0]){
+						while(taches.length > 3){
+							tabIdentifiantsTaches[indexTab] = taches[1];
+							indexTab;
+							taches.shift();
+							taches.shift();
+							taches.shift();
+							taches.shift();
+						}
+					}
+					else{}
+				}
+			});
+			var x;
+			for(x = 2; x <= 11; x++){
+				metadata[x].values = {};
+				metadata[x].values["Taches :"] = {"ident1":"ident1","ident2":"ident2","ident3":"ident3","ident4":"ident4"};
+				// Je ne sais pas comment créer ce genre de liste...
+			}
+		};
+		recupererTaches();
 		
-		var data = [];
-		data.push({id: 1, values: {"numero":"1","developpeur":"Sylvain","lundi-matin":"ident1","lundi-apresmidi":"ident1","mardi-matin":"ident1","mardi-apresmidi":"ident1","mercredi-matin":"ident1","mercredi-apresmidi":"ident1","jeudi-matin":"ident1","jeudi-apresmidi":"ident1","vendredi-matin":"ident1","vendredi-apresmidi":"ident1"}});
-		
+		var developpeurs, id = 1;
+		var recupererGantt = function(){
+			$.ajax({
+				url: './php/ListerGantt.php', 
+				type: 'POST',
+				data: {idProjet: tabIds[0], idSprint : tabIds[1]},
+				success: function(data){
+					developpeurs = data.split("\\|/");
+					if(developpeurs[0]){
+						while(developpeurs.length > 10){
+							dataTable.push({id : id, values : {'Numero' : id, 'Developpeur' : developpeurs[0], 'Lundi-matin' : developpeurs[1], 
+								"Lundi-apresmidi" : developpeurs[2], "Mardi-matin" : developpeurs[3], "Mardi-apresmidi" : developpeurs[4],
+								"Mercredi-matin" : developpeurs[5], "Mercredi-apresmidi" : developpeurs[6], "Jeudi-matin" : developpeurs[7],
+								"Jeudi-apresmidi" : developpeurs[8], "Vendredi-matin" : developpeurs[9], "Vendredi-apresmidi" :  developpeurs[10]}});
+							id++;
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+							developpeurs.shift();
+						}
+						editableGrid.load({'metadata' : metadata, 'data' : dataTable});
+						editableGrid.renderGrid("conteneur_taches", "table_taches");
+					}
+					else{}
+				}
+			});			
+		};
+		recupererGantt();
+
 		editableGrid.load({"metadata": metadata, "data": data});
 		editableGrid.renderGrid("conteneur-gantt", "table-gantt");
 		
-		editableGrid.ajouterLigne = function()
-		{
-			this.append(this.getRowCount()+1,{},false,false);
-			var ligneAjoutee = this.getRow(this.getRowCount() - 1);
-			ligneAjoutee.firstChild.innerText = this.getRowCount();
-			ligneAjoutee.insertCell(12);
-			ligneAjoutee.children[12].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
+		editableGrid.ajouterLigne = function(){
+			this.append(this.getRowCount() + 1,{'Numero' : id},false,false);
+			id++;
 		};
-
-		var validerGantt = function(){
-			alert("A faire !");
-		}
-
-		var params = window.location.search;
-		var param,uss,us,i;
-		params = params.substring(1);
-		params = params.split("&");
-		alert(params);
-		for(i=0; i<params.length;i++){
-			param = params[i].split("=");
-			if(param[0]=="id"){
-				//on cherche dans le tableau des param�tres le param�tre ID qui correspond � l'id du projet cliqu�
-				$.ajax({
-					url: './php/ListerUserStory.php', //toujours la même page qui est appelée
-					type: 'POST',
-					data: {id: param[1]}, // paramètre fonction qui détermine la fonction qui sera exécutée
-					success: function(data) {
-						//on recup�re le retour du php qui nous renvoie un tableau contenant toutes les us, s�par�es par un &
-						uss=data.split("&");
-						//ERREUR!!!
-						//NE RENTRE PAS DANS LE WHILE
-						while(uss.length>0){
-							//on veut maintenant r�cup�rer chaque info de l'us, s�par�es par un -
-							us=uss[0].split("-");
-							document.getElementById('htmlgrid').innerHTML += "<tr id='3' style='min-height: 28px;'><td class='number'>"+us[0]+"</td><td>"+us[4]+"</td><td>"+us[1]+"</td><td class='number'>"+us[2]+"</td><td class='number'>"+us[3]+"</td><td><a onclick='editableGrid.removeRow(3);'>Supprimer</a></td></tr>";
-							uss.shift();
-						}
-					}
-				});
-				//si on trouve le param id, modif pour couper la boucle for, on ne doit avoir qu'un param id
-				i = params.lenth;
-			}
-		}
     }
-  </script>
 
-</head>
-<body>
-	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
-		Retour accueil
-	</button>
-	<h1>Gantt de votre sprint n°XXX</h1>
-	<a onclick="editableGrid.ajouterLigne();">Ajouter un développeur</a>
-	<div id="conteneur-gantt"></div>
-	<button onclick="validerGantt">Valider le Gantt</button>
+    var validerGantt = function(){
+		alert("A faire !");
+	}
+    </script>
 </body>
 </html>
