@@ -31,6 +31,6 @@ function recupererIdsProjetSprintURL(){
 			idSprint = param[1];
 		}
 	}
-	tabIds.push({idProjet : idProjet, idSprint : idSprint});
+	tabIds.push(idProjet,idSprint);
 	return tabIds;
 }

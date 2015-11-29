@@ -16,5 +16,5 @@ while($pr=mysql_fetch_assoc($rs)) {
 	//$result.="<tr id=\"3\" style=\"min-height: 28px;\"><td class=\"number\">".$pr['ID']."</td><td>".$pr['IDENTIFIANT']."</td><td>".$pr['DESCRIPTION']."</td><td class=\"number\">".$pr['PRIORITE']."</td><td class=\"number\">".$pr['DIFFICULTE']."</td><td><a onclick=\"editableGrid.removeRow(".$pr['ID'].");\">Supprimer</a></td></tr>";
 	$result.= $pr['ID'] .'\|/'. $pr['IDENTIFIANT'] .'\|/'. $pr['DESCRIPTION'] .'\|/'. $pr['PRIORITE'] .'\|/'. $pr['DIFFICULTE'] .'\|/';
 }
-echo $result;
+echo utf8_encode($result);
 ?>

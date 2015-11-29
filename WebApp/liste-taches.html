@@ -7,40 +7,7 @@
   <link rel="stylesheet" href="css/backlog.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="./js/verif_session.js"></script>
-  <script type="text/javascript">
-	window.onload=function(){
-		verifSession();
-
-		editableGrid = new EditableGrid("DemoGridAttach",
-			{
-				enableSort:true,
-			}
-		); 
-	
-		editableGrid.load({ metadata: [
-			{ name: "numero", datatype: "integer", editable: false },
-			{ name: "identifiant", datatype: "string", editable: true },
-			{ name: "tache", datatype: "string", editable: true },
-			{ name: "cout", datatype: "integer", editable: true },
-		]});
-	
-		editableGrid.attachToHTMLTable('htmlgrid');
-		editableGrid.renderGrid();
-		
-		editableGrid.ajouterLigne = function()
-		{
-			this.append(this.getRowCount()+1,{},false,false);
-			var ligneAjoutee = this.getRow(this.getRowCount() - 1);
-			ligneAjoutee.firstChild.innerText = this.getRowCount();
-			ligneAjoutee.insertCell(4);
-			ligneAjoutee.children[4].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
-		};
-		var validerSprint = function(){
-			alert("A faire !");
-		}
-    }
-  </script>
-
+  <script type="text/javascript" src="./js/adopi.js"></script>
 </head>
 <body>
 	<h1>Sprint N°1</h1>
@@ -75,5 +42,50 @@
 		</tr>
 	</tbody></table>
 	<button onclick="validerSprint">Valider le sprint</button>
+	<script type="text/javascript">
+	window.onload=function(){
+		verifSession();
+
+		editableGrid = new EditableGrid("DemoGridAttach",
+			{
+				enableSort:true,
+			}
+		); 
+	
+		editableGrid.load({ metadata: [
+			{ name: "numero", datatype: "integer", editable: false },
+			{ name: "identifiant", datatype: "string", editable: true },
+			{ name: "tache", datatype: "string", editable: true },
+			{ name: "cout", datatype: "integer", editable: true },
+		]});
+	
+		editableGrid.attachToHTMLTable('htmlgrid');
+		editableGrid.renderGrid();
+		
+		editableGrid.ajouterLigne = function()
+		{
+			this.append(this.getRowCount()+1,{},false,false);
+			var ligneAjoutee = this.getRow(this.getRowCount() - 1);
+			ligneAjoutee.firstChild.innerText = this.getRowCount();
+			ligneAjoutee.insertCell(4);
+			ligneAjoutee.children[4].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
+		};
+		var validerSprint = function(){
+			alert("A faire !");
+		}
+
+		var tabIds = recupererIdsProjetSprintURL();
+		//on cherche dans le tableau des param�tres le param�tre ID qui correspond � l'id du projet cliqu�
+		$.ajax({
+			url: './php/ListerTaches.php', //toujours la même page qui est appelée
+			type: 'POST',
+			data: {idProjet: tabIds[0], idSprint : tabIds[1]}, // paramètre fonction qui détermine la fonction qui sera exécutée
+			success: function(data) {
+				document.getElementById('htmlgrid').innerHTML += data;
+			}
+		});
+
+    }
+  </script>
 </body>
 </html>

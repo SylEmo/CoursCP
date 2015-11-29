@@ -27,5 +27,5 @@ while($pr=mysql_fetch_assoc($rs)) {
 
 $result.="</optgroup>";//</select>";
 
-echo $result;
+echo utf8_encode($result);
 ?>

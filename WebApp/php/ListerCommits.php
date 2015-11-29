@@ -20,8 +20,9 @@ $sprint="";
 $tache="";
 $stopwhile=1;
 $count = count($commits);
+$result="";
 
-echo "<table>";
+$result.= "<table>";
 
 while($stopwhile!=0){
 	$count = count($commits);
@@ -34,9 +35,9 @@ while($stopwhile!=0){
 		    $tache = $donnees[1][1];
 
 		    if(strcmp($sprint,$idsprint)==0 && strcmp($tache,$idtache)==0){
-			    echo "<tr>";
-			    echo " <td>".$commit->getCommit()->getAuthor()->getName()."</td><td>".$commit->getCommit()->getMessage()."</td><td> </td><td>".$commit->getCommit()->getAuthor()->getDate()."</td>";
-			    echo "</tr>";
+			    $result.= "<tr>";
+			    $result.= " <td>".$commit->getCommit()->getAuthor()->getName()."</td><td>".$commit->getCommit()->getMessage()."</td><td> </td><td>".$commit->getCommit()->getAuthor()->getDate()."</td>";
+			    $result.= "</tr>";
 			}
 		}
 	}
@@ -50,6 +51,6 @@ while($stopwhile!=0){
 }
 
 
-echo "</table>";
-
+$result.= "</table>";
+echo utf8_encode($result);
 ?>
