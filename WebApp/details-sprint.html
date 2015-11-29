@@ -27,30 +27,31 @@
     <script type="text/javascript" src="./js/adopi.js"></script>
 
 	<script>
-		var idSprint = recupererIdProjetURL();
+		//var idSprint = recupererIdProjetURL();
+		var tabIds = recupererIdsProjetSprintURL();
 
 		$(window).load(function(){
 			verifSession();
 		});
 
 		function ouvrirListeTaches(){
-			document.location.href="liste-taches.html?id=" + idSprint;
+			document.location.href="liste-taches.html?idSprint="+tabIds[1]+"&idProjet="+tabIds[0];
 		}
 		
 		function ouvrirKanban(){
-			document.location.href="kanban.html?id=" + idSprint;
+			document.location.href="kanban.html?id="+tabIds[1]+"&idProjet="+tabIds[0];
 		}
 		
 		function ouvrirListeCommits(){
-			document.location.href="liste-commits.html?id=" + idSprint;
+			document.location.href="liste-commits.html?id="+tabIds[1]+"&idProjet="+tabIds[0];
 		}
 		
 		function ouvrirPert(){
-			document.location.href="pert.html?id=" + idSprint;
+			document.location.href="pert.html?id="+tabIds[1]+"&idProjet="+tabIds[0];
 		}
 		
 		function ouvrirGantt(){
-			document.location.href="gantt.html?id=" + idSprint;
+			document.location.href="gantt.html?id="+tabIds[1]+"&idProjet="+tabIds[0];
 		}
 	</script>
 </body>
