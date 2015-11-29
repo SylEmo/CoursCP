@@ -3,16 +3,26 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Backlog - Adopi</title>
-  <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script type="text/javascript" src="./js/verif_session.js"></script>
-  <script type="text/javascript" src="./js/adopi.js"></script>
-  <link rel="stylesheet" href="css/backlog.css">
-  
-  <script type="text/javascript">
-	window.onload=function(){
+  <link rel="stylesheet" href="./lib/foundation/css/foundation.min.css">
+  <link rel="stylesheet" href="./css/backlog.css">
+</head>
 
+<body>
+	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>
+
+	<h1>Backlog</h1>
+	<button onclick="editableGrid.ajouterLigne();">Ajouter une ligne</button>
+	<div id="conteneur_backlog"></div>
+	<button onclick="validerBacklog()">Valider le backlog</button>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
+    <script type="text/javascript" src="./js/verif_session.js"></script>
+    <script type="text/javascript" src="./js/adopi.js"></script>
+    <script type="text/javascript">
+	$(window).load(function(){
 		verifSession();
 
 		editableGrid = new EditableGrid("DemoGridAttach",
@@ -21,60 +31,60 @@
 			}
 		); 
 	
-		editableGrid.load({ metadata: [
-			{ name: "numero", datatype: "integer", editable: false },
-			{ name: "identifiant", datatype: "string", editable: true },
-			{ name: "userstory", datatype: "string", editable: true },
-			{ name: "priorite", datatype: "string", editable: true },
-			{ name: "difficulte", datatype: "integer", editable: true }
-		]});
-	
-		editableGrid.attachToHTMLTable('htmlgrid');
-		editableGrid.renderGrid();
-		
-		editableGrid.ajouterLigne = function()
-		{
-			this.append(this.getRowCount()+1,{},false,false);
-			var ligneAjoutee = this.getRow(this.getRowCount() - 1);
-			ligneAjoutee.firstChild.innerText = this.getRowCount();
-			ligneAjoutee.insertCell(5);
-			ligneAjoutee.children[5].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
-		};
+		var metadata = [];
+		metadata.push({ name: "Numero", datatype: "integer", editable: false });
+		metadata.push({ name: "Identifiant", datatype: "string", editable: true });
+		metadata.push({ name: "Userstory", datatype: "string", editable: true });
+		metadata.push({ name: "Priorite", datatype: "string", editable: true });
+		metadata.push({ name: "Difficulte", datatype: "integer", editable: true });
 
-		var validerBacklog = function(){
-			alert("A faire !");
-		}
-
+		var dataTable = [];
 		var idProjet = recupererIdProjetURL();
-		var uss,us;
-		//on cherche dans le tableau des param�tres le param�tre ID qui correspond � l'id du projet cliqu�
+		var uss, id = 1, numeroMax = 0;;
 		$.ajax({
-			url: './php/ListerUserStory.php', //toujours la même page qui est appelée
+			url: './php/ListerUserStory.php',
 			type: 'POST',
-			data: {id: idProjet}, // paramètre fonction qui détermine la fonction qui sera exécutée
+			data: {id: idProjet},
 			success: function(data) {
-				document.getElementById('htmlgrid').innerHTML += data;
+				uss = data.split("\\|/");
+				if(uss[0]){
+					while(uss.length > 4){
+						numeroMax = uss[0];
+						dataTable.push({id : id, values : {'Numero' : uss[0], 'Identifiant' : uss[1], 'Userstory' : uss[2], 'Priorite' : uss[3], 'Difficulte' : uss[4]}});
+						id++;
+						uss.shift();
+						uss.shift();
+						uss.shift();
+						uss.shift();
+						uss.shift();
+					}
+					editableGrid.load({'metadata' : metadata, 'data' : dataTable});
+					editableGrid.renderGrid("conteneur_backlog", "table_backlog");
+				}
 			}
 		});
-    }
-  </script>
 
-</head>
-<body>
-	<button class="btn btn-primary" onclick="document.location.href='liste-projets.html'">
-		Retour accueil
-	</button>
-	<h1>Backlog</h1>
-	<a onclick="editableGrid.ajouterLigne();">Ajouter une ligne</a>
-	<table id="htmlgrid" class="testgrid">
-		<thead><tr>
-			<th class="number">Numéro</th>
-			<th>Identifiant</th>
-			<th>UserStory</th>			
-			<th class="number">Priorité</th>
-			<th class="number">Difficulté</th>	
-		</tr></thead>
-	</table>
-	<button onclick="validerBacklog">Valider le backlog</button>
+		editableGrid.ajouterLigne = function()
+		{
+			numeroMax++;
+			this.append(this.getRowCount() + 1,{'Numero' : numeroMax},false,false);
+		}
+    });
+
+	
+
+	var validerBacklog = function(){
+		var finalUss = [];
+		for (var i = 0; i < editableGrid.getRowCount(); i++) {
+			finalUss.push(editableGrid.getRowValues(i));
+		};
+		$.ajax({
+			url: './php/ListerUserStory.php',
+			type: 'POST',
+			data: {values: finalUss},
+			success: function(data) {}
+		});
+	}
+    </script>
 </body>
 </html>
