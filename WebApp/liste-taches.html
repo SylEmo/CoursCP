@@ -4,46 +4,25 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Liste des tâches du sprint n°XX - Adopi</title>
   <script type="text/javascript" src="http://www.editablegrid.net/editablegrid/editablegrid-2.0.1.js"></script>
-  <link rel="stylesheet" href="css/backlog.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="./js/verif_session.js"></script>
-  <script type="text/javascript" src="./js/adopi.js"></script>
+  <link rel="stylesheet" href="./lib/foundation/css/foundation.min.css">
+  <link rel="stylesheet" href="./css/backlog.css">
+  
 </head>
 <body>
+	<button onclick="document.location.href='liste-projets.html'">
+		Retour accueil
+	</button>
+
 	<h1>Sprint N°1</h1>
 	<a onclick="editableGrid.ajouterLigne();">Ajouter une tâche</a>
-	<table id="htmlgrid" class="testgrid">
-		<thead><tr>
-			<th class="number">Numéro</th>
-			<th>Identifiant</th>
-			<th>Tâche</th>			
-			<th class="number">Coût</th>
-		</tr></thead><tbody>
-		<tr id="1" style="min-height: 28px;">
-			<td class="number">1</td>
-			<td></td>
-			<td></td>
-			<td class="number">1</td>
-			<td class="editablegrid-action"><a onclick="editableGrid.removeRow(1);">Supprimer</a></td>
-		</tr>
-		<tr id="2" style="min-height: 28px;">
-			<td class="number">1</td>
-			<td></td>
-			<td></td>
-			<td class="number">1</td>
-			<td><a onclick="editableGrid.removeRow(2);">Supprimer</a></td>
-		</tr>
-		<tr id="3" style="min-height: 28px;">
-			<td class="number">1</td>
-			<td></td>
-			<td></td>
-			<td class="number">1</td>
-			<td><a onclick="editableGrid.removeRow(3);">Supprimer</a></td>
-		</tr>
-	</tbody></table>
-	<button onclick="validerSprint">Valider le sprint</button>
+	<div id="conteneur_taches"></div>
+	<button onclick="validerSprint()">Valider le sprint</button>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="./js/verif_session.js"></script>
+    <script type="text/javascript" src="./js/adopi.js"></script>
 	<script type="text/javascript">
-	window.onload=function(){
+	$(window).load(function(){
 		verifSession();
 
 		editableGrid = new EditableGrid("DemoGridAttach",
@@ -51,41 +30,58 @@
 				enableSort:true,
 			}
 		); 
-	
-		editableGrid.load({ metadata: [
-			{ name: "numero", datatype: "integer", editable: false },
-			{ name: "identifiant", datatype: "string", editable: true },
-			{ name: "tache", datatype: "string", editable: true },
-			{ name: "cout", datatype: "integer", editable: true },
-		]});
-	
-		editableGrid.attachToHTMLTable('htmlgrid');
-		editableGrid.renderGrid();
-		
-		editableGrid.ajouterLigne = function()
-		{
-			this.append(this.getRowCount()+1,{},false,false);
-			var ligneAjoutee = this.getRow(this.getRowCount() - 1);
-			ligneAjoutee.firstChild.innerText = this.getRowCount();
-			ligneAjoutee.insertCell(4);
-			ligneAjoutee.children[4].innerHTML = "<a onclick=\"editableGrid.removeRow(" + (this.getRowCount()) + ");\">Supprimer</a>";
-		};
-		var validerSprint = function(){
-			alert("A faire !");
-		}
 
+		var metadata = [];
+		metadata.push({ name: "Numero", datatype: "integer", editable: false });
+		metadata.push({ name: "Identifiant", datatype: "string", editable: true });
+		metadata.push({ name: "Description", datatype: "string", editable: true });
+		metadata.push({ name: "Cout", datatype: "integer", editable: true });
+
+		var dataTable = [];
 		var tabIds = recupererIdsProjetSprintURL();
-		//on cherche dans le tableau des param�tres le param�tre ID qui correspond � l'id du projet cliqu�
+		var taches, id = 1, numeroMax = 0;
 		$.ajax({
 			url: './php/ListerTaches.php', //toujours la même page qui est appelée
 			type: 'POST',
 			data: {idProjet: tabIds[0], idSprint : tabIds[1]}, // paramètre fonction qui détermine la fonction qui sera exécutée
-			success: function(data) {
-				document.getElementById('htmlgrid').innerHTML += data;
+			success: function(data){
+				taches = data.split("\\|/");
+				if(taches[0]){
+					while(taches.length > 3){
+						numeroMax = taches[0];
+						dataTable.push({id : id, values : {'Numero' : taches[0], 'Identifiant' : taches[1], 'Description' : taches[2], 'Cout' : taches[3]}});
+						id++;
+						taches.shift();
+						taches.shift();
+						taches.shift();
+						taches.shift();
+					}
+					editableGrid.load({'metadata' : metadata, 'data' : dataTable});
+					editableGrid.renderGrid("conteneur_taches", "table_taches");
+				}
 			}
 		});
 
-    }
+		editableGrid.ajouterLigne = function(){
+			numeroMax++;
+			this.append(this.getRowCount() + 1,{'Numero' : numeroMax},false,false);
+		}
+    });
+
+	var validerTaches = function(){
+		var finalTaches = [];
+		for (var i = 0; i < editableGrid.getRowCount(); i++) {
+			finalUss.push(editableGrid.getRowValues(i));
+		};
+		$.ajax({
+			url: './php/ValiderBacklog.php',
+			type: 'POST',
+			data: {values: finalUss},
+			success: function(data) {
+				window.location.reload();
+			}
+		});
+	}
   </script>
 </body>
 </html>

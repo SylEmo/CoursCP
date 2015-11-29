@@ -41,41 +41,44 @@
             </div>
     	</div>
     </div>
+    
     <div id="kanban">
-    </div>    
-    <script type="text/javascript">
-    var idSprint = recupererIdProjetURL();
-    $('document').ready(init);
-    function init(){
-		$('#board').bind('dragstart', function(event) {
-            event.originalEvent.dataTransfer.setData("Text", $(event.target).closest('a[id]').attr('id'));
-        });
-        // bind the dragover event on the board sections
-        $('#board').bind('dragover', function(event) {
-		    if ($(event.target).closest('.droptarget').hasClass('droptarget')) {
-				event.preventDefault();
-	    	}
-        }).bind('drop', function(event) {
-		    var notecard = event.originalEvent.dataTransfer.getData("Text");
-		    var drop = $(event.target).closest('.droptarget');
-		    drop.append($('#' + notecard));
-		    // Turn off the default behaviour
-		    // without this, FF will try and go to a URL with your id's name
-		    event.preventDefault();
-        }).bind('click', function(event) {event.preventDefault();} );
-    }
-	$(window).load(function(){
+    </div>
 
-		verifSession();
-		$.ajax({
-			url: './php/RemplirKanban.php', //toujours la même page qui est appelée
-			type: 'POST',
-			data: {id: idSprint}, // paramètre fonction qui détermine la fonction qui sera exécutée
-			success: function(data) {
-			document.getElementById('kanban').innerHTML +=data;
-		}
-   	});		
-   });
+    <script type="text/javascript">
+	    var idSprint = recupererIdProjetURL();
+
+	    $('document').ready(init);
+	    function init(){
+			$('#board').bind('dragstart', function(event) {
+	            event.originalEvent.dataTransfer.setData("Text", $(event.target).closest('a[id]').attr('id'));
+	        });
+	        // bind the dragover event on the board sections
+	        $('#board').bind('dragover', function(event) {
+			    if ($(event.target).closest('.droptarget').hasClass('droptarget')) {
+					event.preventDefault();
+		    	}
+	        }).bind('drop', function(event) {
+			    var notecard = event.originalEvent.dataTransfer.getData("Text");
+			    var drop = $(event.target).closest('.droptarget');
+			    drop.append($('#' + notecard));
+			    // Turn off the default behaviour
+			    // without this, FF will try and go to a URL with your id's name
+			    event.preventDefault();
+	        }).bind('click', function(event) {event.preventDefault();} );
+	    }
+
+		$(window).load(function(){
+			verifSession();
+			$.ajax({
+				url: './php/RemplirKanban.php', //toujours la même page qui est appelée
+				type: 'POST',
+				data: {id: idSprint}, // paramètre fonction qui détermine la fonction qui sera exécutée
+				success: function(data) {
+					document.getElementById('kanban').innerHTML +=data;
+				}
+	   		});		
+	    });
    </script>
 </body>
 </html>
