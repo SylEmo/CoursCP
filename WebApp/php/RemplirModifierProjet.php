@@ -7,7 +7,7 @@ if(!isset($_SESSION)) {
 	session_start();
 }
 require_once("Connexion.php");
-$req= "select NOM, DEADLINE, LIEN_GIT from PROJET WHERE IDUTIL=".$_SESSION['Niv']." AND ID =".$idprojet;
+$req= "select NOM, DEADLINE, GITUTIL, GITDEPOT from PROJET WHERE IDUTIL=".$_SESSION['Niv']." AND ID =".$idprojet;
 $rs=mysql_query($req) or die(mysql_error());
 
 $result="";
