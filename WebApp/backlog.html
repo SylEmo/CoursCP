@@ -40,7 +40,7 @@
 
 		var dataTable = [];
 		var idProjet = recupererIdProjetURL();
-		var uss, id = 1, numeroMax = 0;
+		var uss, id = 1;
 		$.ajax({
 			url: './php/ListerUserStory.php',
 			type: 'POST',
@@ -49,7 +49,6 @@
 				uss = data.split("\\|/");
 				if(uss[0]){
 					while(uss.length > 4){
-						numeroMax = uss[0];
 						dataTable.push({id : id, values : {'Numero' : uss[0], 'Identifiant' : uss[1], 'Userstory' : uss[2], 'Priorite' : uss[3], 'Difficulte' : uss[4]}});
 						id++;
 						uss.shift();
@@ -66,8 +65,7 @@
 
 		editableGrid.ajouterLigne = function()
 		{
-			numeroMax++;
-			this.append(this.getRowCount() + 1,{'Numero' : numeroMax},false,false);
+			this.append(this.getRowCount() + 1,{'Identifiant' : 'NewID'},false,false);
 		}
     });
 
