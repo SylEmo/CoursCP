@@ -2,7 +2,7 @@
 
 require_once("Connexion.php");
 require_once("Verifier1.php");
-
+$id_projet=$_GET['id_projet'];
 $id_sprint=$_GET['id_sprint'];
 $nom=$_GET['nom'];
 $l_m=$_GET['lm'];
@@ -16,9 +16,8 @@ $j_ap=$_GET['j_ap'];
 $v_m=$_GET['v_m'];
 $v_ap=$_GET['v_ap'];
 
-$req = "insert into GANTT (IDSPRINT,NOM,LUNDI_M,LUNDI_AP,MARDI_M,MARDI_AP,MERCREDI_M,MERCREDI_AP,JEUDI_M,JEUDI_AP,VENDREDI_M,VENDREDI_AP) VALUE ($id_sprint,'$nom','$l_m','$l_ap','$ma_m','$ma_ap','$me_m','$me_ap','$j_m','$j_ap','$v_m','$v_ap')";
+$req = "insert into GANTT (IDSPRINT,NOM,LUNDI_M,LUNDI_AP,MARDI_M,MARDI_AP,MERCREDI_M,MERCREDI_AP,JEUDI_M,JEUDI_AP,VENDREDI_M,VENDREDI_AP) VALUE ($id_sprint,'$nom','$l_m','$l_ap','$ma_m','$ma_ap','$me_m','$me_ap','$j_m','$j_ap','$v_m','$v_ap') WHERE ID='$id_projet'";
 mysql_query($req) or die(mysql_error());
 header("location:../gantt.html");
-
 
 ?>
