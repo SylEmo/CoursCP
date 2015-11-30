@@ -12,7 +12,7 @@
 		Retour accueil
 	</button>
 
-	<h1>Gantt de votre sprint n°1</h1>
+	<h1>Gantt</h1>
 	<button onclick="editableGrid.ajouterLigne();">Ajouter un développeur</button>
 	<div id="conteneur-gantt"></div>
 	<button onclick="validerGantt()">Valider le Gantt</button>
@@ -48,7 +48,7 @@
 		var dataTable = [];
 		var tabIds = recupererIdsProjetSprintURL();
 		var listeTaches = new Object();
-		var recupererTaches = function(){
+		/*var recupererTaches = function(){
 			var req = $.ajax({
 				url: './php/ListerTaches.php', 
 				type: 'POST',
@@ -73,58 +73,70 @@
 				}
 				else{}
 			})
-		}
+		}*/
 
 		var developpeurs, id = 1;
-		var recupererGantt = function(){
-			var reqGantt = $.ajax({
-				url: './php/ListerGantt.php', 
-				type: 'POST',
-				data: {idProjet: tabIds[0], idSprint : tabIds[1]}
-			});
-			reqGantt.success(function(data){
-				developpeurs = data.split("\\|/");
-				if(developpeurs[0]){
-					while(developpeurs.length > 10){
-						dataTable.push({id : id, values : {'Numero' : id, 'Developpeur' : developpeurs[0], 'Lundi-matin' : developpeurs[1], 
-							"Lundi-apresmidi" : developpeurs[2], "Mardi-matin" : developpeurs[3], "Mardi-apresmidi" : developpeurs[4],
-							"Mercredi-matin" : developpeurs[5], "Mercredi-apresmidi" : developpeurs[6], "Jeudi-matin" : developpeurs[7],
-							"Jeudi-apresmidi" : developpeurs[8], "Vendredi-matin" : developpeurs[9], "Vendredi-apresmidi" :  developpeurs[10]}});
-						id++;
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-						developpeurs.shift();
-					}
-					remplirTableau();
+		var tabIds = recupererIdsProjetSprintURL();
+
+		var reqGantt = $.ajax({
+			url: './php/ListerGantt.php', 
+			type: 'POST',
+			data: {idProjet: tabIds[0], idSprint : tabIds[1]}
+		});
+		reqGantt.success(function(data){
+			developpeurs = data.split("\\|/");
+			if(developpeurs[0]){
+				while(developpeurs.length > 10){
+					dataTable.push({id : id, values : {'Numero' : developpeurs[0], 'Developpeur' : developpeurs[1], 'Lundi-matin' : developpeurs[2], 
+						"Lundi-apresmidi" : developpeurs[3], "Mardi-matin" : developpeurs[4], "Mardi-apresmidi" : developpeurs[5],
+						"Mercredi-matin" : developpeurs[6], "Mercredi-apresmidi" : developpeurs[7], "Jeudi-matin" : developpeurs[8],
+						"Jeudi-apresmidi" : developpeurs[9], "Vendredi-matin" : developpeurs[10], "Vendredi-apresmidi" :  developpeurs[11]}});
+					id++;
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
+					developpeurs.shift();
 				}
-				else{}
-			});			
-		};
+				remplirTableau();
+			}
+			else{}
+		});			
 
 		var remplirTableau = function(){
-			editableGrid.load({"metadata": metadata, "data": data});
+			editableGrid.load({"metadata": metadata, "data": dataTable});
 			editableGrid.renderGrid("conteneur-gantt", "table-gantt");
 		}
 		
-		recupererTaches();
+		//recupererTaches();
 		
 		editableGrid.ajouterLigne = function(){
-			this.append(this.getRowCount() + 1,{'Numero' : id},false,false);
+			this.append(this.getRowCount() + 1,{'Developpeur' : 'Dev'},false,false);
 			id++;
 		};
     })
 
     var validerGantt = function(){
-		alert("A faire !");
+		var finalGantt = [];
+		var tabIds = recupererIdsProjetSprintURL();
+		for (var i = 0; i < editableGrid.getRowCount(); i++) {
+			finalGantt.push(editableGrid.getRowValues(i));
+		};
+		$.ajax({
+			url: './php/ValiderGantt.php',
+			type: 'POST',
+			data: {values: finalGantt, idSprint : tabIds[1], idProjet : tabIds[0]},
+			success: function(data) {
+				window.location.reload();
+			}
+		});
 	}
     </script>
 </body>
