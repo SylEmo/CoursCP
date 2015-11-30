@@ -1,7 +1,7 @@
 /* ---- Code from https://github.com/robertc/DragNDrop_PlanningBoard/blob/master/dragndrop.html ---- */
 
 function add_developer() {
-		var dev = window.prompt('Enter the developer\'s name');
+	var dev = window.prompt('Enter the developer\'s name');
 	var devid = dev.replace(/\s/g,'').toLowerCase();
 	if (devid.length > 0) {
 	    if ($('#' + devid).attr('id') == devid) { window.alert('Already added'); return; }
@@ -23,9 +23,7 @@ function remove_developer() {
         $('#board').css('cursor','default').unbind('click');    
 	});
 }
-function add_task() {
-	var task = window.prompt('Enter task name');
-	var taskid = task.replace(/\s/g,'').toLowerCase();
+function add_task(taskid, task, taskState) {
 	if (taskid.length > 0) {
 	    if ($('#' + taskid).attr('id') == taskid) { window.alert('Already added'); return; }
 	    var new_task = $('#board a[draggable]')
@@ -34,13 +32,10 @@ function add_task() {
 		.attr('id', taskid);
 	    new_task.find('.cardTitle').text(task);
 	    new_task.show();
-	    var childrenBoard = $('#board').children();
-	    var divDeveloper = childrenBoard[1];
-	    var childrenDivDeveloper = divDeveloper.children;
-	    var divToDo = childrenDivDeveloper[1];
-	    divToDo.id = taskid;
-	    $("#"+taskid).append(new_task);
-	    divToDo.id = "";
+	    var childrenListeTaches = $('#listeTaches').children();
+
+	    var divState = childrenListeTaches[taskState + 1];
+	    $("."+divState.classList[0]).append(new_task);
 	}
 }
 function remove_task() {

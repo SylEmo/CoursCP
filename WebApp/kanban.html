@@ -4,49 +4,49 @@
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex">
 	<title>Kanban sprint n°XX - Adopi</title>
-	<link rel="stylesheet" href="lib/foundation/css/foundation.min.css">
-	<link rel="stylesheet" href="css/kanban.css">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    	<script type="text/javascript" src="js/kanban.js"></script>
-	<script type="text/javascript" src="./js/adopi.js"></script>
-	<script type="text/javascript" src="./js/verif_session.js"></script>
-
+	<link rel="stylesheet" href="./lib/foundation/css/foundation.min.css">
+	<link rel="stylesheet" href="./css/kanban.css">
 </head>
 <body>
 	<h1>Kanban du sprint n°XX - NomDuProjet</h1>
 	
-    <menu>
-		<button onclick="add_developer();">Ajouter un développeur</button>
-		<button onclick="remove_developer();">Supprimer un dévelopeur</button>
-		<button onclick="add_task();">Ajouter une tâche</button>
-		<button onclick="remove_task();">Supprimer une tâche</button>
-		<button onclick="add_status();">Ajouter un état</button>
-		<button onclick="remove_status();">Supprimer un état</button>
+    <menu hidden>
+		<button onclick="add_developer();" hidden>Ajouter un développeur</button>
+		<button onclick="remove_developer();" hidden>Supprimer un dévelopeur</button>
+		<button onclick="add_task();" hidden>Ajouter une tâche</button>
+		<button onclick="remove_task();" hidden>Supprimer une tâche</button>
+		<button onclick="add_status();" hidden>Ajouter un état</button>
+		<button onclick="remove_status();" hidden>Supprimer un état</button>
     </menu>
     
     <div id="board">
-    	<div id="hidden" hidden>
-    		<h1 class ="title"> Rob</h1>
-            <div class ="todo droptarget">
-                <h2 class = "title"> To Do</h1>
-                <a id="item1" draggable="true" href="#">
+    	<div id="listeTaches">
+			<h1 class="title">Liste des tâches</h1>
+	        <div class="todo droptarget">
+	            <h2 class="title">To Do</h2>
+	            <a id="item1" class="hidden" draggable="true" href="#">
 				    <div class="cardTitle">hidden</div>
 				</a>
-            </div>
-            <div class ="inprogress droptarget">
-                <h2 class = "title"> In Progress</h1>
-            </div>
-            <div class ="done droptarget">
-                <h2 class = "title"> Done</h1>
-            </div>
-    	</div>
+	        </div>
+	        <div class="inprogress droptarget">
+	            <h2 class="title">In Progress</h2>
+	        </div>
+	        <div class="done droptarget">
+	            <h2 class="title">Done</h2>
+	        </div>
+	    </div>
     </div>
-    
-    <div id="kanban">
-    </div>
+
+    <button onclick="validerKanban()">Valider le Kanban</button>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/adopi.js"></script>
+	<script type="text/javascript" src="./js/verif_session.js"></script>
+    <script type="text/javascript" src="js/kanban.js"></script>
 
     <script type="text/javascript">
 	    var tabIds = recupererIdsProjetSprintURL();
+	    var listeTaches = [];
 
 	    $('document').ready(init);
 	    function init(){
@@ -61,6 +61,16 @@
 	        }).bind('drop', function(event) {
 			    var notecard = event.originalEvent.dataTransfer.getData("Text");
 			    var drop = $(event.target).closest('.droptarget');
+			    for (var i = 0; i < listeTaches.length; i++){
+			    	if (notecard == listeTaches[i].Identifiant){
+			    		if (drop[0].classList[0] == "todo")
+							listeTaches[i].Etat = 0;
+						else if (drop[0].classList[0] == "inprogress")
+							listeTaches[i].Etat = 1;
+						else listeTaches[i].Etat = 2;
+						i = listeTaches.length;
+			    	}
+				};
 			    drop.append($('#' + notecard));
 			    // Turn off the default behaviour
 			    // without this, FF will try and go to a URL with your id's name
@@ -69,16 +79,44 @@
 	    }
 
 		$(window).load(function(){
+			$(".hidden").toggle();
 			verifSession();
-			$.ajax({
-				url: './php/RemplirKanban.php', //toujours la même page qui est appelée
+
+			var req = $.ajax({
+				url: './php/RemplirKanban.php',
 				type: 'POST',
-				data: {idsprint: tabIds[1]}, // paramètre fonction qui détermine la fonction qui sera exécutée
-				success: function(data) {
-					document.getElementById('kanban').innerHTML +=data;
+				data: {idsprint: tabIds[1]}
+			}); 
+			
+			req.success(function(data){
+				taches = data.split("\\|/");
+				if(taches[0]){
+					while(taches.length > 2){
+						listeTaches.push({'Identifiant' : taches[1], 'Description' : taches[0],
+								'Etat' : taches[2]});
+						taches.shift();
+						taches.shift();
+						taches.shift();
+					}
+					repartirTaches();
 				}
-	   		});		
+	   		});
+
+			var repartirTaches = function(){
+				for (var i = 0; i < listeTaches.length; i++){
+					listeTaches[i].Etat = listeTaches[i].Etat + 1 - 1;
+					add_task(listeTaches[i].Identifiant, listeTaches[i].Description, listeTaches[i].Etat);
+				};
+			}
 	    });
+
+		var validerKanban = function(){
+			var req = $.ajax({
+				url: './php/ValiderKanban.php',
+				type: 'POST',
+				data: {listeTaches: listeTaches}
+			}); 
+		}
    </script>
 </body>
 </html>
