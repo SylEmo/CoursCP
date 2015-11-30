@@ -1,0 +1,18 @@
+.top-bar-section ul{
+	width: auto;
+	height: auto !important;
+}
+#logo-top-bar{
+	left: 0;
+	height: 55px;
+}
+#logo{
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: aliceblue;
+	height: 45px;
+}
+#deconnexion a{
+	margin: 10px 15px;
+	color: white;
+}
