@@ -20,5 +20,4 @@ for($i=0;$i<$nbus;$i++){
 		mysql_query($req) or die(mysql_error());
 	}
 }
-echo $result;
 ?>
