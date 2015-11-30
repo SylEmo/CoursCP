@@ -46,7 +46,7 @@
     </div>
 
     <script type="text/javascript">
-	    var idSprint = recupererIdProjetURL();
+	    var tabIds = recupererIdsProjetSprintURL();
 
 	    $('document').ready(init);
 	    function init(){
@@ -73,7 +73,7 @@
 			$.ajax({
 				url: './php/RemplirKanban.php', //toujours la même page qui est appelée
 				type: 'POST',
-				data: {id: idSprint}, // paramètre fonction qui détermine la fonction qui sera exécutée
+				data: {idsprint: tabIds[1]}, // paramètre fonction qui détermine la fonction qui sera exécutée
 				success: function(data) {
 					document.getElementById('kanban').innerHTML +=data;
 				}

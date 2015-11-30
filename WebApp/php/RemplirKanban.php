@@ -1,5 +1,5 @@
 <?php
-$idSprint = $_POST['id'];
+$idSprint = $_POST['idsprint'];
 
 
 require_once("Verifier1.php");
