@@ -23,11 +23,12 @@ function listerCommits() {
 	var idSprint;
 	idSprint = param[0];
 	idTache = param[1];
+	var idProjet = recupererIdProjetURL();
 
 	$.ajax({
 		url: './php/ListerCommits.php', //toujours la même page qui est appelée
 		type: 'POST',
-		data: {tache: idTache, sprint: idSprint}, // paramètre fonction qui détermine la fonction qui sera exécutée
+		data: {tache: idTache, sprint: idSprint, projet: idProjet}, // paramètre fonction qui détermine la fonction qui sera exécutée
 		
 		dataType : 'html',
 		

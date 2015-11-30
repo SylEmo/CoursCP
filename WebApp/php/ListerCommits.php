@@ -1,6 +1,7 @@
 <?php
 $idtache = $_POST['tache'];
 $idsprint = $_POST['sprint'];
+$idprojet = $_POST['projet'];
 
 require_once("Verifier1.php");
 if(!isset($_SESSION)) {
@@ -9,8 +10,15 @@ if(!isset($_SESSION)) {
 require_once("Connexion.php");
 require_once('../lib/client/GitHubClient.php');
 
-$owner = 'Thomasgitt';
-$repo = 'CdpTest1';
+$req = "SELECT GITUTIL, GITDEPOT FROM PROJET WHERE ID=".$idprojet;
+$res = mysql_query($req) or die(mysql_error());
+
+while($pr=mysql_fetch_assoc($res)) {
+	$owner = $pr['GITUTIL'];//'Thomasgitt';
+	$repo = $pr['GITDEPOT'];//'CdpTest1';
+}
+
+
 
 $client = new GitHubClient();
 $client->setPage();
