@@ -13,14 +13,10 @@ $result="";
 
 $nbus=sizeof($taches);
 for($i=0;$i<$nbus;$i++){
-	$result.="--".$taches[$i]['Identifiant']."--".$taches[$i]["Description"]."--".$taches[$i]["Etat"]."--";
-	/*if(!empty($values[$i]["Numero"])){
-		$req= "UPDATE USERSTORY SET IDENTIFIANT=\"".$values[$i]["Identifiant"]."\", DESCRIPTION=\"".$values[$i]["Userstory"]."\", PRIORITE=".$values[$i]["Priorite"].", DIFFICULTE=".$values[$i]["Difficulte"]." WHERE ID=".$values[$i]["Numero"];
+	//$result.="--".$taches[$i]['id']."--".$taches[$i]['Identifiant']."--".$taches[$i]["Description"]."--".$taches[$i]["Etat"]."--";
+	if(!empty($taches[$i]["id"])){
+		$req= "UPDATE TACHE SET IDENTIFIANT=\"".$taches[$i]["Identifiant"]."\", DESCRIPTION=\"".utf8_encode($taches[$i]["Description"])."\", ETAT=".$taches[$i]["Etat"]." WHERE ID=".$taches[$i]["id"];
 		mysql_query($req) or die(mysql_error());
-	}else{
-		//$req= "INSERT";
-		//mysql_query($req) or die(mysql_error());
-	}*/
+	}
 }
-echo $result;
 ?>
