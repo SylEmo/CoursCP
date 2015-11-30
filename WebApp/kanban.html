@@ -105,7 +105,7 @@
 
 			var repartirTaches = function(){
 				for (var i = 0; i < listeTaches.length; i++){
-					listeTaches[i].Etat = listeTaches[i].Etat + 1 - 1;
+					listeTaches[i].Etat = parseInt(listeTaches[i].Etat);
 					add_task(listeTaches[i].Identifiant, listeTaches[i].Description, listeTaches[i].Etat);
 				};
 			}
