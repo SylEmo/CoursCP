@@ -16,7 +16,7 @@
 	<h1>Sprint N°1</h1>
 	<a onclick="editableGrid.ajouterLigne();">Ajouter une tâche</a>
 	<div id="conteneur_taches"></div>
-	<button onclick="validerSprint()">Valider le sprint</button>
+	<button onclick="validerTaches()">Valider le sprint</button>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="./js/verif_session.js"></script>
@@ -39,7 +39,7 @@
 
 		var dataTable = [];
 		var tabIds = recupererIdsProjetSprintURL();
-		var taches, id = 1, numeroMax = 0;
+		var taches, id = 1;
 		$.ajax({
 			url: './php/ListerTaches.php', //toujours la même page qui est appelée
 			type: 'POST',
@@ -48,7 +48,6 @@
 				taches = data.split("\\|/");
 				if(taches[0]){
 					while(taches.length > 3){
-						numeroMax = taches[0];
 						dataTable.push({id : id, values : {'Numero' : taches[0], 'Identifiant' : taches[1], 'Description' : taches[2], 'Cout' : taches[3]}});
 						id++;
 						taches.shift();
@@ -63,20 +62,20 @@
 		});
 
 		editableGrid.ajouterLigne = function(){
-			numeroMax++;
-			this.append(this.getRowCount() + 1,{'Numero' : numeroMax},false,false);
+			this.append(this.getRowCount() + 1,{'Identifiant' : 'NewTache'},false,false);
 		}
     });
 
 	var validerTaches = function(){
 		var finalTaches = [];
+		var tabIds = recupererIdsProjetSprintURL();
 		for (var i = 0; i < editableGrid.getRowCount(); i++) {
-			finalUss.push(editableGrid.getRowValues(i));
+			finalTaches.push(editableGrid.getRowValues(i));
 		};
 		$.ajax({
-			url: './php/ValiderBacklog.php',
+			url: './php/ValiderTaches.php',
 			type: 'POST',
-			data: {values: finalUss},
+			data: {values: finalTaches, idSprint : tabIds[1]},
 			success: function(data) {
 				window.location.reload();
 			}

@@ -72,13 +72,14 @@
 	
 	var validerBacklog = function(){
 		var finalUss = [];
+		var idProjet = recupererIdProjetURL();
 		for (var i = 0; i < editableGrid.getRowCount(); i++) {
 			finalUss.push(editableGrid.getRowValues(i));
 		};
 		$.ajax({
 			url: './php/ValiderBacklog.php',
 			type: 'POST',
-			data: {values: finalUss},
+			data: {values: finalUss, idprojet : idProjet},
 			success: function(data) {
 				window.location.reload();
 			}
