@@ -14,7 +14,7 @@ $rs=mysql_query($req) or die(mysql_error());
 
 $result='';
 while($pr=mysql_fetch_assoc($rs)) {
-	$result.="<li><h3 class=\"name\"><a>".$pr['DESCRIPTION']."</a></h3><a>".$pr['IDENTIFIANT']."</a> <a>".$pr['COUT']."</a></li>";
+	$result.=$pr['DESCRIPTION'].'\|/'.$pr['IDENTIFIANT'].'\|/'.$pr['ETAT'].'\|/';
 }
 echo utf8_encode($result);
 ?>
