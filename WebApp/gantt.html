@@ -47,82 +47,81 @@
 		
 		var dataTable = [];
 		var tabIds = recupererIdsProjetSprintURL();
-		var indexTab = 0;
-		var tabIdentifiantsTaches = [];
+		var listeTaches = new Object();
 		var recupererTaches = function(){
-			$.ajax({
+			var req = $.ajax({
 				url: './php/ListerTaches.php', 
 				type: 'POST',
-				data: {idProjet: tabIds[0], idSprint : tabIds[1]}, 
-				success: function(data){
-					taches = data.split("\\|/");
-					if(taches[0]){
-						while(taches.length > 3){
-							tabIdentifiantsTaches[indexTab] = taches[1];
-							indexTab;
-							taches.shift();
-							taches.shift();
-							taches.shift();
-							taches.shift();
-						}
+				data: {idProjet: tabIds[0], idSprint : tabIds[1]}
+			}); 
+			req.success(function(data){
+				taches = data.split("\\|/");
+				if(taches[0]){
+					while(taches.length > 3){
+						listeTaches["" + taches[1]] = taches[1];
+						taches.shift();
+						taches.shift();
+						taches.shift();
+						taches.shift();
 					}
-					else{}
+					var x;
+					for(x = 2; x <= 11; x++){
+						metadata[x].values = {};
+						metadata[x].values["Taches :"] = listeTaches;
+					}
+					recupererGantt();
 				}
-			});
-			var x;
-			for(x = 2; x <= 11; x++){
-				metadata[x].values = {};
-				metadata[x].values["Taches :"] = {"ident1":"ident1","ident2":"ident2","ident3":"ident3","ident4":"ident4"};
-				// Je ne sais pas comment créer ce genre de liste...
-			}
-		};
-		recupererTaches();
-		
+				else{}
+			})
+		}
+
 		var developpeurs, id = 1;
 		var recupererGantt = function(){
-			$.ajax({
+			var reqGantt = $.ajax({
 				url: './php/ListerGantt.php', 
 				type: 'POST',
-				data: {idProjet: tabIds[0], idSprint : tabIds[1]},
-				success: function(data){
-					developpeurs = data.split("\\|/");
-					if(developpeurs[0]){
-						while(developpeurs.length > 10){
-							dataTable.push({id : id, values : {'Numero' : id, 'Developpeur' : developpeurs[0], 'Lundi-matin' : developpeurs[1], 
-								"Lundi-apresmidi" : developpeurs[2], "Mardi-matin" : developpeurs[3], "Mardi-apresmidi" : developpeurs[4],
-								"Mercredi-matin" : developpeurs[5], "Mercredi-apresmidi" : developpeurs[6], "Jeudi-matin" : developpeurs[7],
-								"Jeudi-apresmidi" : developpeurs[8], "Vendredi-matin" : developpeurs[9], "Vendredi-apresmidi" :  developpeurs[10]}});
-							id++;
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-							developpeurs.shift();
-						}
-						editableGrid.load({'metadata' : metadata, 'data' : dataTable});
-						editableGrid.renderGrid("conteneur_taches", "table_taches");
+				data: {idProjet: tabIds[0], idSprint : tabIds[1]}
+			});
+			reqGantt.success(function(data){
+				developpeurs = data.split("\\|/");
+				if(developpeurs[0]){
+					while(developpeurs.length > 10){
+						dataTable.push({id : id, values : {'Numero' : id, 'Developpeur' : developpeurs[0], 'Lundi-matin' : developpeurs[1], 
+							"Lundi-apresmidi" : developpeurs[2], "Mardi-matin" : developpeurs[3], "Mardi-apresmidi" : developpeurs[4],
+							"Mercredi-matin" : developpeurs[5], "Mercredi-apresmidi" : developpeurs[6], "Jeudi-matin" : developpeurs[7],
+							"Jeudi-apresmidi" : developpeurs[8], "Vendredi-matin" : developpeurs[9], "Vendredi-apresmidi" :  developpeurs[10]}});
+						id++;
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
+						developpeurs.shift();
 					}
-					else{}
+					remplirTableau();
 				}
+				else{}
 			});			
 		};
-		recupererGantt();
 
-		editableGrid.load({"metadata": metadata, "data": data});
-		editableGrid.renderGrid("conteneur-gantt", "table-gantt");
+		var remplirTableau = function(){
+			editableGrid.load({"metadata": metadata, "data": data});
+			editableGrid.renderGrid("conteneur-gantt", "table-gantt");
+		}
+		
+		recupererTaches();
 		
 		editableGrid.ajouterLigne = function(){
 			this.append(this.getRowCount() + 1,{'Numero' : id},false,false);
 			id++;
 		};
-    }
+    })
 
     var validerGantt = function(){
 		alert("A faire !");
