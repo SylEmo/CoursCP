@@ -91,9 +91,9 @@
 			req.success(function(data){
 				taches = data.split("\\|/");
 				if(taches[0]){
-					while(taches.length > 2){
-						listeTaches.push({'Identifiant' : taches[1], 'Description' : taches[0],
-								'Etat' : taches[2]});
+					while(taches.length > 3){
+						listeTaches.push({'id' : taches[0], 'Identifiant' : taches[2],
+							'Description' : taches[1], 'Etat' : taches[3]});
 						taches.shift();
 						taches.shift();
 						taches.shift();
