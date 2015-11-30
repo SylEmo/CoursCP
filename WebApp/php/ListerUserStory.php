@@ -7,7 +7,7 @@ if(!isset($_SESSION)) {
 	session_start();
 }
 require_once("Connexion.php");
-$req= "select * from USERSTORY WHERE IDPROJET=(select ID from PROJET where ID=".$idprojet." and IDUTIL=".$_SESSION['Niv'].")";
+$req= "SELECT * FROM USERSTORY WHERE IDPROJET=(SELECT ID FROM PROJET WHERE ID=".$idprojet." AND IDUTIL=".$_SESSION['Niv'].")";
 $rs=mysql_query($req) or die(mysql_error());
 $rs=mysql_query($req) or die(mysql_error());
 

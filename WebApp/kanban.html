@@ -85,7 +85,7 @@
 			var req = $.ajax({
 				url: './php/RemplirKanban.php',
 				type: 'POST',
-				data: {idsprint: tabIds[1]}
+				data: {idsprint: tabIds[1], idprojet: tabIds[0]}
 			}); 
 			
 			req.success(function(data){
@@ -114,7 +114,10 @@
 			var req = $.ajax({
 				url: './php/ValiderKanban.php',
 				type: 'POST',
-				data: {listeTaches: listeTaches}
+				data: {listeTaches: listeTaches},
+				success: function(data){
+					alert(data);
+				}
 			}); 
 		}
    </script>
